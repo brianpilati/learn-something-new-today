@@ -1,0 +1,20 @@
+<filesMatch "\.(html|htm|js|css|php|png)$">
+    FileETag None
+    Header unset ETag
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Expires -1
+    Header set Pragma "no-cache"
+</filesMatch>
+
+<IfModule rewrite_module>
+    RewriteEngine on
+    RewriteCond %{SERVER_PORT} 80 
+    RewriteRule ^(.*)$ https://mylearn-something-new-today.com/$1 [R=301,L] 
+
+    RewriteEngine on
+    RewriteRule ^(lib/.*)$ $1 [NC,NE,L]
+
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !controllers/Controller.php$
+    RewriteRule ^(.*)$ /controllers/Controller.php [NC,NE,L]
+</IfModule>

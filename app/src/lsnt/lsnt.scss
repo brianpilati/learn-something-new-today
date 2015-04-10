@@ -107,11 +107,12 @@ $image-height: 428px;
         width: $container-width;
 
         .content-lsnt-container {
-            position: absolute;
+            position: relative;
+            float: left;
             height: 800px;
-            left: 10px;
             width: $lsnt-content-width;
             border: 3px solid black;
+            margin-left: 20px;
             
             .lsnt-title {
                 position: relative;
@@ -122,13 +123,14 @@ $image-height: 428px;
                 margin-left: $left-content-spacer;
             }
 
-            .lsnt-image-one {
+            .lsnt-image {
                 position: relative;
                 width: $image-width;
                 height: $image-height;
                 background: pink;
                 margin-top: $margin-top-spacer;
                 margin-left: $left-content-spacer;
+                border: 1px solid black;
             }
 
             .lsnt-description {
@@ -175,7 +177,7 @@ $image-height: 428px;
                     position: absolute;
                     width: 315px;
                     height: 25px;
-                    top: 35px;
+                    top: 37px;
                     left: 0;
                     border: 1px solid blue;
                 }
@@ -193,7 +195,7 @@ $image-height: 428px;
                     position: absolute;
                     width: 315px;
                     height: 25px;
-                    top: 35px;
+                    top: 37px;
                     right: 0;
                     border: 1px solid blue;
                 }
@@ -234,12 +236,91 @@ $image-height: 428px;
                     font-weight: bold;
                 }
             }
+
+            .content-bottom-container {
+                position: relative;
+                height: 300px;
+                left: 0;
+                width: $lsnt-content-width;
+                margin-top: 20px;
+
+                .content-bottom-ad-container {
+                    position: relative;
+                    height: 90px;
+                    left: $left-content-spacer;
+                    width: $content-width;
+
+                    .ad-left {
+                        position: relative;
+                        width: 200px;
+                        height: 90px;
+                        background: lightgreen;
+                        margin-left: 10px;
+                        float: left;
+                    }
+
+                    .ad-center {
+                        position: relative;
+                        width: 200px;
+                        height: 90px;
+                        background: lightgreen;
+                        margin-left: 10px;
+                        float: left;
+                    }
+
+                    .ad-right {
+                        position: relative;
+                        width: 200px;
+                        height: 90px;
+                        background: lightgreen;
+                        margin-left: 10px;
+                        float: left;
+                    }
+                }
+
+                .content-bottom-lsnt-container {
+                    position: relative;
+                    height: 195px;
+                    left: $left-content-spacer;
+                    width: $content-width;
+                    margin-top: $margin-top-spacer;
+
+                    .lsnt-more-packages {
+                        position: relative;
+                        width: $content-width;
+                        height: 25px;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 1em;
+                    }
+
+                    .lsnt-package-container {
+                        position: relative;
+                        margin-top: $margin-top-spacer;
+                        width: 642px;
+                        height: 77px;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 1em;
+                        float: left;
+
+                        .lsnt-package-item {
+                            position: relative;
+                            width: 135px;
+                            height: 75px;
+                            border: 1px solid orange;
+                            margin-left: 18px;
+                            float: left;
+                        }
+                    }
+                }
+            }
         }
 
         .content-ad-container {
-            position: absolute;
+            position: relative;
+            float: left;
             height: 1120px;
-            right: 0;
             width: 300px;
 
             .ad-top {
@@ -267,84 +348,6 @@ $image-height: 428px;
 
         }
 
-        .content-bottom-container {
-            position: absolute;
-            top: 816px;
-            height: 300px;
-            left: $left-content-spacer - 3;
-            width: $lsnt-content-width;
-
-            .content-bottom-ad-container {
-                position: relative;
-                height: 90px;
-                left: $left-content-spacer;
-                width: $content-width;
-
-                .ad-left {
-                    position: relative;
-                    width: 200px;
-                    height: 90px;
-                    background: lightgreen;
-                    margin-left: 10px;
-                    float: left;
-                }
-
-                .ad-center {
-                    position: relative;
-                    width: 200px;
-                    height: 90px;
-                    background: lightgreen;
-                    margin-left: 10px;
-                    float: left;
-                }
-
-                .ad-right {
-                    position: relative;
-                    width: 200px;
-                    height: 90px;
-                    background: lightgreen;
-                    margin-left: 10px;
-                    float: left;
-                }
-            }
-
-            .content-bottom-lsnt-container {
-                position: relative;
-                height: 195px;
-                left: $left-content-spacer;
-                width: $content-width;
-                margin-top: $margin-top-spacer;
-
-                .lsnt-more-packages {
-                    position: relative;
-                    width: $content-width;
-                    height: 25px;
-                    text-align: center;
-                    font-weight: bold;
-                    font-size: 1em;
-                }
-
-                .lsnt-package-container {
-                    position: relative;
-                    margin-top: $margin-top-spacer;
-                    width: 642px;
-                    height: 77px;
-                    text-align: center;
-                    font-weight: bold;
-                    font-size: 1em;
-                    float: left;
-
-                    .lsnt-package-item {
-                        position: relative;
-                        width: 135px;
-                        height: 75px;
-                        border: 1px solid orange;
-                        margin-left: 18px;
-                        float: left;
-                    }
-                }
-            }
-        }
     }
 }
 

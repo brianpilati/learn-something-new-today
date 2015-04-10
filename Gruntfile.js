@@ -5,11 +5,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             sass: {
-                files: 'src/**/*.scss',
+                files: 'app/src/**/*.scss',
                 tasks: ['sass']
             },
             scsslint: {
-                files: 'src/**/*.scss',
+                files: 'app/src/**/*.scss',
                 tasks: ['scsslint']
             }
         },
@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         },
         clean: {
             build: ['build'],
-            lib: ['src/lib'],
+            lib: ['app/lib'],
             test: ['build/test'],
             e2e: ['build/test/e2e']
         },
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'src/lib/lsnt.min.css': 'src/lsnt/lsnt.scss'
+                    'app/lib/lsnt.min.css': 'app/src/lsnt/lsnt.scss'
                 }
             },
             compact: {
@@ -39,13 +39,13 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'src/lib/lsnt.css': 'src/lsnt/lsnt.scss'
+                    'app/lib/lsnt.css': 'app/src/lsnt/lsnt.scss'
                 }
             }
         },
         scsslint: {
             allFiles: [
-                'src/**/*.scss'
+                'app/src/**/*.scss'
             ],
             options: {
                 config: '.scss-lint.yml',
@@ -54,8 +54,8 @@ module.exports = function (grunt) {
         },
         copy: {
             index: {
-                src: 'src/index-production.html',
-                dest: 'src/index.html'
+                src: 'app/src/index-production.html',
+                dest: 'app/src/index.html'
             }
         }
     });
