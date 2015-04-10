@@ -23,7 +23,7 @@
             if ($this->URI === 'index.html' || empty($this->URI)) {
                 $this->file = '../src/index.html';
             } else {
-                $this->file = "DisplayPage.php";
+                $this->file = "controllers/DisplayPage.php";
                 $uriParams = preg_split("/\//", $this->URI);
                 $method = $_SERVER['REQUEST_METHOD'];
                 if ($method === "GET") {

@@ -1,0 +1,10 @@
+{
+  "name": "learn-something-new-today",
+  "description": "Says it all",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.6.*"
+  }
+}

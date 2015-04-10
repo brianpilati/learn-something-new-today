@@ -1,0 +1,34 @@
+<phpunit 
+  bootstrap="test/php/bootstrap.php"
+  colors="true"
+  verbose="true"
+>
+   
+  <testsuites>
+    <testsuite name="learn-something-new-today">
+      <directory>./test/php/unit</directory>
+    </testsuite>
+    <testsuite name="singleTest">
+      <directory>./test/php/unit/ControllerTest.php</directory>
+    </testsuite>
+  </testsuites>
+     
+  <groups>
+    <exclude>
+      <group></group>
+    </exclude>
+  </groups>
+      
+  <logging>
+    <log type="coverage-html" target="test-reports" charset="UTF-8" yui="true" />
+  </logging>
+
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">app/php</directory>
+      <exclude>
+        <file>app/php/AutoLoader.php</file>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>

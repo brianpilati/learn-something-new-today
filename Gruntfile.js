@@ -11,6 +11,10 @@ module.exports = function (grunt) {
             scsslint: {
                 files: 'app/src/**/*.scss',
                 tasks: ['scsslint']
+            },
+            phpunit: {
+                files: ['app/controllers/**/*.php', 'test/php/unit/**/*.php'],
+                tasks: ['phpunit']
             }
         },
         exec: {
@@ -57,6 +61,18 @@ module.exports = function (grunt) {
                 src: 'app/src/index-production.html',
                 dest: 'app/src/index.html'
             }
+        },
+        phpunit: {
+            dir: 'test/php/unit',
+            options: {
+                bin: 'vendor/bin/phpunit',
+                bootstrap: 'test/php/bootstrap.php',
+                colors: true,
+                verborse: true,
+                stderr: true,
+                //debug: true,
+                followOutput: true
+            }
         }
     });
 
@@ -68,9 +84,11 @@ module.exports = function (grunt) {
     grunt.registerTask('lint-auto', ['watch:scsslint']);
 
     grunt.registerTask('lint', ['scsslint']);
-    grunt.registerTask('build-setup', ['clean:build', 'clean:lib', 'install', 'lint', 'css']);
+    grunt.registerTask('build-setup', ['clean:build', 'clean:lib', 'install', 'lint', 'phpunit', 'css']);
     grunt.registerTask('build', ['build-setup']);
 
+    grunt.registerTask('phptest', ['phpunit']);
+    grunt.registerTask('php-auto', ['watch:phpunit']);
 
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -78,4 +96,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-scss-lint');
     grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-phpunit');
 };

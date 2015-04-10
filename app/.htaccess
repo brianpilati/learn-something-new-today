@@ -15,6 +15,6 @@
     RewriteRule ^(lib/.*)$ $1 [NC,NE,L]
 
     RewriteEngine on
-    RewriteCond %{REQUEST_FILENAME} !controllers/Controller.php$
-    RewriteRule ^(.*)$ /controllers/Controller.php [NC,NE,L]
+    RewriteCond %{REQUEST_FILENAME} !php/Controller.php$
+    RewriteRule ^(.*)$ /php/Controller.php [NC,NE,L]
 </IfModule>

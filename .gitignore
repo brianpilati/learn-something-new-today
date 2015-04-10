@@ -32,3 +32,6 @@ node_modules
 *.swo
 .sass-cache
 app/lib
+composer.phar
+test-reports
+vendor
