@@ -1,0 +1,18 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `lsnt`;
+
+DROP TABLE IF EXISTS `bulletPoint`;
+
+CREATE TABLE `bulletPoint` (
+  `bulletPointId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `itemId` INT(10) UNSIGNED NOT NULL,
+  `bulletPoint` VARCHAR(255),
+  PRIMARY KEY (`bulletPointId`),
+  FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
+  UNIQUE KEY `bulletPointId_UNIQUE` (`bulletPointId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Bullet Point Table';

@@ -1,0 +1,27 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `lsnt`;
+
+DROP TABLE IF EXISTS `keyword`;
+
+CREATE TABLE `keyword` (
+  `keywordId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `keyword` VARCHAR(255),
+  `creationDate` DATETIME,
+  PRIMARY KEY (`keywordId`),
+  UNIQUE KEY `keywordId_UNIQUE` (`keywordId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Keyword Table';
+
+CREATE TABLE `keywordConnector` (
+  `keywordConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `keywordId` INT(10) UNSIGNED NOT NULL,
+  `type` VARCHAR(255),
+  `typeId` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`keywordConnectorId`),
+  FOREIGN KEY (`keywordId`) REFERENCES `keyword` (`keywordId`),
+  UNIQUE KEY `keywordConnectorId_UNIQUE` (`keywordConnectorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Keyword Connector Table';

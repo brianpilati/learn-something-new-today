@@ -5,7 +5,7 @@ class SubCategoryModel extends db {
         parent::__construct();
     }
 
-    public function getAllSubCategories($categoryId) {
+    public function getAll($categoryId) {
         return $this->query($this->selectQuery($categoryId));
     }
 

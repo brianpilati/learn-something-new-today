@@ -141,6 +141,38 @@ brandTableCreation() {
     incStep
 }
 
+packageTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' package tables?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_PACKAGE_TABLE;
+    incStep
+}
+
+vendorLinkTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' vendorLink tables?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_VENDOR_LINK_TABLE;
+    incStep
+}
+
+bulletPointTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' bulletPoint tables?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_BULLET_POINT_TABLE;
+    incStep
+}
+
+keywordTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' keyword tables?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_KEYWORD_TABLE;
+    incStep
+}
+
 itemTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' item table?\n";
     echo "* WARNING * This is delete the current table";
@@ -179,6 +211,10 @@ userInput() {
         subCategoryTableCreation;
         brandTableCreation;
         itemTableCreation;
+        keywordTableCreation;
+        bulletPointTableCreation;
+        vendorLinkTableCreation;
+        packageLinkTableCreation;
     fi
 }
 
@@ -210,6 +246,34 @@ createBrandTable() {
     if [[ "$CREATE_BRAND_TABLE" == "Y" || isDropAllTables ]]
     then
         executeDBStatement "05_dbCreateBrandTable.txt"
+    fi
+}
+
+createPackageTable() {
+    if [[ "$CREATE_PACKAGE_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "10_dbCreatePackageTable.txt"
+    fi
+}
+
+createVendorLinkTable() {
+    if [[ "$CREATE_VENDOR_LINK_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "09_dbCreateVendorLinkTable.txt"
+    fi
+}
+
+createBulletPointTable() {
+    if [[ "$CREATE_BULLET_POINT_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "08_dbCreateBulletPointTable.txt"
+    fi
+}
+
+createKeywordTable() {
+    if [[ "$CREATE_KEYWORD_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "07_dbCreateKeywordTables.txt"
     fi
 }
 
@@ -259,4 +323,8 @@ createCategoryTable;
 createSubCategoryTable;
 createBrandTable;
 createItemTable;
+createKeywordTable;
+createBulletPointTable;
+createVendorLinkTable;
+createPackageTable;
 createTestData;

@@ -1,0 +1,19 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `lsnt`;
+
+DROP TABLE IF EXISTS `vendorLink`;
+
+CREATE TABLE `vendorLink` (
+  `vendorLinkId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `itemId` INT(10) UNSIGNED NOT NULL,
+  `link` VARCHAR(255),
+  `type` VARCHAR(255),
+  PRIMARY KEY (`vendorLinkId`),
+  FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
+  UNIQUE KEY `vendorLinkId_UNIQUE` (`vendorLinkId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Vendor Link Table';

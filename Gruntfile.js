@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                 tasks: ['scsslint']
             },
             phpunit: {
-                files: ['app/php/**/*.php', 'test/php/unit/**/*.php'],
+                files: ['app/php/**/*.php', 'test/php/unit/**/*Test.php'],
                 tasks: ['phpunit']
             }
         },

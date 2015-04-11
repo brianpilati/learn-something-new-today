@@ -10,39 +10,39 @@
         }
 
         private function initializeModels() {
-            $this->categoryObj = new CategoryModel();
-            $this->subCategoryObj = new SubCategoryModel();
+            $this->packageObj = new PackageModel();
         }
 
         private function makeDirectory($directory) {
             if (!file_exists($directory)) {
                 mkdir($directory, 0700, TRUE);
             }
+
+            return $directory;
         }
 
         private function build() {
             $this->makeDirectory($this->baseDirectory);
-            $this->buildCategories();
+            $this->buildPackages();
         }
 
-        private function buildCategories() {
-            $this->categoryObj->getAllCategories();
-            if($this->categoryObj->result) {
-                while($dbObj = $this->categoryObj->result->fetch_object()) {
-                    $categoryDirectory = format_directory($this->baseDirectory, $dbObj->category);
-                    $this->makeDirectory($categoryDirectory);
-                    $this->buildSubCategories($dbObj->categoryId, $categoryDirectory);
+        private function buildPackages() {
+            $this->packageObj->getAll();
+            if($this->packageObj->result) {
+                while($dbObj = $this->packageObj->result->fetch_object()) {
+                    $directory = format_directory($this->baseDirectory, $dbObj->category);
+                    $classDirectory = $this->buildClassDirectory($dbObj->class, $this->makeDirectory($directory));
+                    $familyDirectory = $this->buildFamilyDirectory($dbObj->family, $this->makeDirectory($classDirectory));
                 }
             }
         }
 
-        private function buildSubCategories($categoryId, $categoryDirectory) {
-            $this->subCategoryObj->getAllSubCategories($categoryId);
-            if($this->subCategoryObj->result) {
-                while($dbObj = $this->subCategoryObj->result->fetch_object()) {
-                    $this->makeDirectory(format_directory($categoryDirectory, $dbObj->subCategory));
-                }
-            }
+        private function buildClassDirectory($directory, $parentDirectory) {
+            return $this->makeDirectory(format_directory($parentDirectory, $directory));
+        }
+
+        private function buildFamilyDirectory($directory, $parentDirectory) {
+            return $this->makeDirectory(format_directory($parentDirectory, $directory));
         }
     }
 ?>

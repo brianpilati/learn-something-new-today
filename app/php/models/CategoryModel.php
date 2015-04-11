@@ -5,7 +5,7 @@ class CategoryModel extends db {
         parent::__construct();
     }
 
-    public function getAllCategories() {
+    public function getAll() {
         return $this->query($this->selectQuery());
     }
 
