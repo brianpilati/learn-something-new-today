@@ -1,6 +1,7 @@
 <?php
 
 require_once join('/', array(__DIR__, '..', '..', 'vendor', 'autoload.php'));
+require_once join('/', array(__DIR__, 'lib', 'helpers.php'));
 
 class AutoLoader {
      

@@ -125,6 +125,22 @@ categoryTableCreation() {
     incStep
 }
 
+subCategoryTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' subCategory table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_SUB_CATEGORY_TABLE;
+    incStep
+}
+
+brandTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' brand table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_BRAND_TABLE;
+    incStep
+}
+
 itemTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' item table?\n";
     echo "* WARNING * This is delete the current table";
@@ -160,6 +176,8 @@ userInput() {
     if [[ "$DROP_ALL_TABLES" != "Y" ]]
     then
         categoryTableCreation;
+        subCategoryTableCreation;
+        brandTableCreation;
         itemTableCreation;
     fi
 }
@@ -188,6 +206,13 @@ createAdmin() {
     fi
 }
 
+createBrandTable() {
+    if [[ "$CREATE_BRAND_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "05_dbCreateBrandTable.txt"
+    fi
+}
+
 createItemTable() {
     if [[ "$CREATE_ITEM_TABLE" == "Y" || isDropAllTables ]]
     then
@@ -199,6 +224,13 @@ createCategoryTable() {
     if [[ "$CREATE_CATEGORY_TABLE" == "Y" || isDropAllTables ]]
     then
         executeDBStatement "03_dbCreateCategoryTable.txt"
+    fi
+}
+
+createSubCategoryTable() {
+    if [[ "$CREATE_SUB_CATEGORY_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "04_dbCreateSubCategoryTable.txt"
     fi
 }
 
@@ -224,5 +256,7 @@ createAdmin;
 createDatabase;
 dropAllTables;
 createCategoryTable;
+createSubCategoryTable;
+createBrandTable;
 createItemTable;
 createTestData;

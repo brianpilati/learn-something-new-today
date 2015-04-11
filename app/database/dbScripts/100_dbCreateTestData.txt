@@ -8,6 +8,24 @@ USE `lsnt`;
 
 LOCK TABLES `category` WRITE;
 INSERT INTO `category` (category, creationDate) VALUES 
-('Toys', now());
+('Toys', now()),
+('Vehicles', now());
 UNLOCK TABLES;
 
+LOCK TABLES `subCategory` WRITE;
+INSERT INTO `subCategory` (subCategory, categoryId, creationDate) VALUES 
+('Building Blocks', 1, now()),
+('Truck', 2, now());
+UNLOCK TABLES;
+
+LOCK TABLES `brand` WRITE;
+INSERT INTO `brand` (brand, subCategoryId, creationDate) VALUES 
+('LEGO', 1, now()),
+('Toyota', 2, now());
+UNLOCK TABLES;
+
+LOCK TABLES `item` WRITE;
+INSERT INTO `item` (item, brandId, creationDate) VALUES 
+('4567', 1, now()),
+('Tacoma', 2, now());
+UNLOCK TABLES;

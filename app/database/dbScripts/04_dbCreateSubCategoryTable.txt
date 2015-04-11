@@ -1,0 +1,19 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `lsnt`;
+
+DROP TABLE IF EXISTS `subCategory`;
+
+CREATE TABLE `subCategory` (
+  `subCategoryId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `categoryId` INT(10) UNSIGNED NOT NULL,
+  `subCategory` VARCHAR(255),
+  `creationDate` DATETIME,
+  PRIMARY KEY (`subCategoryId`),
+  FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`),
+  UNIQUE KEY `subCategoryId_UNIQUE` (`subCategoryId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The SubCategory Table';

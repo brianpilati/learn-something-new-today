@@ -1,0 +1,19 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `lsnt`;
+
+DROP TABLE IF EXISTS `brand`;
+
+CREATE TABLE `brand` (
+  `brandId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `subCategoryId` INT(10) UNSIGNED NOT NULL,
+  `brand` VARCHAR(255),
+  `creationDate` DATETIME,
+  PRIMARY KEY (`brandId`),
+  FOREIGN KEY (`subCategoryId`) REFERENCES `subCategory` (`subCategoryId`),
+  UNIQUE KEY `brandId_UNIQUE` (`brandId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Brand Table';

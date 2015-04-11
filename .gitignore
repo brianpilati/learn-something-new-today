@@ -37,3 +37,4 @@ test-reports
 vendor
 config.php
 shadowSrc
+.DS_Store
