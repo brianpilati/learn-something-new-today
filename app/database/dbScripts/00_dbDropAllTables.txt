@@ -4,8 +4,6 @@
 -- ------------------------------------------------------
 -- Server version	5.1.59
 
-USE `lsnt`;
-
 DROP TABLE IF EXISTS `packageConnector`;
 DROP TABLE IF EXISTS `package`;
 DROP TABLE IF EXISTS `vendorLink`;

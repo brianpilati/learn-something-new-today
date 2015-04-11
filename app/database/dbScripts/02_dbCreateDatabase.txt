@@ -7,4 +7,5 @@
 DROP DATABASE IF EXISTS `lsnt`;
 CREATE DATABASE `lsnt`;
 
-USE `lsnt`;
+DROP DATABASE IF EXISTS `lsnt_test`;
+CREATE DATABASE `lsnt_test`;

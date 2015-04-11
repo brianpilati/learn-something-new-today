@@ -4,8 +4,6 @@
 -- ------------------------------------------------------
 -- Server version	5.0.83
 
-USE `lsnt`;
-
 LOCK TABLES `category` WRITE;
 INSERT INTO `category` (category, creationDate) VALUES 
 ('Toys', now()),

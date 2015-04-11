@@ -3,6 +3,8 @@
 PASSWORD="--password=";
 ROOT_DATABASE="mysql";
 LSNT_DATABASE="lsnt";
+LSNT_TEST_DATABASE="lsnt_test";
+CURRENT_DATABASE=$LSNT_DATABASE;
 STEP_COUNTER=1;
 
 incStep() {
@@ -11,7 +13,7 @@ incStep() {
 
 #Insert New Tables
 executeDBStatement() {
-    executeDBStatementExtended $1 $LSNT_DATABASE
+    executeDBStatementExtended $1 $CURRENT_DATABASE
 }
 
 executeMySQLStatement() {
@@ -301,6 +303,8 @@ createSubCategoryTable() {
 createTestData() {
     if [[ "$CREATE_TEST_DATA" == "Y" ]]
     then
+        CURRENT_DATABASE=$LSNT_TEST_DATABASE;
+        createAllTables;
         executeDBStatement "100_dbCreateTestData.txt"
     fi
 }
@@ -312,19 +316,23 @@ dropAllTables() {
     fi
 }
 
+createAllTables() {
+    dropAllTables;
+    createCategoryTable;
+    createSubCategoryTable;
+    createBrandTable;
+    createItemTable;
+    createKeywordTable;
+    createBulletPointTable;
+    createVendorLinkTable;
+    createPackageTable;
+}
+
 
 
 userInput;
 printf "\n\nWorking\n\n";
 createAdmin;
 createDatabase;
-dropAllTables;
-createCategoryTable;
-createSubCategoryTable;
-createBrandTable;
-createItemTable;
-createKeywordTable;
-createBulletPointTable;
-createVendorLinkTable;
-createPackageTable;
+createAllTables;
 createTestData;
