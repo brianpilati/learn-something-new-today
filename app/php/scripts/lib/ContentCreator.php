@@ -5,7 +5,20 @@
 
         }
 
-        public function getHeader() {
+        public function buildContent() {
+            $html = "<html>";
+            $html .= $this->getHeader();
+            $html .= $this->getBodyOpen();
+            $html .= $this->getTopContainer();
+            $html .= $this->getMarqueeContainer();
+            $html .= $this->getContentContainer();
+            $html .= $this->getBodyClose();
+            $html .= "</html>";
+
+            return $html;
+        }
+
+        private function getHeader() {
 return <<<HTML
 
     <head>
@@ -15,7 +28,7 @@ return <<<HTML
 HTML;
         }
 
-        public function getBodyOpen() {
+        private function getBodyOpen() {
 return <<<HTML
 
     <body>
@@ -23,7 +36,7 @@ return <<<HTML
 HTML;
         }
 
-        public function getBodyClose() {
+        private function getBodyClose() {
 return <<<HTML
 
         </div>
@@ -32,7 +45,7 @@ return <<<HTML
 HTML;
         }
 
-        public function getTopContainer() {
+        private function getTopContainer() {
 return <<<HTML
 
             <div class="top-container">
@@ -46,7 +59,7 @@ return <<<HTML
 HTML;
         }
 
-        public function getMarqueeContainer() {
+        private function getMarqueeContainer() {
 return <<<HTML
 
             <div class="marquee-container">
@@ -163,7 +176,7 @@ return <<<HTML
 HTML;
         }
 
-        public function getContentContainer() {
+        private function getContentContainer() {
 return <<<HTML
 
             <div class="content-container">

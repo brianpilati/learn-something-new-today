@@ -36,40 +36,40 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         $newDirectory = format_directory($this->sourceDirectory, 'index.html');
         $this->assertTrue(file_exists($newDirectory));
 
-        $this->assertRegExp('/Home Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
     }
 
     public function testPackageDirectoryCreation() 
     {
         $newDirectory = format_directory($this->sourceDirectory, 'Toys/index.html');
         $this->assertTrue(file_exists($newDirectory), $newDirectory);
-        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
 
         $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/index.html');
         $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
     }
 
     public function testClassDirectoryCreation() 
     {
         $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/index.html');
         $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
 
         $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/index.html');
         $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
     }
 
     public function testFamilyDirectoryCreation() 
     {
         $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/index.html');
         $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
 
         $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/index.html');
         $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
     }
 
     public function testItemCreation() 

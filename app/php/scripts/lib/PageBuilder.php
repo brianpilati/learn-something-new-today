@@ -59,43 +59,35 @@
             $this->closeFile($file);
         }
 
-        private function buildHomePage($directory) {
-            $this->createPage($directory, 'Home Page');
+        private function buildHomeHtmlPage($directory) {
+            $this->createPage($directory, $this->contentCreator->buildContent());
         }
 
-        private function buildCategoryPage($directory) {
-            $this->createPage($directory, 'Category Page');
+        private function buildCategoryHtmlPage($directory) {
+            $this->createPage($directory, $this->contentCreator->buildContent());
         }
 
         private function buildItemHtmlPage($directory) {
-            $html = "<html>";
-            $html .= $this->contentCreator->getHeader();
-            $html .= $this->contentCreator->getBodyOpen();
-            $html .= $this->contentCreator->getTopContainer();
-            $html .= $this->contentCreator->getMarqueeContainer();
-            $html .= $this->contentCreator->getContentContainer();
-            $html .= $this->contentCreator->getBodyClose();
-            $html .= "</html>";
-            $this->createPage($directory, $html);
+            $this->createPage($directory, $this->contentCreator->buildContent());
         }
 
         private function buildClassPage($directory) {
-            $this->buildCategoryPage($directory);
+            $this->buildCategoryHtmlPage($directory);
         }
 
         private function buildFamilyPage($directory) {
-            $this->buildCategoryPage($directory);
+            $this->buildCategoryHtmlPage($directory);
         }
 
         private function buildLanding($directory) {
             $newDirectory = $this->makeDirectory($directory);
-            $this->buildHomePage($newDirectory);
+            $this->buildHomeHtmlPage($newDirectory);
             return $newDirectory;
         }
 
         private function buildCategory($directory, $parentDirectory) {
             $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            $this->buildCategoryPage($newDirectory);
+            $this->buildCategoryHtmlPage($newDirectory);
             return $newDirectory;
         }
 
