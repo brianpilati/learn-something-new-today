@@ -31,7 +31,9 @@ node_modules
 *.swp
 *.swo
 .sass-cache
-app/lib
+app/src/lib
 composer.phar
 test-reports
 vendor
+config.php
+shadowSrc

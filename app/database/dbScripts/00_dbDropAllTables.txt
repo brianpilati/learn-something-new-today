@@ -1,0 +1,10 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.1.59
+
+USE `lsnt`;
+
+DROP TABLE IF EXISTS `item`;
+DROP TABLE IF EXISTS `category`;

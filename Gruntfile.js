@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                 tasks: ['scsslint']
             },
             phpunit: {
-                files: ['app/controllers/**/*.php', 'test/php/unit/**/*.php'],
+                files: ['app/php/**/*.php', 'test/php/unit/**/*.php'],
                 tasks: ['phpunit']
             }
         },
@@ -22,8 +22,9 @@ module.exports = function (grunt) {
         },
         clean: {
             build: ['build'],
-            lib: ['app/lib'],
+            lib: ['app/src/lib'],
             test: ['build/test'],
+            shadowSrc: ['test/php/shadowSrc'],
             e2e: ['build/test/e2e']
         },
         sass: {
@@ -35,7 +36,7 @@ module.exports = function (grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'app/lib/lsnt.min.css': 'app/src/lsnt/lsnt.scss'
+                    'app/src/lib/lsnt.min.css': 'app/css/lsnt.scss'
                 }
             },
             compact: {
@@ -43,13 +44,13 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'app/lib/lsnt.css': 'app/src/lsnt/lsnt.scss'
+                    'app/src/lib/lsnt.css': 'app/css/lsnt.scss'
                 }
             }
         },
         scsslint: {
             allFiles: [
-                'app/src/**/*.scss'
+                'app/css/**/*.scss'
             ],
             options: {
                 config: '.scss-lint.yml',
@@ -69,7 +70,7 @@ module.exports = function (grunt) {
                 bootstrap: 'test/php/bootstrap.php',
                 colors: true,
                 verborse: true,
-                stderr: true,
+                stderr: false,
                 //debug: true,
                 followOutput: true
             }
@@ -84,10 +85,10 @@ module.exports = function (grunt) {
     grunt.registerTask('lint-auto', ['watch:scsslint']);
 
     grunt.registerTask('lint', ['scsslint']);
-    grunt.registerTask('build-setup', ['clean:build', 'clean:lib', 'install', 'lint', 'phpunit', 'css']);
+    grunt.registerTask('build-setup', ['clean:build', 'clean:lib', 'install', 'lint', 'phptest', 'css']);
     grunt.registerTask('build', ['build-setup']);
 
-    grunt.registerTask('phptest', ['phpunit']);
+    grunt.registerTask('phptest', ['clean:shadowSrc', 'phpunit']);
     grunt.registerTask('php-auto', ['watch:phpunit']);
 
     grunt.loadNpmTasks('grunt-contrib-copy');

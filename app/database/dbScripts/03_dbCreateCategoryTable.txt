@@ -1,0 +1,17 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `lsnt`;
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `category` (
+  `categoryId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `category` VARCHAR(255),
+  `creationDate` DATETIME,
+  PRIMARY KEY (`categoryId`),
+  UNIQUE KEY `categoryId_UNIQUE` (`categoryId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Category Table';
