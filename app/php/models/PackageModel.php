@@ -17,7 +17,8 @@ class PackageModel extends db {
                 c.category as category,
                 p.class as class,
                 p.family as family,
-                i.item as item
+                i.item as item,
+                i.itemId as itemId
             FROM 
                 package p,
                 category c,

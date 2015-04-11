@@ -22,7 +22,7 @@
         }
 
         private function build() {
-            $this->makeDirectory($this->baseDirectory);
+            $this->buildLanding($this->baseDirectory);
             $this->buildPackages();
         }
 
@@ -30,19 +30,78 @@
             $this->packageObj->getAll();
             if($this->packageObj->result) {
                 while($dbObj = $this->packageObj->result->fetch_object()) {
-                    $directory = format_directory($this->baseDirectory, $dbObj->category);
-                    $classDirectory = $this->buildClassDirectory($dbObj->class, $this->makeDirectory($directory));
-                    $familyDirectory = $this->buildFamilyDirectory($dbObj->family, $this->makeDirectory($classDirectory));
+                    $categoryDirectory = $this->buildCategory($dbObj->category, $this->baseDirectory);
+                    $classDirectory = $this->buildClass($dbObj->class, $categoryDirectory);
+                    $familyDirectory = $this->buildFamily($dbObj->family, $classDirectory);
+                    $itemDirectory = $this->buildItem($dbObj->item, $familyDirectory);
                 }
             }
         }
 
-        private function buildClassDirectory($directory, $parentDirectory) {
-            return $this->makeDirectory(format_directory($parentDirectory, $directory));
+        private function openFile($directory) {
+            $filePath = format_directory($directory, 'index.html');
+            $file = fopen($filePath, "w") or die("Unable to open file!");
+            return $file;
         }
 
-        private function buildFamilyDirectory($directory, $parentDirectory) {
-            return $this->makeDirectory(format_directory($parentDirectory, $directory));
+        private function closeFile($file) {
+            fclose($file);
+        }
+
+        private function createPage($filePath, $text) {
+            $file = $this->openFile($filePath);
+            fwrite($file, $text);
+            $this->closeFile($file);
+        }
+
+        private function buildHomePage($directory) {
+            $this->createPage($directory, 'Home Page');
+        }
+
+        private function buildCategoryPage($directory) {
+            $this->createPage($directory, 'Category Page');
+        }
+
+        private function buildClassPage($directory) {
+            $this->buildCategoryPage($directory);
+        }
+
+        private function buildFamilyPage($directory) {
+            $this->buildCategoryPage($directory);
+        }
+
+        private function buildItemHtmlPage($directory) {
+            $this->createPage($directory, 'Item Page');
+        }
+
+        private function buildLanding($directory) {
+            $newDirectory = $this->makeDirectory($directory);
+            $this->buildHomePage($newDirectory);
+            return $newDirectory;
+        }
+
+        private function buildCategory($directory, $parentDirectory) {
+            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
+            $this->buildCategoryPage($newDirectory);
+            return $newDirectory;
+        }
+
+        private function buildClass($directory, $parentDirectory) {
+            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
+            $this->buildClassPage($newDirectory);
+            return $newDirectory;
+        }
+
+        private function buildFamily($directory, $parentDirectory) {
+            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
+            $this->buildFamilyPage($newDirectory);
+            return $newDirectory;
+        }
+
+        private function buildItem($directory, $parentDirectory) {
+            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
+            $this->buildItemHtmlPage($newDirectory);
+            return $newDirectory;
         }
     }
 ?>

@@ -11,12 +11,20 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         $this->packages = array(
             'Toys' => array (
                 'LEGO' => array (
-                    'Star Wars' => array ()
+                    'Star Wars' => array (
+                        '4567' => array (
+                        
+                        )
+                    )
                 )
             ),
             'Vehicles' => array (
                 '2015' => array (
-                    'Toyota' => array ()
+                    'Toyota' => array (
+                        'Tacoma' => array (
+                        
+                        )
+                    )
                 )
             )
         );
@@ -25,40 +33,54 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testSourceDirectoryCreation() 
     {
-        $this->assertTrue(file_exists($this->sourceDirectory));
+        $newDirectory = format_directory($this->sourceDirectory, 'index.html');
+        $this->assertTrue(file_exists($newDirectory));
+
+        $this->assertRegExp('/Home Page/', file_get_contents($newDirectory));
     }
 
     public function testPackageDirectoryCreation() 
     {
-        foreach($this->packages as $package => $packageObject) {
-            $newDirectory = format_directory($this->sourceDirectory, $package);
-            $this->assertTrue(file_exists($newDirectory));
-        }
+        $newDirectory = format_directory($this->sourceDirectory, 'Toys/index.html');
+        $this->assertTrue(file_exists($newDirectory), $newDirectory);
+        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+
+        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/index.html');
+        $this->assertTrue(file_exists($newDirectory));
+        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
     }
 
     public function testClassDirectoryCreation() 
     {
-        foreach($this->packages as $package => $packageObject) {
-            $packageDirectory = format_directory($this->sourceDirectory, $package);
-            foreach($packageObject as $class => $family) {
-                $newDirectory = format_directory($packageDirectory, $class);
-                $this->assertTrue(file_exists($newDirectory));
-            }
-        }
+        $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/index.html');
+        $this->assertTrue(file_exists($newDirectory));
+        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+
+        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/index.html');
+        $this->assertTrue(file_exists($newDirectory));
+        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
     }
 
     public function testFamilyDirectoryCreation() 
     {
-        foreach($this->packages as $package => $packageObject) {
-            $packageDirectory = format_directory($this->sourceDirectory, $package);
-            foreach($packageObject as $class => $familyObject) {
-                $classDirectory = format_directory($packageDirectory, $class);
-                foreach($familyObject as $family => $itemObject) {
-                    $newDirectory = format_directory($classDirectory, $family);
-                    $this->assertTrue(file_exists($newDirectory), "'$newDirectory' does not exist");
-                }
-            }
-        }
+        $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/index.html');
+        $this->assertTrue(file_exists($newDirectory));
+        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+
+        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/index.html');
+        $this->assertTrue(file_exists($newDirectory));
+        $this->assertRegExp('/Category Page/', file_get_contents($newDirectory));
+    }
+
+    public function testItemCreation() 
+    {
+        $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/4567/index.html');
+        $this->assertTrue(file_exists($newDirectory));
+        $this->assertRegExp('/Item Page/', file_get_contents($newDirectory));
+
+        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/Tacoma/index.html');
+        $this->assertTrue(file_exists($newDirectory));
+        $this->assertRegExp('/Item Page/', file_get_contents($newDirectory));
     }
 
     public function tearDown()
