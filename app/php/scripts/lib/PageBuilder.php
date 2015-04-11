@@ -1,12 +1,17 @@
 <?php
 
     class PageBuilder{
-        private $categoryObj, $private;
+        private $packageObj, $contentCreator;
 
         public function __construct() {
             $this->baseDirectory = SOURCE_DIRECTORY;
             $this->initializeModels();
+            $this->initializeClasses();
             $this->build();
+        }
+
+        private function initializeClasses() {
+            $this->contentCreator = new ContentCreator();
         }
 
         private function initializeModels() {
@@ -62,16 +67,24 @@
             $this->createPage($directory, 'Category Page');
         }
 
+        private function buildItemHtmlPage($directory) {
+            $html = "<html>";
+            $html .= $this->contentCreator->getHeader();
+            $html .= $this->contentCreator->getBodyOpen();
+            $html .= $this->contentCreator->getTopContainer();
+            $html .= $this->contentCreator->getMarqueeContainer();
+            $html .= $this->contentCreator->getContentContainer();
+            $html .= $this->contentCreator->getBodyClose();
+            $html .= "</html>";
+            $this->createPage($directory, $html);
+        }
+
         private function buildClassPage($directory) {
             $this->buildCategoryPage($directory);
         }
 
         private function buildFamilyPage($directory) {
             $this->buildCategoryPage($directory);
-        }
-
-        private function buildItemHtmlPage($directory) {
-            $this->createPage($directory, 'Item Page');
         }
 
         private function buildLanding($directory) {

@@ -76,11 +76,11 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     {
         $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/4567/index.html');
         $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Item Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
 
         $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/Tacoma/index.html');
         $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Item Page/', file_get_contents($newDirectory));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
     }
 
     public function tearDown()
