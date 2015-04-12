@@ -33,54 +33,35 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testSourceDirectoryCreation() 
     {
-        $newDirectory = format_directory($this->sourceDirectory, 'index.html');
-        $this->assertTrue(file_exists($newDirectory));
-
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent($this->sourceDirectory);
     }
 
     public function testPackageDirectoryCreation() 
     {
-        $newDirectory = format_directory($this->sourceDirectory, 'Toys/index.html');
-        $this->assertTrue(file_exists($newDirectory), $newDirectory);
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
-
-        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/index.html');
-        $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys'));
+        
+        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles'));
     }
 
     public function testClassDirectoryCreation() 
     {
-        $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/index.html');
-        $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO'));
 
-        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/index.html');
-        $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015'));
     }
 
     public function testFamilyDirectoryCreation() 
     {
-        $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/index.html');
-        $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars'));
 
-        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/index.html');
-        $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota'));
     }
 
     public function testItemCreation() 
     {
-        $newDirectory = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/4567/index.html');
-        $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/4567'));
 
-        $newDirectory = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/Tacoma/index.html');
-        $this->assertTrue(file_exists($newDirectory));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($newDirectory));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/Tacoma'));
     }
 
     public function tearDown()
@@ -88,6 +69,27 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         if (preg_match('/shadowSrc$/', $this->sourceDirectory)) {
             shell_exec("rm -rf {$this->sourceDirectory}");
         }
+    }
+
+    public function getFileGroup($file) {
+        return posix_getgrgid(filegroup($file))['name'];
+    }
+    
+    public function getFilePerms($file) {
+        return substr(sprintf('%o', fileperms($file)), -4);
+    }
+
+    public function validateContent($directory) {
+        $file = format_directory($directory, 'index.html');
+        $this->assertTrue(file_exists($directory));
+        $this->assertTrue(file_exists($file));
+        $this->assertRegExp('/Learn Something New Today/', file_get_contents($file));
+        $this->assertEquals($this->getFileGroup($file), '_www');
+        $this->assertEquals($this->getFilePerms($file), '0755');
+
+        $this->assertEquals($this->getFileGroup($directory), '_www');
+        $this->assertEquals($this->getFilePerms($directory), '0755');
+
     }
 }
 

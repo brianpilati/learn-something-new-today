@@ -6,13 +6,9 @@
         public function __construct() {
             $this->baseDirectory = SOURCE_DIRECTORY;
             $this->initializeModels();
-            $this->initializeClasses();
             $this->build();
         }
 
-        private function initializeClasses() {
-            $this->contentCreator = new ContentCreator();
-        }
 
         private function initializeModels() {
             $this->packageObj = new PackageModel();
@@ -20,8 +16,11 @@
 
         private function makeDirectory($directory) {
             if (!file_exists($directory)) {
-                mkdir($directory, 0700, TRUE);
+                mkdir($directory, 0755, TRUE);
             }
+
+            $this->chmod($directory);
+            $this->chgrp($directory);
 
             return $directory;
         }
@@ -35,6 +34,7 @@
             $this->packageObj->getAll();
             if($this->packageObj->result) {
                 while($dbObj = $this->packageObj->result->fetch_object()) {
+                    $this->contentCreator = new ContentCreator($dbObj);
                     $categoryDirectory = $this->buildCategory($dbObj->category, $this->baseDirectory);
                     $classDirectory = $this->buildClass($dbObj->class, $categoryDirectory);
                     $familyDirectory = $this->buildFamily($dbObj->family, $classDirectory);
@@ -43,20 +43,30 @@
             }
         }
 
-        private function openFile($directory) {
-            $filePath = format_directory($directory, 'index.html');
-            $file = fopen($filePath, "w") or die("Unable to open file!");
-            return $file;
+        private function openFile($filePath) {
+            $fileHandle = fopen($filePath, "w") or die("Unable to open file!");
+            return $fileHandle;
         }
 
-        private function closeFile($file) {
-            fclose($file);
+        private function closeFile($fileHandle) {
+            fclose($fileHandle);
         }
 
-        private function createPage($filePath, $text) {
-            $file = $this->openFile($filePath);
-            fwrite($file, $text);
-            $this->closeFile($file);
+        private function chmod($file) {
+            chmod($file, 0755);
+        }
+
+        private function chgrp($file) {
+            chgrp($file, "_www");
+        }
+
+        private function createPage($filePath, $content) {
+            $filePath = format_directory($filePath, 'index.html');
+            $fileHandle = $this->openFile($filePath);
+            fwrite($fileHandle, $content);
+            $this->closeFile($fileHandle);
+            $this->chmod($filePath);
+            $this->chgrp($filePath);
         }
 
         private function buildHomeHtmlPage($directory) {
@@ -81,7 +91,14 @@
 
         private function buildLanding($directory) {
             $newDirectory = $this->makeDirectory($directory);
-            $this->buildHomeHtmlPage($newDirectory);
+            $this->packageObj->getAll();
+            if($this->packageObj->result) {
+                $this->contentCreator = new ContentCreator($this->packageObj->result->fetch_object());
+                $this->buildHomeHtmlPage($newDirectory);
+            }
+            
+            //This needs to be an error case
+
             return $newDirectory;
         }
 

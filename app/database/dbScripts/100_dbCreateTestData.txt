@@ -23,9 +23,9 @@ INSERT INTO `brand` (brand, subCategoryId, creationDate) VALUES
 UNLOCK TABLES;
 
 LOCK TABLES `item` WRITE;
-INSERT INTO `item` (item, brandId, creationDate) VALUES 
-('4567', 1, now()),
-('Tacoma', 2, now());
+INSERT INTO `item` (item, brandId, imageUrl, title, description, altTag, creationDate) VALUES 
+('4567', 1, 'image', '4567 item title', '4567 description', 'altTag', now()),
+('Tacoma', 2, 'image', 'Tacoma item title', 'Tacoma description', 'altTag', now());
 UNLOCK TABLES;
 
 LOCK TABLES `keyword` WRITE;

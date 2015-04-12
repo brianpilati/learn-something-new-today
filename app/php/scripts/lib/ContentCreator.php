@@ -1,8 +1,10 @@
 <?php
 
     class ContentCreator {
-        public function __construct() {
+        private $package;
 
+        public function __construct($packageObj) {
+            $this->package = new Package($packageObj);
         }
 
         public function buildContent() {
@@ -53,7 +55,7 @@ return <<<HTML
                 <div class="lsnt-facebook">fb</div>
                 <div class="lsnt-twitter">Tw</div>
                 <div class="lsnt-pinterest">Pi</div>
-                <div class="lsnt-package-title">Hello world -- this is my title How many lett 48</div>
+                <div class="lsnt-package-title">{$this->package->getPackageTitle()}</div>
                 <div class="header-ad">Google</div>
             </div>
 HTML;
@@ -114,9 +116,9 @@ HTML;
         private function getContent() {
 return <<<HTML
 
-                    <div class="lsnt-title">Hello world -- this is my title How many letters can I hold? 46 -65</div>
-                    <div class="lsnt-image">Image - 640 x 428</div>
-                    <div class="lsnt-description">Description</div>
+                    <div class="lsnt-title">{$this->package->getItemTitle()}</div>
+                    <div class="lsnt-image"><img src="{$this->package->getItemImageUrl()}" width="640" height="428" /></div>
+                    <div class="lsnt-description">{$this->package->getItemDescription()}</div>
 HTML;
         }
 

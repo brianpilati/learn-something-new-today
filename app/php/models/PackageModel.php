@@ -9,6 +9,10 @@ class PackageModel extends db {
         return $this->query($this->selectQuery());
     }
 
+    public function getFeaturedPackage() {
+        return $this->query($this->selectQuery());
+    }
+
     private function selectQuery() {
         return "
             SELECT 
@@ -17,7 +21,11 @@ class PackageModel extends db {
                 c.category as category,
                 p.class as class,
                 p.family as family,
+                p.title as packageTitle,
                 i.item as item,
+                i.title as itemTitle,
+                i.description as itemDescription,
+                i.imageUrl as itemImageUrl,
                 i.itemId as itemId
             FROM 
                 package p,
