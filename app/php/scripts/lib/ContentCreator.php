@@ -1,10 +1,12 @@
 <?php
 
     class ContentCreator {
-        private $package;
+        private $package, $ads;
 
         public function __construct($packageObj) {
             $this->package = new Package($packageObj);
+            $this->ads = new Ads();
+            $this->social = new Social();
         }
 
         public function buildContent() {
@@ -52,11 +54,11 @@ return <<<HTML
 
             <div class="top-container">
                 <div class="lsnt-logo">Learn Something New Today</div>
-                <div class="lsnt-facebook">fb</div>
-                <div class="lsnt-twitter">Tw</div>
-                <div class="lsnt-pinterest">Pi</div>
+                <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
+                <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
+                <div class="lsnt-pinterest">{$this->social->getPinterest()}</div>
                 <div class="lsnt-package-title">{$this->package->getPackageTitle()}</div>
-                <div class="header-ad">Google</div>
+                <div class="header-ad">{$this->ads->getHeaderAd()}</div>
             </div>
 HTML;
         }
@@ -65,7 +67,7 @@ HTML;
 return <<<HTML
 
             <div class="marquee-container">
-                <div class="marquee-ad">Amazon</div>
+                <div class="marquee-ad">{$this->ads->getMarqueeAd()}</div>
             </div>
 HTML;
         }
@@ -74,9 +76,9 @@ HTML;
 return <<<HTML
 
                 <div class="content-ad-container">
-                    <div class="ad-top">Google Top</div>
-                    <div class="ad-middle">Google Middle</div>
-                    <div class="ad-bottom">Amazon</div>
+                    <div class="ad-top">{$this->ads->getMainTopAd()}</div>
+                    <div class="ad-middle">{$this->ads->getMainMiddleAd()}</div>
+                    <div class="ad-bottom">{$this->ads->getMainBottomAd()}</div>
                 </div>
 HTML;
         }
@@ -126,33 +128,33 @@ HTML;
 return <<<HTML
 
                         <div class="content-bottom-ad-container">
-                            <div class="ad-left">Google Left Text</div>
-                            <div class="ad-center">Google Center Text</div>
-                            <div class="ad-right">Google Right Text</div>
+                            <div class="ad-left">{$this->ads->getBottomLeftAd()}</div>
+                            <div class="ad-center">{$this->ads->getBottomCenterAd()}</div>
+                            <div class="ad-right">{$this->ads->getBottomRightAd()}</div>
                         </div>
 HTML;
         }
 
-        private function getTopLSNTPackageList() {
+        private function getLSNTPromotionItem($index) {
 return <<<HTML
 
-                            <div class="lsnt-package-container">
-                                <div class="lsnt-package-item">1</div>
-                                <div class="lsnt-package-item">2</div>
-                                <div class="lsnt-package-item">3</div>
-                                <div class="lsnt-package-item">4</div>
-                            </div>
+                                <div class="lsnt-package-item">{$index}</div>
 HTML;
         }
 
-        private function getBottomLSNTPackageList() {
+        private function getLSNTPromotionItems() {
+            $promotions = "";
+            for ($index=0; $index<4; $index++) {
+                $promotions .= $this->getLSNTPromotionItem($index);
+            }
+            return $promotions;
+        }
+
+        private function getLSNTPackageList() {
 return <<<HTML
 
                             <div class="lsnt-package-container">
-                                <div class="lsnt-package-item">5</div>
-                                <div class="lsnt-package-item">6</div>
-                                <div class="lsnt-package-item">7</div>
-                                <div class="lsnt-package-item">8</div>
+                                {$this->getLSNTPromotionItems()}
                             </div>
 HTML;
         }
@@ -162,8 +164,8 @@ return <<<HTML
 
                         <div class="content-bottom-lsnt-container">
                             <div class="lsnt-more-packages">Learn more about these exciting categories</div>
-                            {$this->getTopLSNTPackageList()}
-                            {$this->getBottomLSNTPackageList()}
+                            {$this->getLSNTPackageList()}
+                            {$this->getLSNTPackageList()}
                         </div>
 HTML;
         }

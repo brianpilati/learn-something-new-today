@@ -3,7 +3,7 @@
 class PackageTest extends PHPUnit_Framework_TestCase 
 {
 
-    private $packageObj, $package;
+    private $packageModel, $package;
 
     public function setUp() 
     {

@@ -51,7 +51,7 @@ $image-height: 428px;
             height: 25px;
             top: $margin-top-spacer;
             left: 540px;
-            border: 1px solid red;
+            border: 1px dashed red;
         }
 
         .lsnt-twitter {
@@ -60,7 +60,7 @@ $image-height: 428px;
             height: 25px;
             top: $margin-top-spacer;
             left: 585;
-            border: 1px solid red;
+            border: 1px dashed red;
         }
 
         .lsnt-pinterest {
@@ -69,7 +69,7 @@ $image-height: 428px;
             height: 25px;
             top: $margin-top-spacer;
             left: 630px;
-            border: 1px solid red;
+            border: 1px dashed red;
         }
 
         .header-ad {
@@ -78,7 +78,7 @@ $image-height: 428px;
             height: 100px;
             top: 0;
             right: 0;
-            background: green;
+            border: 1px dashed green;
         }
     }
 
@@ -95,7 +95,7 @@ $image-height: 428px;
             height: 55px;
             margin-left: auto;
             margin-right: auto;
-            background: yellow;
+            border: 1px dashed yellow;
         }
     }
 
@@ -138,7 +138,7 @@ $image-height: 428px;
                 height: 127px;
                 margin-top: $margin-top-spacer;
                 margin-left: $left-content-spacer;
-                border: 1px solid blue;
+                border: 1px dashed blue;
             }
 
             .lsnt-bullets {
@@ -253,27 +253,27 @@ $image-height: 428px;
                         position: relative;
                         width: 200px;
                         height: 90px;
-                        background: lightgreen;
                         margin-left: 10px;
                         float: left;
+                        border: 1px dashed lightgreen;
                     }
 
                     .ad-center {
                         position: relative;
                         width: 200px;
                         height: 90px;
-                        background: lightgreen;
                         margin-left: 10px;
                         float: left;
+                        border: 1px dashed lightgreen;
                     }
 
                     .ad-right {
                         position: relative;
                         width: 200px;
                         height: 90px;
-                        background: lightgreen;
                         margin-left: 10px;
                         float: left;
+                        border: 1px dashed lightgreen;
                     }
                 }
 
@@ -307,9 +307,9 @@ $image-height: 428px;
                             position: relative;
                             width: 135px;
                             height: 75px;
-                            border: 1px solid orange;
                             margin-left: 18px;
                             float: left;
+                            border: 1px dashed orange;
                         }
                     }
                 }
@@ -326,7 +326,7 @@ $image-height: 428px;
                 position: relative;
                 width: 300px;
                 height: 600px;
-                background: blue;
+                border: 1px dashed blue;
             }
 
             .ad-middle {
@@ -334,7 +334,7 @@ $image-height: 428px;
                 width: 300px;
                 height: 250px;
                 margin-top: $margin-top-spacer;
-                background: lightblue;
+                border: 1px dashed lightblue;
             }
 
             .ad-bottom {
@@ -342,7 +342,7 @@ $image-height: 428px;
                 width: 300px;
                 height: 250px;
                 margin-top: $margin-top-spacer;
-                background: yellow;
+                border: 1px dashed yellow;
             }
 
         }
