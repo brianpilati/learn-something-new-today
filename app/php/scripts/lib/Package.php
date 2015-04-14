@@ -12,6 +12,7 @@
             $this->itemTitle = $packageObject->itemTitle;
             $this->itemDescription = $packageObject->itemDescription;
             $this->itemImageUrl = $packageObject->itemImageUrl;
+            $this->bulletPoints = new BulletPoint($packageObject->itemId);
         }
 
         public function getPackageTitle() {

@@ -101,16 +101,56 @@ return <<<HTML
 HTML;
         }
 
+        private function getBulletPointOne() {
+            if ($this->package->bulletPoints->isBulletPointOne()) {
+                $class = ($this->package->bulletPoints->getCount() < 4 ? 'lsnt-bullet-one' : 'lsnt-bullet-one-small');
+return <<<HTML
+
+                        <div class="{$class}">{$this->package->bulletPoints->getBulletPointOne()}</div>
+HTML;
+
+            }
+        }
+
+        private function getBulletPointTwo() {
+            if ($this->package->bulletPoints->isBulletPointTwo()) {
+                $class = ($this->package->bulletPoints->getCount() < 3 ? 'lsnt-bullet-two' : 'lsnt-bullet-two-small');
+return <<<HTML
+
+                        <div class="{$class}">{$this->package->bulletPoints->getBulletPointTwo()}</div>
+HTML;
+
+            }
+        }
+
+        private function getBulletPointThree() {
+            if ($this->package->bulletPoints->isBulletPointThree()) {
+return <<<HTML
+
+                        <div class="lsnt-bullet-three-small">{$this->package->bulletPoints->getBulletPointThree()}</div>
+HTML;
+
+            }
+        }
+
+        private function getBulletPointFour() {
+            if ($this->package->bulletPoints->isBulletPointFour()) {
+return <<<HTML
+
+                        <div class="lsnt-bullet-four-small">{$this->package->bulletPoints->getBulletPointFour()}</div>
+HTML;
+
+            }
+        }
+
         private function getBulletPoints() {
 return <<<HTML
 
                     <div class="lsnt-bullets">
-                        <div class="lsnt-bullet-one">Bullet One</div>
-                        <div class="lsnt-bullet-two">Bullet Two</div>
-                        <div class="lsnt-bullet-one-small">Bullet One Small</div>
-                        <div class="lsnt-bullet-two-small">Bullet Two Small</div>
-                        <div class="lsnt-bullet-three-small">Bullet Three</div>
-                        <div class="lsnt-bullet-four-small">Bullet Four</div>
+                        {$this->getBulletPointOne()}
+                        {$this->getBulletPointTwo()}
+                        {$this->getBulletPointThree()}
+                        {$this->getBulletPointFour()}
                     </div>
 HTML;
         }
