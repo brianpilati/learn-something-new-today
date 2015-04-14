@@ -8,7 +8,7 @@ class PackageTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->packageModel = new PackageModel();
-        $this->packageModel->getAll();
+        $this->packageModel->getPackageItems(1);
 
         $this->package = new Package(
             $this->packageModel->result->fetch_object()

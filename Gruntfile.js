@@ -5,11 +5,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             sass: {
-                files: 'app/src/**/*.scss',
+                files: 'app/css/**/*.scss',
                 tasks: ['sass']
             },
             scsslint: {
-                files: 'app/src/**/*.scss',
+                files: 'app/css/**/*.scss',
                 tasks: ['scsslint']
             },
             phpunit: {

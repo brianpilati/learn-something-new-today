@@ -1,7 +1,7 @@
 <?php
 
     class PageBuilder{
-        private $packageObj, $itemObj, $contentCreator;
+        private $packageObj, $packageItemsObj, $contentCreator;
 
         public function __construct() {
             $this->baseDirectory = SOURCE_DIRECTORY;
@@ -9,10 +9,9 @@
             $this->build();
         }
 
-
         private function initializeModels() {
             $this->packageObj = new PackageModel();
-            $this->itemObj = new ItemModel();
+            $this->packageItemsObj = new PackageModel();
         }
 
         private function makeDirectory($directory) {
@@ -27,20 +26,25 @@
         }
 
         private function build() {
-            $this->buildHomePage($this->baseDirectory);
-            //$this->buildSiteMap($this->baseDirectory);
+            $this->buildHomePage();
+            $this->buildSiteMap();
             $this->buildPackages();
         }
 
         private function buildPackages() {
-            $this->itemObj->getAll();
-            if($this->itemObj->result) {
-                while($dbObj = $this->itemObj->result->fetch_object()) {
-                    $this->contentCreator = new ContentCreator($dbObj);
-                    $categoryDirectory = $this->buildCategory($dbObj->category, $this->baseDirectory);
-                    $classDirectory = $this->buildClass($dbObj->class, $categoryDirectory);
-                    $familyDirectory = $this->buildFamily($dbObj->family, $classDirectory);
-                    $itemDirectory = $this->buildItem($dbObj->item, $familyDirectory);
+            $this->packageObj->getAll();
+            if($this->packageObj->result) {
+                while($packageObj = $this->packageObj->result->fetch_object()) {
+                    $this->packageItemsObj->getPackageItems($packageObj->packageId);
+                    if($this->packageItemsObj->result) {
+                        while($packageItemObj = $this->packageItemsObj->result->fetch_object()) {
+                            $this->contentCreator = new ContentCreator($packageItemObj);
+                            $categoryDirectory = $this->buildCategory($packageItemObj->category, $this->baseDirectory);
+                            $classDirectory = $this->buildClass($packageItemObj->class, $categoryDirectory);
+                            $familyDirectory = $this->buildFamily($packageItemObj->family, $classDirectory);
+                            $itemDirectory = $this->buildItem($packageItemObj->item, $familyDirectory);
+                        }
+                    }
                 }
             }
         }
@@ -71,10 +75,6 @@
             $this->chgrp($filePath);
         }
 
-        private function buildSiteMapHtml($directory) {
-            $this->createPage($directory, $this->contentCreator->buildSiteMap());
-        }
-
         private function buildHomePageHtml($directory) {
             $this->createPage($directory, $this->contentCreator->buildContent());
         }
@@ -95,24 +95,19 @@
             $this->buildCategoryHtmlPage($directory);
         }
 
-        private function buildSiteMap($directory) {
-            $newDirectory = $this->makeDirectory(format_directory($directory, 'siteMap'));
-            $this->packageObj->getAll();
-            if($this->packageObj->result) {
-                $this->contentCreator = new SiteMapCreator($this->packageObj->result->fetch_object());
-                $this->buildSiteMapHtml($newDirectory);
-            }
-            
-            //This needs to be an error case
+        private function buildSiteMap() {
+            $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, 'siteMap'));
+            $siteMapContent = new SiteMapContentCreator();
+            $this->createPage($newDirectory, $siteMapContent->buildContent());
 
             return $newDirectory;
         }
 
-        private function buildHomePage($directory) {
-            $newDirectory = $this->makeDirectory($directory);
-            $this->itemObj->getAll();
-            if($this->itemObj->result) {
-                $this->contentCreator = new ContentCreator($this->itemObj->result->fetch_object());
+        private function buildHomePage() {
+            $newDirectory = $this->makeDirectory($this->baseDirectory);
+            $this->packageObj->getFeaturedPackage();
+            if($this->packageObj->result) {
+                $this->contentCreator = new ContentCreator($this->packageObj->result->fetch_object());
                 $this->buildHomePageHtml($newDirectory);
             }
             

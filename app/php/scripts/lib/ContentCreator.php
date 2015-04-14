@@ -1,7 +1,7 @@
 <?php
 
     class ContentCreator {
-        private $package, $ads;
+        private $package, $ads, $social;
 
         public function __construct($packageObj) {
             $this->package = new Package($packageObj);
