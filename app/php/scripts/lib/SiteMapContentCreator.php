@@ -1,10 +1,10 @@
 <?php
 
     class SiteMapContentCreator {
-        private $packageObj, $social;
+        private $siteMapObj, $social;
 
-        public function __construct() {
-            $this->packageObj = new PackageModel();
+        public function __construct($siteMap) {
+            $this->siteMapObj = $siteMap;
             $this->social = new Social();
         }
 
@@ -60,12 +60,12 @@ return <<<HTML
 HTML;
         }
 
-        private function getCategory($categoryTitle) {
+        private function getCategory($siteMap) {
 return <<<HTML
 
                     <div class="site-map-category">
-                        <a href="/{$categoryTitle}" alt="{$categoryTitle}">
-                            {$categoryTitle}
+                        <a href="{$siteMap->getLink()}" alt="{$siteMap->getAlt()}">
+                            {$siteMap->getText()}
                         </a>
                     </div>
 HTML;
@@ -73,11 +73,8 @@ HTML;
 
         private function getCategories() {
             $packagesHtml = "";
-            $this->packageObj->getAll();
-            if($this->packageObj->result) {
-                while($packageObj = $this->packageObj->result->fetch_object()) {
-                    $packagesHtml .= $this->getCategory($packageObj->category); 
-                }
+            foreach($this->siteMapObj as $siteMap) {
+                $packagesHtml .= $this->getCategory($siteMap); 
             }
 
             return $packagesHtml;

@@ -14,6 +14,10 @@
             $this->packageItemsObj = new PackageModel();
         }
 
+        private function buildLink($parentLink, $link) {
+            return "$parentLink/$link";
+        }
+
         private function makeDirectory($directory) {
             if (!file_exists($directory)) {
                 mkdir($directory, 0755, TRUE);
@@ -27,7 +31,7 @@
 
         private function build() {
             $this->buildHomePage();
-            $this->buildSiteMap();
+            $this->buildCategorySiteMap();
             $this->buildPackages();
         }
 
@@ -95,9 +99,39 @@
             $this->buildCategoryHtmlPage($directory);
         }
 
-        private function buildSiteMap() {
+        private function buildCategorySiteMap() {
             $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, 'siteMap'));
-            $siteMapContent = new SiteMapContentCreator();
+
+            $siteMap = new SiteMap();
+            $this->packageObj->getAll();
+            if($this->packageObj->result) {
+                while($packageObj = $this->packageObj->result->fetch_object()) {
+                    $newLink = $this->buildLink('', $packageObj->category);
+                    $siteMap->setItem($newLink, $packageObj->category, $packageObj->category);
+                    $this->buildClassSiteMap($newLink, $packageObj->category, $packageObj->categoryId);
+                }
+            }
+            $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
+            $this->createPage($newDirectory, $siteMapContent->buildContent());
+
+            return $newDirectory;
+        }
+
+        private function buildClassSiteMap($parentLink, $category, $categoryId) {
+            $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $category));
+
+            $siteMap = new SiteMap();
+            $classModel = new ClassModel();
+            $classModel->getAllByCategoryId($categoryId);
+            if($classModel->result) {
+                while($classObj = $classModel->result->fetch_object()) {
+                    $classDirectory = $this->makeDirectory(format_directory($newDirectory, $classObj->class));
+                    $newLink = $this->buildLink($parentLink, $classObj->class);
+                    $siteMap->setItem($newLink, $classObj->class, $classObj->class);
+                    $this->buildClassPage($classDirectory);
+                }
+            }
+            $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
             $this->createPage($newDirectory, $siteMapContent->buildContent());
 
             return $newDirectory;
@@ -118,13 +152,13 @@
 
         private function buildCategory($directory, $parentDirectory) {
             $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            $this->buildCategoryHtmlPage($newDirectory);
+            //$this->buildCategoryHtmlPage($newDirectory);
             return $newDirectory;
         }
 
         private function buildClass($directory, $parentDirectory) {
             $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            $this->buildClassPage($newDirectory);
+            //$this->buildClassPage($newDirectory);
             return $newDirectory;
         }
 

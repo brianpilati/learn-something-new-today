@@ -3,32 +3,12 @@
 class PageBuilderTest extends PHPUnit_Framework_TestCase 
 {
 
-    private $sourceDirectory, $controller;
+    private $sourceDirectory;
 
     public function setUp() 
     {
         $this->sourceDirectory = SOURCE_DIRECTORY;
-        $this->packages = array(
-            'Toys' => array (
-                'LEGO' => array (
-                    'Star Wars' => array (
-                        '4567' => array (
-                        
-                        )
-                    )
-                )
-            ),
-            'Vehicles' => array (
-                '2015' => array (
-                    'Toyota' => array (
-                        'Tacoma' => array (
-                        
-                        )
-                    )
-                )
-            )
-        );
-        $this->controller = new PageBuilder();
+        new PageBuilder();
     }
 
     public function testSourceDirectoryCreation() 
