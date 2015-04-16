@@ -1,0 +1,14 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+DROP TABLE IF EXISTS `family`;
+
+CREATE TABLE `family` (
+  `familyId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `family` VARCHAR(255),
+  PRIMARY KEY (`familyId`),
+  UNIQUE KEY `familyId_UNIQUE` (`familyId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Family Table';

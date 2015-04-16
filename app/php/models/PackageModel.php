@@ -40,8 +40,8 @@ class PackageModel extends db {
                 p.packageId as packageId,
                 c.categoryId as categoryId,
                 c.category as category,
-                p.class as class,
-                p.family as family,
+                cl.class as class,
+                f.family as family,
                 p.title as packageTitle,
                 i.item as item,
                 i.title as itemTitle,
@@ -51,15 +51,19 @@ class PackageModel extends db {
             FROM 
                 package p,
                 category c,
+                class cl,
+                family f,
                 packageConnector pc,
                 item i
             WHERE
                 p.packageId = $packageId
                 AND p.categoryId = c.categoryId
+                AND p.classId = cl.classId
+                AND p.familyId = f.familyId
                 AND p.packageId = pc.packageId
                 AND pc.itemId = i.itemId
             ORDER BY
-                c.category, p.class, p.family
+                c.category, cl.class, f.family
         ;
       ";
     }

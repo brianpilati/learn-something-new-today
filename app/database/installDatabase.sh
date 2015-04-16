@@ -143,6 +143,22 @@ brandTableCreation() {
     incStep
 }
 
+familyFamilyCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' family tables?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_FAMILY_TABLE;
+    incStep
+}
+
+classClassCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' class tables?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_CLASS_TABLE;
+    incStep
+}
+
 packageTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'LSNT' package tables?\n";
     echo "* WARNING * This is delete the current table";
@@ -216,7 +232,9 @@ userInput() {
         keywordTableCreation;
         bulletPointTableCreation;
         vendorLinkTableCreation;
-        packageLinkTableCreation;
+        classTableCreation;
+        familyTableCreation;
+        packageTableCreation;
     fi
 }
 
@@ -251,10 +269,24 @@ createBrandTable() {
     fi
 }
 
+createFamilyTable() {
+    if [[ "$CREATE_FAMILY_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "11_dbCreateFamilyTable.txt"
+    fi
+}
+
+createClassTable() {
+    if [[ "$CREATE_CLASS_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "10_dbCreateClassTable.txt"
+    fi
+}
+
 createPackageTable() {
     if [[ "$CREATE_PACKAGE_TABLE" == "Y" || isDropAllTables ]]
     then
-        executeDBStatement "10_dbCreatePackageTable.txt"
+        executeDBStatement "12_dbCreatePackageTable.txt"
     fi
 }
 
@@ -325,6 +357,8 @@ createAllTables() {
     createKeywordTable;
     createBulletPointTable;
     createVendorLinkTable;
+    createClassTable;
+    createFamilyTable;
     createPackageTable;
 }
 

@@ -10,6 +10,8 @@ DROP TABLE IF EXISTS `vendorLink`;
 DROP TABLE IF EXISTS `bulletPoint`;
 DROP TABLE IF EXISTS `keywordConnector`;
 DROP TABLE IF EXISTS `keyword`;
+DROP TABLE IF EXISTS `family`;
+DROP TABLE IF EXISTS `class`;
 DROP TABLE IF EXISTS `item`;
 DROP TABLE IF EXISTS `brand`;
 DROP TABLE IF EXISTS `subCategory`;

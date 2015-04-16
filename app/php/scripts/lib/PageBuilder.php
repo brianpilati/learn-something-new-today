@@ -31,26 +31,7 @@
 
         private function build() {
             $this->buildHomePage();
-            $this->buildCategorySiteMap();
-            $this->buildPackages();
-        }
-
-        private function buildPackages() {
-            $this->packageObj->getAll();
-            if($this->packageObj->result) {
-                while($packageObj = $this->packageObj->result->fetch_object()) {
-                    $this->packageItemsObj->getPackageItems($packageObj->packageId);
-                    if($this->packageItemsObj->result) {
-                        while($packageItemObj = $this->packageItemsObj->result->fetch_object()) {
-                            $this->contentCreator = new ContentCreator($packageItemObj);
-                            $categoryDirectory = $this->buildCategory($packageItemObj->category, $this->baseDirectory);
-                            $classDirectory = $this->buildClass($packageItemObj->class, $categoryDirectory);
-                            $familyDirectory = $this->buildFamily($packageItemObj->family, $classDirectory);
-                            $itemDirectory = $this->buildItem($packageItemObj->item, $familyDirectory);
-                        }
-                    }
-                }
-            }
+            $this->buildSite();
         }
 
         private function openFile($filePath) {
@@ -83,42 +64,29 @@
             $this->createPage($directory, $this->contentCreator->buildContent());
         }
 
-        private function buildCategoryHtmlPage($directory) {
-            $this->createPage($directory, $this->contentCreator->buildContent());
-        }
-
         private function buildItemHtmlPage($directory) {
             $this->createPage($directory, $this->contentCreator->buildContent());
         }
 
-        private function buildClassPage($directory) {
-            $this->buildCategoryHtmlPage($directory);
-        }
-
-        private function buildFamilyPage($directory) {
-            $this->buildCategoryHtmlPage($directory);
-        }
-
-        private function buildCategorySiteMap() {
+        private function buildSite() {
             $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, 'siteMap'));
 
             $siteMap = new SiteMap();
             $this->packageObj->getAll();
             if($this->packageObj->result) {
                 while($packageObj = $this->packageObj->result->fetch_object()) {
+                    $categoryDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $packageObj->category));
                     $newLink = $this->buildLink('', $packageObj->category);
                     $siteMap->setItem($newLink, $packageObj->category, $packageObj->category);
-                    $this->buildClassSiteMap($newLink, $packageObj->category, $packageObj->categoryId);
+                    $this->buildClassSiteMap($categoryDirectory, $newLink, $packageObj->categoryId);
                 }
             }
             $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
             $this->createPage($newDirectory, $siteMapContent->buildContent());
-
-            return $newDirectory;
         }
 
-        private function buildClassSiteMap($parentLink, $category, $categoryId) {
-            $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $category));
+        private function buildClassSiteMap($parentDirectory, $parentLink, $categoryId) {
+            $newDirectory = $this->makeDirectory($parentDirectory);
 
             $siteMap = new SiteMap();
             $classModel = new ClassModel();
@@ -128,12 +96,50 @@
                     $classDirectory = $this->makeDirectory(format_directory($newDirectory, $classObj->class));
                     $newLink = $this->buildLink($parentLink, $classObj->class);
                     $siteMap->setItem($newLink, $classObj->class, $classObj->class);
-                    $this->buildClassPage($classDirectory);
+                    $this->buildFamilySiteMap($classDirectory, $newLink, $categoryId, $classObj->classId);
                 }
             }
             $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
             $this->createPage($newDirectory, $siteMapContent->buildContent());
+        }
 
+        private function buildFamilySiteMap($parentDirectory, $parentLink, $categoryId, $classId) {
+            $newDirectory = $this->makeDirectory($parentDirectory);
+
+            $siteMap = new SiteMap();
+            $familyModel = new FamilyModel();
+            $familyModel->getAllByCategoryAndClassId($categoryId, $classId);
+            if($familyModel->result) {
+                while($familyObj = $familyModel->result->fetch_object()) {
+                    $familyDirectory = $this->makeDirectory(format_directory($parentDirectory, $familyObj->family));
+                    $newLink = $this->buildLink($parentLink, $familyObj->family);
+                    $siteMap->setItem($newLink, $familyObj->family, $familyObj->family);
+                    $this->buildItems($familyDirectory, $newLink, $familyObj->packageId);
+                }
+            }
+            $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
+            $this->createPage($newDirectory, $siteMapContent->buildContent());
+        }
+
+        private function buildItems($parentDirectory, $parentLink, $packageId) {
+            $siteMap = new SiteMap();
+            $this->packageItemsObj->getPackageItems($packageId);
+            if($this->packageItemsObj->result) {
+                while($packageItemObj = $this->packageItemsObj->result->fetch_object()) {
+                    $this->contentCreator = new ContentCreator($packageItemObj);
+                    $itemDirectory = $this->buildItem($parentDirectory, $packageItemObj->packageTitle);
+                    $newLink = $this->buildLink($parentLink, $packageItemObj->packageTitle);
+                    $siteMap->setItem($newLink, $packageItemObj->packageTitle, $packageItemObj->packageTitle);
+                }
+            }
+
+            $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
+            $this->createPage($parentDirectory, $siteMapContent->buildContent());
+        }
+
+        private function buildItem($parentDirectory, $directory) {
+            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
+            $this->buildItemHtmlPage($newDirectory);
             return $newDirectory;
         }
 
@@ -147,30 +153,6 @@
             
             //This needs to be an error case
 
-            return $newDirectory;
-        }
-
-        private function buildCategory($directory, $parentDirectory) {
-            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            //$this->buildCategoryHtmlPage($newDirectory);
-            return $newDirectory;
-        }
-
-        private function buildClass($directory, $parentDirectory) {
-            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            //$this->buildClassPage($newDirectory);
-            return $newDirectory;
-        }
-
-        private function buildFamily($directory, $parentDirectory) {
-            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            $this->buildFamilyPage($newDirectory);
-            return $newDirectory;
-        }
-
-        private function buildItem($directory, $parentDirectory) {
-            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            $this->buildItemHtmlPage($newDirectory);
             return $newDirectory;
         }
     }

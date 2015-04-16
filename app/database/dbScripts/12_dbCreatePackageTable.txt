@@ -9,8 +9,8 @@ DROP TABLE IF EXISTS `package`;
 CREATE TABLE `package` (
   `packageId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `categoryId` INT(10) UNSIGNED NOT NULL,
-  `class` VARCHAR(255),
-  `family` VARCHAR(255),
+  `classId` INT(10) UNSIGNED NOT NULL,
+  `familyId` INT(10) UNSIGNED NOT NULL,
   `title` VARCHAR(48),
   `promotionImage` VARCHAR(255),
   `thumbNailImage` VARCHAR(255),
@@ -18,6 +18,8 @@ CREATE TABLE `package` (
   `tinyUrl` VARCHAR(255),
   PRIMARY KEY (`packageId`),
   FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`),
+  FOREIGN KEY (`classId`) REFERENCES `class` (`classId`),
+  FOREIGN KEY (`familyId`) REFERENCES `family` (`familyId`),
   UNIQUE KEY `packageId_UNIQUE` (`packageId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Package Table';
 

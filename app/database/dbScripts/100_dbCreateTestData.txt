@@ -67,10 +67,22 @@ INSERT INTO `vendorLink` (link, type, itemId) VALUES
 ('Amazon.com', 'amazon', 1);
 UNLOCK TABLES;
 
+LOCK TABLES `class` WRITE;
+INSERT INTO `class` (class) VALUES 
+('LEGO'),
+('2015');
+UNLOCK TABLES;
+
+LOCK TABLES `family` WRITE;
+INSERT INTO `family` (family) VALUES 
+('Star Wars'),
+('TOyota');
+UNLOCK TABLES;
+
 LOCK TABLES `package` WRITE;
-INSERT INTO `package` (categoryId, class, family, title, promotionImage, thumbNailImage, caption, tinyUrl) VALUES 
-(1, 'LEGO', 'Star Wars', 'Top Ten Star Wars Sets', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl'),
-(2, '2015', 'Toyota', '2015 Toyota Vehicles', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl');
+INSERT INTO `package` (categoryId, classId, familyId, title, promotionImage, thumbNailImage, caption, tinyUrl) VALUES 
+(1, 1, 1, 'Top Ten Star Wars Sets', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl'),
+(2, 2, 2, '2015 Toyota Vehicles', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl');
 UNLOCK TABLES;
 
 LOCK TABLES `packageConnector` WRITE;
