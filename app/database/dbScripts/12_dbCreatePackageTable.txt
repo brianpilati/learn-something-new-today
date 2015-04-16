@@ -27,6 +27,7 @@ CREATE TABLE `packageConnector` (
   `packageConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `packageId` INT(10) UNSIGNED NOT NULL,
   `itemId` INT(10) UNSIGNED NOT NULL,
+  `displayOrder` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`packageConnectorId`),
   FOREIGN KEY (`packageId`) REFERENCES `package` (`packageId`),
   FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),

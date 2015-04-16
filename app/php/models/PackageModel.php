@@ -47,7 +47,8 @@ class PackageModel extends db {
                 i.title as itemTitle,
                 i.description as itemDescription,
                 i.imageUrl as itemImageUrl,
-                i.itemId as itemId
+                i.itemId as itemId,
+                pc.displayOrder as displayOrder
             FROM 
                 package p,
                 category c,

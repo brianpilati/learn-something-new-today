@@ -40,8 +40,10 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     public function testItemCreation() 
     {
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '4567.html');
 
         $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'), 'tacoma.html');
     }
 
     public function testSiteMapCreation() 
@@ -64,8 +66,8 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         return substr(sprintf('%o', fileperms($file)), -4);
     }
 
-    public function validateContent($directory) {
-        $file = format_directory($directory, 'index.html');
+    public function validateContent($directory, $fileName='index.html') {
+        $file = format_directory($directory, $fileName);
         $this->assertTrue(file_exists($directory));
         $this->assertTrue(file_exists($file));
         $this->assertRegExp('/Learn Something New Today/', file_get_contents($file));

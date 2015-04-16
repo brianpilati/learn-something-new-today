@@ -51,8 +51,8 @@
             chgrp($file, "_www");
         }
 
-        private function createPage($filePath, $content) {
-            $filePath = format_directory($filePath, 'index.html');
+        private function createPage($filePath, $content, $fileName='index.html') {
+            $filePath = format_directory($filePath, $fileName);
             $fileHandle = $this->openFile($filePath);
             fwrite($fileHandle, $content);
             $this->closeFile($fileHandle);
@@ -61,10 +61,6 @@
         }
 
         private function buildHomePageHtml($directory) {
-            $this->createPage($directory, $this->contentCreator->buildContent());
-        }
-
-        private function buildItemHtmlPage($directory) {
             $this->createPage($directory, $this->contentCreator->buildContent());
         }
 
@@ -126,8 +122,14 @@
             $this->packageItemsObj->getPackageItems($packageId);
             if($this->packageItemsObj->result) {
                 while($packageItemObj = $this->packageItemsObj->result->fetch_object()) {
+                    //echo "\n\n{$this->packageItemsObj->numRows}\n\n";
                     $this->contentCreator = new ContentCreator($packageItemObj);
-                    $itemDirectory = $this->buildItem($parentDirectory, $packageItemObj->packageTitle);
+                    $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $packageItemObj->packageTitle));
+                    $this->createPage($newDirectory, $this->contentCreator->buildContent(), $packageItemObj->item . ".html");
+                    if ($packageItemObj->displayOrder === "1") {
+                        $this->createPage($newDirectory, $this->contentCreator->buildContent());
+                    }
+
                     $newLink = $this->buildLink($parentLink, $packageItemObj->packageTitle);
                     $siteMap->setItem($newLink, $packageItemObj->packageTitle, $packageItemObj->packageTitle);
                 }
@@ -135,12 +137,6 @@
 
             $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
             $this->createPage($parentDirectory, $siteMapContent->buildContent());
-        }
-
-        private function buildItem($parentDirectory, $directory) {
-            $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $directory));
-            $this->buildItemHtmlPage($newDirectory);
-            return $newDirectory;
         }
 
         private function buildHomePage() {

@@ -86,7 +86,7 @@ INSERT INTO `package` (categoryId, classId, familyId, title, promotionImage, thu
 UNLOCK TABLES;
 
 LOCK TABLES `packageConnector` WRITE;
-INSERT INTO `packageConnector` (packageId, itemId) VALUES 
-(1, 1),
-(2, 2);
+INSERT INTO `packageConnector` (packageId, itemId, displayOrder) VALUES 
+(1, 1, 1),
+(2, 2, 1);
 UNLOCK TABLES;
