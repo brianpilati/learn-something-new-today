@@ -3,7 +3,7 @@
 class PackageTest extends PHPUnit_Framework_TestCase 
 {
 
-    private $packageModel, $package;
+    private $packageModel, $package, $item;
 
     public function setUp() 
     {
@@ -13,6 +13,9 @@ class PackageTest extends PHPUnit_Framework_TestCase
         $this->package = new Package(
             $this->packageModel->result->fetch_object()
         );
+
+        $this->item = $this->package->getItems()[0];
+
     }
 
     public function testPackageTitle() 
@@ -22,16 +25,21 @@ class PackageTest extends PHPUnit_Framework_TestCase
 
     public function testItemTitle() 
     {
-        $this->assertEquals($this->package->getItemTitle(), '4567 item title');
+        $this->assertEquals($this->item->getTitle(), '4567 item title');
     }
 
     public function testItemDescription() 
     {
-        $this->assertEquals($this->package->getItemDescription(), '4567 description');
+        $this->assertEquals($this->item->getDescription(), '4567 description');
     }
 
     public function testItemImageUrl() 
     {
-        $this->assertEquals($this->package->getItemImageUrl(), 'image');
+        $this->assertEquals($this->item->getImageUrl(), 'image');
+    }
+
+    public function testItemBulletPoint() 
+    {
+        $this->assertEquals($this->item->bulletPoints->getBulletPointOne(), 'Bullet Point 1');
     }
 }

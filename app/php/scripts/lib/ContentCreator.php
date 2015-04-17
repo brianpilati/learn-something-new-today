@@ -101,56 +101,57 @@ return <<<HTML
 HTML;
         }
 
-        private function getBulletPointOne() {
-            if ($this->package->bulletPoints->isBulletPointOne()) {
-                $class = ($this->package->bulletPoints->getCount() < 4 ? 'lsnt-bullet-one' : 'lsnt-bullet-one-small');
+        private function getBulletPointOne($bulletPoints) {
+            if ($bulletPoints->isBulletPointOne()) {
+                $class = ($bulletPoints->getCount() < 4 ? 'lsnt-bullet-one' : 'lsnt-bullet-one-small');
 return <<<HTML
 
-                        <div class="{$class}">{$this->package->bulletPoints->getBulletPointOne()}</div>
+                        <div class="{$class}">{$bulletPoints->getBulletPointOne()}</div>
 HTML;
 
             }
         }
 
-        private function getBulletPointTwo() {
-            if ($this->package->bulletPoints->isBulletPointTwo()) {
-                $class = ($this->package->bulletPoints->getCount() < 3 ? 'lsnt-bullet-two' : 'lsnt-bullet-two-small');
+        private function getBulletPointTwo($bulletPoints) {
+            if ($bulletPoints->isBulletPointTwo()) {
+                $class = ($bulletPoints->getCount() < 3 ? 'lsnt-bullet-two' : 'lsnt-bullet-two-small');
 return <<<HTML
 
-                        <div class="{$class}">{$this->package->bulletPoints->getBulletPointTwo()}</div>
+                        <div class="{$class}">{$bulletPoints->getBulletPointTwo()}</div>
 HTML;
 
             }
         }
 
-        private function getBulletPointThree() {
-            if ($this->package->bulletPoints->isBulletPointThree()) {
+        private function getBulletPointThree($bulletPoints) {
+            if ($bulletPoints->isBulletPointThree()) {
 return <<<HTML
 
-                        <div class="lsnt-bullet-three-small">{$this->package->bulletPoints->getBulletPointThree()}</div>
+                        <div class="lsnt-bullet-three-small">{$bulletPoints->getBulletPointThree()}</div>
 HTML;
 
             }
         }
 
-        private function getBulletPointFour() {
-            if ($this->package->bulletPoints->isBulletPointFour()) {
+        private function getBulletPointFour($bulletPoints) {
+            if ($bulletPoints->isBulletPointFour()) {
 return <<<HTML
 
-                        <div class="lsnt-bullet-four-small">{$this->package->bulletPoints->getBulletPointFour()}</div>
+                        <div class="lsnt-bullet-four-small">{$bulletPoints->getBulletPointFour()}</div>
 HTML;
 
             }
         }
 
         private function getBulletPoints() {
+            $bulletPoints = $this->package->getItems()[0]->getBulletPoints();
 return <<<HTML
 
                     <div class="lsnt-bullets">
-                        {$this->getBulletPointOne()}
-                        {$this->getBulletPointTwo()}
-                        {$this->getBulletPointThree()}
-                        {$this->getBulletPointFour()}
+                        {$this->getBulletPointOne($bulletPoints)}
+                        {$this->getBulletPointTwo($bulletPoints)}
+                        {$this->getBulletPointThree($bulletPoints)}
+                        {$this->getBulletPointFour($bulletPoints)}
                     </div>
 HTML;
         }
@@ -158,9 +159,9 @@ HTML;
         private function getContent() {
 return <<<HTML
 
-                    <div class="lsnt-title">{$this->package->getItemTitle()}</div>
-                    <div class="lsnt-image"><img src="{$this->package->getItemImageUrl()}" width="640" height="428" /></div>
-                    <div class="lsnt-description">{$this->package->getItemDescription()}</div>
+                    <div class="lsnt-title">{$this->package->getItems()[0]->getTitle()}</div>
+                    <div class="lsnt-image"><img src="{$this->package->getItems()[0]->getImageUrl()}" width="640" height="428" /></div>
+                    <div class="lsnt-description">{$this->package->getItems()[0]->getDescription()}</div>
 HTML;
         }
 
