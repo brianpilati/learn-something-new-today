@@ -27,7 +27,8 @@ INSERT INTO `item` (item, brandId, imageUrl, title, description, altTag, creatio
 ('4567', 1, 'image', '4567 item title', '4567 description', 'altTag', now()),
 ('Tacoma', 2, 'image', 'Tacoma item title', 'Tacoma description', 'altTag', now()),
 ('4568', 1, 'image', '4568 item title', '4568 description', 'altTag', now()),
-('4569', 1, 'image', '4569 item title', '4569 description', 'altTag', now());
+('4569', 1, 'image', '4569 item title', '4569 description', 'altTag', now()),
+('4570', 1, 'image', '4570 item title', '4570 description', 'altTag', now());
 UNLOCK TABLES;
 
 LOCK TABLES `keyword` WRITE;
@@ -61,7 +62,13 @@ INSERT INTO `bulletPoint` (bulletPoint, itemId, orderId) VALUES
 ('Bullet Point 3', 1, 4),
 ('Bullet Point 4', 1, 3),
 ('Bullet Point 1', 2, 1),
-('Bullet Point 2', 2, 2);
+('Bullet Point 2', 2, 2),
+('Bullet Point 1', 3, 1),
+('Bullet Point 1', 4, 2),
+('Bullet Point 2', 4, 1),
+('Bullet Point 1', 5, 1),
+('Bullet Point 2', 5, 2),
+('Bullet Point 3', 5, 3);
 UNLOCK TABLES;
 
 LOCK TABLES `vendorLink` WRITE;
@@ -84,7 +91,8 @@ UNLOCK TABLES;
 LOCK TABLES `package` WRITE;
 INSERT INTO `package` (categoryId, classId, familyId, title, promotionImage, thumbNailImage, caption, tinyUrl) VALUES 
 (1, 1, 1, 'Top Ten Star Wars Sets', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl'),
-(2, 2, 2, '2015 Toyota Vehicles', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl');
+(2, 2, 2, '2015 Toyota Vehicles', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl'),
+(1, 1, 1, 'Top Five Star Wars Sets', 'promotionImage', 'thumbNailImage', 'caption', 'tinyUrl');
 UNLOCK TABLES;
 
 LOCK TABLES `packageConnector` WRITE;
@@ -92,5 +100,10 @@ INSERT INTO `packageConnector` (packageId, itemId, displayOrder) VALUES
 (1, 1, 1),
 (2, 2, 1),
 (1, 3, 2),
-(1, 4, 3);
+(1, 4, 3),
+(1, 5, 4),
+(3, 1, 4),
+(3, 3, 3),
+(3, 4, 2),
+(3, 5, 1);
 UNLOCK TABLES;

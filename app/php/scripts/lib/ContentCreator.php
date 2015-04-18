@@ -90,7 +90,7 @@ HTML;
             }
 return <<<HTML
 
-                        <div class="lsnt-previous-button"><a href="{$this->item->getPreviousItem()}">&lt; Previous</a></div>
+                        <a href="{$this->item->getPreviousItem()}"><div class="lsnt-previous-button">&lt; Previous</div></a>
 HTML;
         }
 
@@ -113,7 +113,7 @@ HTML;
             }
 return <<<HTML
 
-                        <div class="lsnt-next-button"><a href="{$this->item->getNextItem()}">Next &gt;</a></div>
+                        <a href="{$this->item->getNextItem()}"><div class="lsnt-next-button">Next &gt;</div></a>
 HTML;
         }
 
@@ -157,9 +157,10 @@ HTML;
 
         private function getBulletPointThree($bulletPoints) {
             if ($bulletPoints->isBulletPointThree()) {
+                $class = ($bulletPoints->getCount() < 4 ? 'lsnt-bullet-four-small' : 'lsnt-bullet-three-small');
 return <<<HTML
 
-                        <div class="lsnt-bullet-three-small">{$bulletPoints->getBulletPointThree()}</div>
+                        <div class="{$class}">{$bulletPoints->getBulletPointThree()}</div>
 HTML;
 
             }

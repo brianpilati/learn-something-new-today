@@ -41,6 +41,15 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     {
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'));
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '1.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '3.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '4.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '5.html');
+
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Five Star Wars Sets'));
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Five Star Wars Sets'), '1.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Five Star Wars Sets'), '3.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Five Star Wars Sets'), '4.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Five Star Wars Sets'), '5.html');
 
         $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'));
         $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'), '2.html');

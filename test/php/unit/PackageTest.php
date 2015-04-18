@@ -24,7 +24,7 @@ class PackageTest extends PHPUnit_Framework_TestCase
 
     public function testTotalItems() 
     {
-        $this->assertEquals($this->package->getTotalItems(), '3');
+        $this->assertEquals($this->package->getTotalItems(), '4');
     }
 
     public function testItemTitle() 
@@ -75,6 +75,13 @@ class PackageTest extends PHPUnit_Framework_TestCase
     {
         $item = $this->package->getItems()[2];
         $this->assertEquals($item->getPreviousItem(), '3.html');
+        $this->assertEquals($item->getNextItem(), '5.html');
+    }
+
+    public function testNavigationFourthItem() 
+    {
+        $item = $this->package->getItems()[3];
+        $this->assertEquals($item->getPreviousItem(), '4.html');
         $this->assertNull($item->getNextItem());
     }
 }
