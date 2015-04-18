@@ -12,16 +12,17 @@ class SocialTest extends PHPUnit_Framework_TestCase
 
     public function testGetFacebook()
     {
-        $this->assertEquals($this->social->getFacebook(), 'fb-s');
+        $this->assertContains('lsntoday', $this->social->getFacebook());
     }
 
     public function testGetTwitter()
     {
-        $this->assertEquals($this->social->getTwitter(), 'tw-s');
+        $this->assertContains('@lsnt', $this->social->getTwitter());
     }
 
     public function testGetPinterest()
     {
-        $this->assertEquals($this->social->getPinterest(), 'pi-s');
+        $this->assertContains('url=http://test.site/my_new_page', $this->social->getPinterest('my_new_image', '/my_new_page'));
+        $this->assertContains('media=my_new_image', $this->social->getPinterest('my_new_image', 'my_new_page'));
     }
 }

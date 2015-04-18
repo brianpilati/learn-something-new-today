@@ -54,7 +54,7 @@ return <<<HTML
                 <div class="lsnt-logo">Learn Something New Today</div>
                 <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
                 <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
-                <div class="lsnt-pinterest">{$this->social->getPinterest()}</div>
+                <div class="lsnt-pinterest">{$this->social->getPinterest('image')}</div>
                 <div class="lsnt-package-title">Site Map</div>
             </div>
 HTML;

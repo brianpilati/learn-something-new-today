@@ -1,9 +1,10 @@
 <?php
 
     class ContentCreator {
-        private $package, $ads, $social, $item;
+        private $package, $ads, $social, $item, $newLink;
 
-        public function __construct($package, $item) {
+        public function __construct($package, $item, $link=NULL) {
+            $this->link = $link;
             $this->package = $package;
             $this->item = $item;
             $this->ads = new Ads();
@@ -57,7 +58,7 @@ return <<<HTML
                 <div class="lsnt-logo">Learn Something New Today</div>
                 <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
                 <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
-                <div class="lsnt-pinterest">{$this->social->getPinterest()}</div>
+                <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->link)}</div>
                 <div class="lsnt-package-title">{$this->package->getTitle()}</div>
                 <div class="header-ad">{$this->ads->getHeaderAd()}</div>
             </div>

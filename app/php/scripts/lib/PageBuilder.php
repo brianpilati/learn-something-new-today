@@ -126,7 +126,7 @@
                 $newLink = $this->buildLink($parentLink, $package->getTitle());
                 $siteMap->setItem($newLink, $package->getTitle(), $package->getTitle());
                 foreach ($package->getItems() as $itemObj) {
-                    $this->contentCreator = new ContentCreator($package, $itemObj);
+                    $this->contentCreator = new ContentCreator($package, $itemObj, $newLink);
                     $this->createPage($newDirectory, $this->contentCreator->buildContent(), $itemObj->getId() . ".html");
                     if ($itemObj->getDisplayOrder() === "1") {
                         $this->createPage($newDirectory, $this->contentCreator->buildContent());
