@@ -32,11 +32,12 @@ class ItemModel extends db {
     private function selectQueryByPackageId($packageId) {
         return "
             SELECT 
+                i.itemId as itemId,
                 i.item as item,
                 i.title as itemTitle,
                 i.description as itemDescription,
                 i.imageUrl as itemImageUrl,
-                i.itemId as itemId
+                pc.displayOrder as displayOrder
             FROM 
                 packageConnector pc,
                 item i

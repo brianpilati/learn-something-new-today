@@ -1,10 +1,11 @@
 <?php
 
     class ContentCreator {
-        private $package, $ads, $social;
+        private $package, $ads, $social, $item;
 
-        public function __construct($packageObj) {
-            $this->package = new Package($packageObj);
+        public function __construct($package, $item) {
+            $this->package = $package;
+            $this->item = $item;
             $this->ads = new Ads();
             $this->social = new Social();
         }
@@ -57,7 +58,7 @@ return <<<HTML
                 <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
                 <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
                 <div class="lsnt-pinterest">{$this->social->getPinterest()}</div>
-                <div class="lsnt-package-title">{$this->package->getPackageTitle()}</div>
+                <div class="lsnt-package-title">{$this->package->getTitle()}</div>
                 <div class="header-ad">{$this->ads->getHeaderAd()}</div>
             </div>
 HTML;
@@ -83,19 +84,50 @@ return <<<HTML
 HTML;
         }
 
+        private function getPreviousButton() {
+            if ($this->item->getDisplayOrder() === '1') {
+                return;
+            }
+return <<<HTML
+
+                        <div class="lsnt-previous-button"><a href="{$this->item->getPreviousItem()}">&lt; Previous</a></div>
+HTML;
+        }
+
+        private function getStepNumber() {
+            if ($this->package->getTotalItems() === 1) {
+                return;
+            }
+return <<<HTML
+
+                            <div>
+                                {$this->item->getDisplayOrder()} of {$this->package->getTotalItems()}
+                            </div>
+
+HTML;
+        }
+
+        private function getNextButton() {
+            if ($this->item->getDisplayOrder() == $this->package->getTotalItems()) {
+                return;
+            }
+return <<<HTML
+
+                        <div class="lsnt-next-button"><a href="{$this->item->getNextItem()}">Next &gt;</a></div>
+HTML;
+        }
+
         private function getNavigation() {
 return <<<HTML
 
                     <div class="lsnt-navigation">
-                        <div class="lsnt-previous-button">&lt; Previous</div>
-                        <div class="lsnt-next-button">Next &gt;</div>
+                        {$this->getPreviousButton()}
+                        {$this->getNextButton()}
                         <div class="lsnt-catch-phrase">
                             <div>
                                 Always <span class="italics">continue</span> to learn
                             </div>
-                            <div>
-                                3 of 6
-                            </div>
+                            {$this->getStepNumber()}
                         </div>
                     </div>
 HTML;
@@ -144,7 +176,7 @@ HTML;
         }
 
         private function getBulletPoints() {
-            $bulletPoints = $this->package->getItems()[0]->getBulletPoints();
+            $bulletPoints = $this->item->getBulletPoints();
 return <<<HTML
 
                     <div class="lsnt-bullets">
@@ -159,9 +191,9 @@ HTML;
         private function getContent() {
 return <<<HTML
 
-                    <div class="lsnt-title">{$this->package->getItems()[0]->getTitle()}</div>
-                    <div class="lsnt-image"><img src="{$this->package->getItems()[0]->getImageUrl()}" width="640" height="428" /></div>
-                    <div class="lsnt-description">{$this->package->getItems()[0]->getDescription()}</div>
+                    <div class="lsnt-title">{$this->item->getTitle()}</div>
+                    <div class="lsnt-image"><img src="{$this->item->getImageUrl()}" width="640" height="428" /></div>
+                    <div class="lsnt-description">{$this->item->getDescription()}</div>
 HTML;
         }
 

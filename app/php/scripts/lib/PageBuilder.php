@@ -121,17 +121,17 @@
             $siteMap = new SiteMap();
             $this->packageItemsObj->getPackageItems($packageId);
             if($this->packageItemsObj->result) {
-                while($packageItemObj = $this->packageItemsObj->result->fetch_object()) {
-                    //echo "\n\n{$this->packageItemsObj->numRows}\n\n";
-                    $this->contentCreator = new ContentCreator($packageItemObj);
-                    $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $packageItemObj->packageTitle));
-                    $this->createPage($newDirectory, $this->contentCreator->buildContent(), $packageItemObj->item . ".html");
-                    if ($packageItemObj->displayOrder === "1") {
+                $package = new Package($this->packageItemsObj->result->fetch_object());
+                $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $package->getTitle()));
+                $newLink = $this->buildLink($parentLink, $package->getTitle());
+                $siteMap->setItem($newLink, $package->getTitle(), $package->getTitle());
+                foreach ($package->getItems() as $itemObj) {
+                    $this->contentCreator = new ContentCreator($package, $itemObj);
+                    $this->createPage($newDirectory, $this->contentCreator->buildContent(), $itemObj->getId() . ".html");
+                    if ($itemObj->getDisplayOrder() === "1") {
                         $this->createPage($newDirectory, $this->contentCreator->buildContent());
                     }
 
-                    $newLink = $this->buildLink($parentLink, $packageItemObj->packageTitle);
-                    $siteMap->setItem($newLink, $packageItemObj->packageTitle, $packageItemObj->packageTitle);
                 }
             }
 
@@ -143,7 +143,9 @@
             $newDirectory = $this->makeDirectory($this->baseDirectory);
             $this->packageObj->getFeaturedPackage();
             if($this->packageObj->result) {
-                $this->contentCreator = new ContentCreator($this->packageObj->result->fetch_object());
+                $package = new Package($this->packageObj->result->fetch_object());
+
+                $this->contentCreator = new ContentCreator($package, $package->getItems()[0]);
                 $this->buildHomePageHtml($newDirectory);
             }
             

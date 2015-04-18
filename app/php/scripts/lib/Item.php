@@ -1,6 +1,6 @@
 <?php 
     class Item {
-        private $item;
+        private $displayOrder, $previousItem, $nextItem;
         public function __construct($itemInput) {
             if (is_object($itemInput)) {
                 $this->build($itemInput);
@@ -15,13 +15,16 @@
             if($itemObj->result) {
                 $this->build($itemObj->result->fetch_object());
             }
-
         }
 
         private function build($itemObj) {
             $this->title = $itemObj->itemTitle;
             $this->description = $itemObj->itemDescription;
             $this->imageUrl = $itemObj->itemImageUrl;
+            $this->itemId = $itemObj->itemId;
+            if (ISSET($itemObj->displayOrder)) {
+                $this->displayOrder = $itemObj->displayOrder;
+            }
             $this->bulletPoints = new BulletPoint($itemObj->itemId);
         }
 
@@ -39,6 +42,30 @@
 
         public function getBulletPoints() {
             return $this->bulletPoints;
+        }
+
+        public function getId() {
+            return $this->itemId;
+        }
+
+        public function getDisplayOrder() {
+            return $this->displayOrder;
+        }
+
+        public function setPreviousItem($itemId) {
+            $this->previousItem = $itemId . '.html';
+        }
+
+        public function getPreviousItem() {
+            return $this->previousItem;
+        }
+
+        public function setNextItem($itemId) {
+            $this->nextItem = $itemId . '.html';
+        }
+
+        public function getNextItem() {
+            return $this->nextItem;
         }
     }
 ?>

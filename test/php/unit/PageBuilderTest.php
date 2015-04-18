@@ -40,10 +40,10 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     public function testItemCreation() 
     {
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'));
-        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '4567.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '1.html');
 
         $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'));
-        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'), 'tacoma.html');
+        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'), '2.html');
     }
 
     public function testSiteMapCreation() 

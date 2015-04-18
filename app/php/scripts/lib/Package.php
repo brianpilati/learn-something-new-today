@@ -1,7 +1,7 @@
 <?php
 
     class Package {
-        private $packageTitle, $itemTitle, $itemDescription, $itemImageUrl, $items;
+        private $packageTitle, $items;
 
         public function __construct($packageObject) {
             $this->build($packageObject);
@@ -10,6 +10,7 @@
         private function build($packageObject) {
             $this->packageTitle = $packageObject->packageTitle;
             $this->buildItems($packageObject->packageId);
+            $this->linkItems();
         }
 
         private function buildItems($packageId) {
@@ -26,11 +27,28 @@
             }
         }
 
+        public function linkItems() {
+            for($index=0; $index<sizeof($this->items); $index++) {
+                $currentItem = $this->items[$index];
+                if($index !== 0) {
+                    $currentItem->setPreviousItem($this->items[$index-1]->getId());
+                }
+
+                if($index !== sizeof($this->items)-1) {
+                    $currentItem->setNextItem($this->items[$index+1]->getId());
+                }
+            }
+        }
+
+        public function getTotalItems() {
+            return sizeof($this->items);
+        }
+
         public function getItems() {
             return $this->items;
         }
 
-        public function getPackageTitle() {
+        public function getTitle() {
             return $this->packageTitle;
         }
     }

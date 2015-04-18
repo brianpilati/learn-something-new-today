@@ -25,7 +25,9 @@ UNLOCK TABLES;
 LOCK TABLES `item` WRITE;
 INSERT INTO `item` (item, brandId, imageUrl, title, description, altTag, creationDate) VALUES 
 ('4567', 1, 'image', '4567 item title', '4567 description', 'altTag', now()),
-('Tacoma', 2, 'image', 'Tacoma item title', 'Tacoma description', 'altTag', now());
+('Tacoma', 2, 'image', 'Tacoma item title', 'Tacoma description', 'altTag', now()),
+('4568', 1, 'image', '4568 item title', '4568 description', 'altTag', now()),
+('4569', 1, 'image', '4569 item title', '4569 description', 'altTag', now());
 UNLOCK TABLES;
 
 LOCK TABLES `keyword` WRITE;
@@ -88,5 +90,7 @@ UNLOCK TABLES;
 LOCK TABLES `packageConnector` WRITE;
 INSERT INTO `packageConnector` (packageId, itemId, displayOrder) VALUES 
 (1, 1, 1),
-(2, 2, 1);
+(2, 2, 1),
+(1, 3, 2),
+(1, 4, 3);
 UNLOCK TABLES;
