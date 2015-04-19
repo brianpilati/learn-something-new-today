@@ -27,6 +27,16 @@ class PackageTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->package->getTotalItems(), '4');
     }
 
+    public function testPackageLink() 
+    {
+        $this->assertEquals($this->package->getPackageLink(), '/Toys/LEGO/Star Wars/Top Ten Star Wars Sets');
+    }
+
+    public function testPackageDir() 
+    {
+        $this->assertEquals($this->package->getPackageDir(), 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets');
+    }
+
     public function testItemTitle() 
     {
         $this->assertEquals($this->item->getTitle(), 'Tony Stark aka IronMan');

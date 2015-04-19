@@ -3,8 +3,7 @@
     class ContentCreator {
         private $package, $ads, $social, $item, $newLink;
 
-        public function __construct($package, $item, $link=NULL) {
-            $this->link = $link;
+        public function __construct($package, $item) {
             $this->package = $package;
             $this->item = $item;
             $this->ads = new Ads();
@@ -58,7 +57,7 @@ return <<<HTML
                 <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="Learn Something New Today" title="Learn Something New Today" /></div>
                 <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
                 <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
-                <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->link)}</div>
+                <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}</div>
                 <div class="lsnt-package-title">{$this->package->getTitle()}</div>
                 <div class="header-ad">{$this->ads->getHeaderAd()}</div>
             </div>

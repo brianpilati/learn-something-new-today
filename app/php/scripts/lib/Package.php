@@ -8,6 +8,7 @@
         }
 
         private function build($packageObject) {
+            $this->buildPackageLink($packageObject);
             $this->packageTitle = $packageObject->packageTitle;
             $this->buildItems($packageObject->packageId);
             $this->linkItems();
@@ -25,6 +26,18 @@
                     );
                 }
             }
+        }
+
+        private function buildPackageLink($packageObj) {
+            $this->packageLink = "{$packageObj->category}/{$packageObj->class}/{$packageObj->family}/{$packageObj->packageTitle}";
+        }
+
+        public function getPackageLink() {
+            return "/{$this->packageLink}";
+        }
+
+        public function getPackageDir() {
+            return $this->packageLink;
         }
 
         public function linkItems() {

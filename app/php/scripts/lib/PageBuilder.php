@@ -32,6 +32,7 @@
         private function build() {
             $this->buildHomePage();
             $this->buildSite();
+            $this->buildItems();
         }
 
         private function openFile($filePath) {
@@ -68,7 +69,7 @@
             $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, 'siteMap'));
 
             $siteMap = new SiteMap();
-            $this->packageObj->getAll();
+            $this->packageObj->getAllCategories();
             if($this->packageObj->result) {
                 while($packageObj = $this->packageObj->result->fetch_object()) {
                     $categoryDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $packageObj->category));
@@ -110,33 +111,50 @@
                     $familyDirectory = $this->makeDirectory(format_directory($parentDirectory, $familyObj->family));
                     $newLink = $this->buildLink($parentLink, $familyObj->family);
                     $siteMap->setItem($newLink, $familyObj->family, $familyObj->family);
-                    $this->buildItems($familyDirectory, $newLink, $familyObj->packageId);
+                    $this->buildPackagesSiteMap($familyDirectory, $newLink, $categoryId, $classId, $familyObj->familyId);
                 }
             }
+
             $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
             $this->createPage($newDirectory, $siteMapContent->buildContent());
         }
 
-        private function buildItems($parentDirectory, $parentLink, $packageId) {
+        private function buildPackagesSiteMap($parentDirectory, $parentLink, $categoryId, $classId, $familyId) {
             $siteMap = new SiteMap();
-            $this->packageItemsObj->getPackageItems($packageId);
-            if($this->packageItemsObj->result) {
-                $package = new Package($this->packageItemsObj->result->fetch_object());
-                $newDirectory = $this->makeDirectory(format_directory($parentDirectory, $package->getTitle()));
-                $newLink = $this->buildLink($parentLink, $package->getTitle());
-                $siteMap->setItem($newLink, $package->getTitle(), $package->getTitle());
-                foreach ($package->getItems() as $itemObj) {
-                    $this->contentCreator = new ContentCreator($package, $itemObj, $newLink);
-                    $this->createPage($newDirectory, $this->contentCreator->buildContent(), $itemObj->getId() . ".html");
-                    if ($itemObj->getDisplayOrder() === "1") {
-                        $this->createPage($newDirectory, $this->contentCreator->buildContent());
-                    }
-
+            $packageModel = new PackageModel();
+            $packageModel->getPackageSiteMap($categoryId, $classId, $familyId);
+            if($packageModel->result) {
+                while($packageObj = $packageModel->result->fetch_object()) {
+                    $packageDirectory = $this->makeDirectory(format_directory($parentDirectory, $packageObj->packageTitle));
+                    $newLink = $this->buildLink($parentLink, $packageObj->packageTitle);
+                    $siteMap->setItem($newLink, $packageObj->packageTitle, $packageObj->packageTitle);
                 }
             }
 
             $siteMapContent = new SiteMapContentCreator($siteMap->getSiteMap());
             $this->createPage($parentDirectory, $siteMapContent->buildContent());
+        }
+
+        private function buildItems() {
+            $this->packageObj->getAll();
+            if($this->packageObj->result) {
+                while($packageObj = $this->packageObj->result->fetch_object()) {
+                    $this->packageItemsObj->getPackageItems($packageObj->packageId);
+                    if($this->packageItemsObj->result) {
+                        $package = new Package($this->packageItemsObj->result->fetch_object());
+                        $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $package->getPackageDir()));
+
+                        foreach ($package->getItems() as $itemObj) {
+                            $this->contentCreator = new ContentCreator($package, $itemObj, $package->getPackageLink());
+                            $this->createPage($newDirectory, $this->contentCreator->buildContent(), $itemObj->getId() . ".html");
+                            if ($itemObj->getDisplayOrder() === "1") {
+                                $this->createPage($newDirectory, $this->contentCreator->buildContent());
+                            }
+
+                        }
+                    }
+                }
+            }
         }
 
         private function buildHomePage() {

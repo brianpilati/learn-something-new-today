@@ -25,6 +25,8 @@ class ClassModel extends db {
                 p.categoryId = $categoryId
                 AND p.categoryId = c.categoryId
                 AND p.classId = cl.classId
+            GROUP BY
+                c.categoryId
             ORDER BY
                 cl.class
         ;

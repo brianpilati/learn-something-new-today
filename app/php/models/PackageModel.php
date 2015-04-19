@@ -9,15 +9,24 @@ class PackageModel extends db {
         return $this->query($this->selectQuery());
     }
 
+    public function getAllCategories() {
+        return $this->query($this->selectQuery(true));
+    }
+
     public function getPackageItems($packageId) {
         return $this->query($this->selectPackageItemsQuery($packageId));
+    }
+
+    public function getPackageSiteMap($categoryId, $classId, $familyId) {
+        return $this->query($this->selectPackageSiteMapQuery($categoryId, $classId, $familyId));
     }
 
     public function getFeaturedPackage() {
         return $this->query($this->selectPackageItemsQuery(2));
     }
 
-    private function selectQuery() {
+    private function selectQuery($isGroup=false) {
+        $groupBy = ($isGroup ? " GROUP BY c.categoryId " : "");
         return "
             SELECT 
                 p.packageId as packageId,
@@ -28,6 +37,7 @@ class PackageModel extends db {
                 category c
             WHERE
                 p.categoryId = c.categoryId
+            $groupBy
             ORDER BY
                 c.category
         ;
@@ -65,6 +75,22 @@ class PackageModel extends db {
                 AND pc.itemId = i.itemId
             ORDER BY
                 c.category, cl.class, f.family
+        ;
+      ";
+    }
+
+    private function selectPackageSiteMapQuery($categoryId, $classId, $familyId) {
+        return "
+            SELECT 
+                p.title as packageTitle
+            FROM 
+                package p
+            WHERE
+                p.categoryId = $categoryId
+                AND p.classId = $classId
+                AND p.familyId = $familyId
+            ORDER BY
+                p.title
         ;
       ";
     }

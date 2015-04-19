@@ -16,7 +16,8 @@ class FamilyModel extends db {
                 c.categoryId as categoryId,
                 c.category as category,
                 cl.class as class,
-                f.family as family
+                f.family as family,
+                f.familyId as familyId
             FROM 
                 package p,
                 category c,
@@ -28,6 +29,8 @@ class FamilyModel extends db {
                 AND p.classId = $classId
                 AND p.classId = cl.classId
                 AND p.familyId = f.familyId
+            GROUP by
+                f.familyId
             ORDER BY
                 family
         ;

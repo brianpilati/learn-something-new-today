@@ -13,33 +13,51 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testSourceDirectoryCreation() 
     {
-        $this->validateContent($this->sourceDirectory);
+        $filePath = format_directory($this->sourceDirectory, '');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/2015 Toyota Vehicles/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testPackageDirectoryCreation() 
     {
-        $this->validateContent(format_directory($this->sourceDirectory, 'Toys'));
+        $filePath = format_directory($this->sourceDirectory, 'Toys');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/href="\/Toys\/LEGO"/', file_get_contents($this->getFileName($filePath)));
         
-        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles'));
+        $filePath = format_directory($this->sourceDirectory, 'Vehicles');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/href="\/Vehicles\/2015"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testClassDirectoryCreation() 
     {
-        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO'));
+        $filePath = format_directory($this->sourceDirectory, 'Toys/LEGO');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars"/', file_get_contents($this->getFileName($filePath)));
 
-        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015'));
+        $filePath = format_directory($this->sourceDirectory, 'Vehicles/2015');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/href="\/Vehicles\/2015\/TOyota"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testFamilyDirectoryCreation() 
     {
-        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars'));
+        $filePath = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars\/Top Five Star Wars Sets"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars\/Top Ten Star Wars Sets"/', file_get_contents($this->getFileName($filePath)));
 
-        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota'));
+        $filePath = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/href="\/Vehicles\/2015\/TOyota\/2015 Toyota Vehicles"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testItemCreation() 
     {
-        $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'));
+        $filePath = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/Tony Stark aka IronMan"/', file_get_contents($this->getFileName($filePath)));
+
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '1.html');
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '3.html');
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Ten Star Wars Sets'), '4.html');
@@ -51,19 +69,24 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Five Star Wars Sets'), '4.html');
         $this->validateContent(format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars/Top Five Star Wars Sets'), '5.html');
 
-        $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'));
+        $filePath = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/2015 Toyota Vehicles/', file_get_contents($this->getFileName($filePath)));
         $this->validateContent(format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota/2015 Toyota Vehicles'), '2.html');
     }
 
     public function testSiteMapCreation() 
     {
-        $this->validateContent(format_directory($this->sourceDirectory, 'siteMap'));
+        $filePath = format_directory($this->sourceDirectory, 'siteMap');
+        $this->validateContent($filePath);
+        $this->assertRegExp('/href="\/Toys"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Vehicles"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function tearDown()
     {
         if (preg_match('/shadowSrc$/', $this->sourceDirectory)) {
-            shell_exec("rm -rf {$this->sourceDirectory}");
+            #shell_exec("rm -rf {$this->sourceDirectory}");
         }
     }
 
@@ -75,8 +98,8 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         return substr(sprintf('%o', fileperms($file)), -4);
     }
 
-    public function validateContent($directory, $fileName='index.html') {
-        $file = format_directory($directory, $fileName);
+    public function validateContent($directory, $fileName="index.html") {
+        $file = $this->getFileName($directory, $fileName);
         $this->assertTrue(file_exists($directory));
         $this->assertTrue(file_exists($file));
         $this->assertRegExp('/Learn Something New Today/', file_get_contents($file));
@@ -86,6 +109,10 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->getFileGroup($directory), '_www');
         $this->assertEquals($this->getFilePerms($directory), '0755');
 
+    }
+
+    public function getFileName($directory, $fileName="index.html") {
+        return format_directory($directory, $fileName);
     }
 }
 
