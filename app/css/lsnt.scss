@@ -1,3 +1,4 @@
+@import './lsntBase';
 $margin-top-spacer: 10px;
 $margin-left-spacer: 10px;
 $left-spacer: 27px;
@@ -13,20 +14,29 @@ $site-map-item-width: (($site-map-width - ($margin-left-spacer * ($site-map-item
 $image-width: 640px;
 $image-height: 428px;
 
+body {
+    font-family: "Open Sans", sans-serif;
+    color: $color-font;
+    background: $light-color;
+    //background: $dark-color;
+    background-image: url("/images/background.png");
+    background-repeat: repeat;
+}
+
 .main {
     position: relative;
     width: $main-width;
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid green;
+    border: 1px solid $dark-color;
+    background: #fff;
 
     .site-map-container {
         position: relative;
         height: 800px;
         margin-left: $margin-left-spacer;
         width: $site-map-width;
-        //border: 1px solid lightblue;
 
         .site-map-category {
             position: relative;
@@ -35,7 +45,6 @@ $image-height: 428px;
             margin-left: $margin-left-spacer;
             width: $site-map-item-width;
             text-align: center;
-            //border: 1px solid lightblue;
         }
     }
 
@@ -48,11 +57,16 @@ $image-height: 428px;
 
         .lsnt-logo {
             position: absolute;
-            width: 240px;
-            height: 20px;
+            width: 383px;
+            height: 40px;
             top: 0;
             left: 0;
             font-size: 1em;
+
+            .lsnt-logo-image {
+                width: 383px;
+                height: 40px;
+            }
         }
 
         .lsnt-package-title {
@@ -64,6 +78,7 @@ $image-height: 428px;
             text-align: center;
             font-weight: bold;
             font-size: 2em;
+            color: $dark-color;
         }
 
         .lsnt-facebook {
@@ -220,20 +235,18 @@ $image-height: 428px;
 
                 .lsnt-previous-button {
                     position: absolute;
-                    width: 75px;
+                    width: 100px;
                     height: 100px;
                     top: 0;
-                    left: 100px;
-                    background: orange;
+                    left: 75px;
                 }
 
                 .lsnt-next-button {
                     position: absolute;
-                    width: 75px;
+                    width: 100px;
                     height: 100px;
                     top: 0;
                     left: 465px;
-                    background: orange;
                 }
 
                 .lsnt-catch-phrase {
@@ -244,6 +257,11 @@ $image-height: 428px;
                     left: 220px;
                     text-align: center;
                     font-weight: bold;
+
+                    .lsnt-catch-phrase-steps {
+                        margin-top: 10px;
+
+                    }
                 }
             }
 

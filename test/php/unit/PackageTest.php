@@ -29,7 +29,7 @@ class PackageTest extends PHPUnit_Framework_TestCase
 
     public function testItemTitle() 
     {
-        $this->assertEquals($this->item->getTitle(), '4567 item title');
+        $this->assertEquals($this->item->getTitle(), 'Tony Stark aka IronMan');
     }
 
     public function testItemDescription() 
@@ -39,7 +39,7 @@ class PackageTest extends PHPUnit_Framework_TestCase
 
     public function testItemImageUrl() 
     {
-        $this->assertEquals($this->item->getImageUrl(), 'image');
+        $this->assertEquals($this->item->getImageUrl(), 'tonyStarkIronMan.jpg');
     }
 
     public function testItemId() 

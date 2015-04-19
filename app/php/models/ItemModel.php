@@ -20,7 +20,8 @@ class ItemModel extends db {
                 item as item,
                 title as itemTitle,
                 description as itemDescription,
-                imageUrl as itemImageUrl
+                imageUrl as itemImageUrl,
+                altTag as altTag 
             FROM 
                 item
             WHERE
@@ -37,7 +38,8 @@ class ItemModel extends db {
                 i.title as itemTitle,
                 i.description as itemDescription,
                 i.imageUrl as itemImageUrl,
-                pc.displayOrder as displayOrder
+                pc.displayOrder as displayOrder,
+                i.altTag as altTag
             FROM 
                 packageConnector pc,
                 item i

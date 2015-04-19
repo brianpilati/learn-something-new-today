@@ -11,7 +11,7 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testTitle() 
     {
-        $this->assertEquals($this->item->getTitle(), "4567 item title");
+        $this->assertEquals($this->item->getTitle(), "Tony Stark aka IronMan");
     }
 
     public function testDescription() 
@@ -21,7 +21,7 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testImageUrl() 
     {
-        $this->assertEquals($this->item->getImageUrl(), "image");
+        $this->assertEquals($this->item->getImageUrl(), "tonyStarkIronMan.jpg");
     }
 
     public function testId() 
@@ -32,6 +32,11 @@ class ItemTest extends PHPUnit_Framework_TestCase
     public function testDisplayOrder() 
     {
         $this->assertNull($this->item->getDisplayOrder());
+    }
+
+    public function testAltTag() 
+    {
+        $this->assertEquals($this->item->getAltTag(), "Tony Stark aka IronMan");
     }
 
     public function testGetPreviousItem() 

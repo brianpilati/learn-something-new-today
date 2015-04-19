@@ -55,7 +55,7 @@ HTML;
 return <<<HTML
 
             <div class="top-container">
-                <div class="lsnt-logo">Learn Something New Today</div>
+                <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="Learn Something New Today" title="Learn Something New Today" /></div>
                 <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
                 <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
                 <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->link)}</div>
@@ -91,7 +91,7 @@ HTML;
             }
 return <<<HTML
 
-                        <a href="{$this->item->getPreviousItem()}"><div class="lsnt-previous-button">&lt; Previous</div></a>
+                        <a href="{$this->item->getPreviousItem()}" alt="Previous Button"><div class="lsnt-previous-button"><img src="/images/navigation/previousButton.png" alt="Previous Button" /></div></a>
 HTML;
         }
 
@@ -101,7 +101,7 @@ HTML;
             }
 return <<<HTML
 
-                            <div>
+                            <div class="lsnt-catch-phrase-steps">
                                 {$this->item->getDisplayOrder()} of {$this->package->getTotalItems()}
                             </div>
 
@@ -114,7 +114,7 @@ HTML;
             }
 return <<<HTML
 
-                        <a href="{$this->item->getNextItem()}"><div class="lsnt-next-button">Next &gt;</div></a>
+                        <a href="{$this->item->getNextItem()}" alt="Next Button"><div class="lsnt-next-button"><img src="/images/navigation/nextButton.png" alt="Next Button" /></div></a>
 HTML;
         }
 
@@ -190,11 +190,15 @@ return <<<HTML
 HTML;
         }
 
+        private function getFormattedImage() {
+            return "/images/items/" . $this->item->getImageUrl();
+        }
+
         private function getContent() {
 return <<<HTML
 
                     <div class="lsnt-title">{$this->item->getTitle()}</div>
-                    <div class="lsnt-image"><img src="{$this->item->getImageUrl()}" width="640" height="428" /></div>
+                    <div class="lsnt-image"><img src="{$this->getFormattedImage()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" width="640" height="428" /></div>
                     <div class="lsnt-description">{$this->item->getDescription()}</div>
 HTML;
         }

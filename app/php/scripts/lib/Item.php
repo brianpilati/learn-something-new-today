@@ -22,6 +22,7 @@
             $this->description = $itemObj->itemDescription;
             $this->imageUrl = $itemObj->itemImageUrl;
             $this->itemId = $itemObj->itemId;
+            $this->altTag = $itemObj->altTag;
             if (ISSET($itemObj->displayOrder)) {
                 $this->displayOrder = $itemObj->displayOrder;
             }
@@ -50,6 +51,10 @@
 
         public function getDisplayOrder() {
             return $this->displayOrder;
+        }
+
+        public function getAltTag() {
+            return $this->altTag;
         }
 
         public function setPreviousItem($itemId) {

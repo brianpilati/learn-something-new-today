@@ -67,6 +67,12 @@ module.exports = function (grunt) {
                 src: '**/*',
                 dest: 'app/src/images',
                 expand: true
+            },
+            fonts: {
+                expand: true,
+                cwd: 'app/fonts',
+                src: '*',
+                dest: 'app/src/lib/fonts'
             }
         },
         phpunit: {
@@ -91,7 +97,7 @@ module.exports = function (grunt) {
     grunt.registerTask('lint-auto', ['watch:scsslint']);
 
     grunt.registerTask('lint', ['scsslint']);
-    grunt.registerTask('build-setup', ['clean:build', 'clean:lib', 'install', 'lint', 'phptest', 'css', 'copy:images']);
+    grunt.registerTask('build-setup', ['clean:build', 'clean:lib', 'install', 'lint', 'phptest', 'css', 'copy:images', 'copy:fonts']);
     grunt.registerTask('build', ['build-setup']);
 
     grunt.registerTask('phptest', ['clean:shadowSrc', 'phpunit']);
