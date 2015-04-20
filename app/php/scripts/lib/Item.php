@@ -1,7 +1,8 @@
 <?php 
     class Item {
-        private $displayOrder, $previousItem, $nextItem;
-        public function __construct($itemInput) {
+        private $displayOrder, $previousItem, $nextItem, $packageId;
+        public function __construct($itemInput, $packageId=NULL) {
+            $this->packageId = $packageId;
             if (is_object($itemInput)) {
                 $this->build($itemInput);
             } else {
@@ -27,6 +28,7 @@
                 $this->displayOrder = $itemObj->displayOrder;
             }
             $this->bulletPoints = new BulletPoint($itemObj->itemId);
+            $this->keywords = new Keyword($this->packageId, $itemObj->itemId);
         }
 
         public function getTitle() {
@@ -71,6 +73,10 @@
 
         public function getNextItem() {
             return $this->nextItem;
+        }
+
+        public function getKeywords() {
+            return $this->keywords->getkeywords();
         }
     }
 ?>

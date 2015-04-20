@@ -23,11 +23,59 @@
             return $html;
         }
 
+        private function getTopContainer() {
+return <<<HTML
+
+            <!-- google_ad_section_start(weight=ignore) -->
+            <div class="top-container">
+                <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="Learn Something New Today" title="Learn Something New Today" /></div>
+                <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
+                <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
+                <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}</div>
+                <div class="lsnt-package-title">{$this->package->getTitle()}</div>
+                {$this->ads->getHeaderAd()}
+            </div>
+            <!-- google_ad_section_end -->
+HTML;
+        }
+
+        private function getContentContainer() {
+return <<<HTML
+
+            <div class="content-container">
+                {$this->ads->getContentAdContainer()}
+                <div class="content-lsnt-container">
+                    {$this->getContent()}
+                    {$this->getNavigation()}
+                    {$this->getContentBottomContainer()}
+                </div>
+            </div>
+HTML;
+        }
+
+        private function getContentBottomContainer() {
+return <<<HTML
+
+                    <!-- google_ad_section_start(weight=ignore) -->
+                    <div class="content-bottom-container">
+                        {$this->ads->getContentBottomAds()}
+                        {$this->ads->getContentBottomLSNTContainer()}
+                    </div>
+                    <!-- google_ad_section_end -->
+HTML;
+        }
+
+        private function buildPageTitle() {
+            return SITE_TITLE . ' - ' . $this->package->getTitle();
+        }
+
         private function getHeader() {
 return <<<HTML
 
     <head>
-        <title>Learn Something New Today</title>
+        <title>{$this->buildPageTitle()}</title>
+        <meta name="keywords" content="{$this->item->getKeywords()}">
+        <meta name="description" content="{$this->item->getDescription()}">
         <link rel="stylesheet" type="text/css" href="/lib/lsnt.css" />
     </head>
 HTML;
@@ -47,20 +95,6 @@ return <<<HTML
         </div>
     </body>
 
-HTML;
-        }
-
-        private function getTopContainer() {
-return <<<HTML
-
-            <div class="top-container">
-                <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="Learn Something New Today" title="Learn Something New Today" /></div>
-                <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
-                <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
-                <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}</div>
-                <div class="lsnt-package-title">{$this->package->getTitle()}</div>
-                {$this->ads->getHeaderAd()}
-            </div>
 HTML;
         }
 
@@ -101,6 +135,7 @@ HTML;
         private function getNavigation() {
 return <<<HTML
 
+                    <!-- google_ad_section_start(weight=ignore) -->
                     <div class="lsnt-navigation">
                         {$this->getPreviousButton()}
                         {$this->getNextButton()}
@@ -111,6 +146,7 @@ return <<<HTML
                             {$this->getStepNumber()}
                         </div>
                     </div>
+                    <!-- google_ad_section_start(weight=ignore) -->
 HTML;
         }
 
@@ -177,35 +213,12 @@ HTML;
         private function getContent() {
 return <<<HTML
 
+                    <!-- google_ad_section_start -->
                     <div class="lsnt-title">{$this->item->getTitle()}</div>
                     <div class="lsnt-image"><img src="{$this->getFormattedImage()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" width="640" height="428" /></div>
                     <div class="lsnt-description">{$this->item->getDescription()}</div>
-HTML;
-        }
-
-
-        private function getContentBottomContainer() {
-return <<<HTML
-
-                    <div class="content-bottom-container">
-                        {$this->ads->getContentBottomAds()}
-                        {$this->ads->getContentBottomLSNTContainer()}
-                    </div>
-HTML;
-        }
-
-        private function getContentContainer() {
-return <<<HTML
-
-            <div class="content-container">
-                {$this->ads->getContentAdContainer()}
-                <div class="content-lsnt-container">
-                    {$this->getContent()}
                     {$this->getBulletPoints()}
-                    {$this->getNavigation()}
-                    {$this->getContentBottomContainer()}
-                </div>
-            </div>
+                    <!-- google_ad_section_end -->
 HTML;
         }
     }

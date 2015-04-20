@@ -61,8 +61,5 @@
         public function getBulletPointFour() {
             return $this->getBulletPoint(3);
         }
-
-
     }
-
 ?>

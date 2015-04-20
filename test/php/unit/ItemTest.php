@@ -65,4 +65,9 @@ class ItemTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->item->bulletPoints->getBulletPointOne(), 'Bullet Point 1');
     }
+
+    public function testKeywords() 
+    {
+        $this->assertEquals($this->item->getKeywords(), 'Star Wars, LSNT - Catch Phrase');
+    }
 }

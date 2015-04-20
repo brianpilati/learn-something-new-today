@@ -7,6 +7,11 @@ class ConstantsTest extends PHPUnit_Framework_TestCase
     {
     }
 
+    public function testSiteCatchPhrase() 
+    {
+        $this->assertEquals(CATCH_PHRASE, 'LSNT - Catch Phrase');
+    }
+
     public function testSiteTitle() 
     {
         $this->assertEquals(SITE_TITLE, 'Learn Something New Today');
@@ -38,6 +43,11 @@ class ConstantsTest extends PHPUnit_Framework_TestCase
     }
 
     public function testTitleAd() 
+    {
+        $this->assertFalse(HEADER_AD);
+    }
+
+    public function testHeaderAd() 
     {
         $this->assertFalse(HEADER_AD);
     }

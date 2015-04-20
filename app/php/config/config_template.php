@@ -1,8 +1,14 @@
 <?php
     #Information for testing on a local environment 
     //Copy this from config_template.php to config.php
+
+    //SITE
+    define('CATCH_PHRASE', 'Learn Something New Today');
     define('SITE_TITLE', 'Learn Something New Today');
     define('SITE_URL', 'http://learn-something-new-today');
+    define('SOURCE_DIRECTORY', __DIR__ . '/../../src');
+
+    //DB
     define('DB_HOST', '127.0.0.1');
     define('DB_PASSWD', '<local_db_passwd>');
     define('LOGMASK', 1);
@@ -10,7 +16,6 @@
     define('DB_NAME', 'lsnt');
     define('LOGGING_DEBUG', '/tmp/debug_log.txt');
     define('LOGGING_AUDIT', '/tmp/audit_log.txt');
-    define('SOURCE_DIRECTORY', __DIR__ . '/../../src');
 
     //Ads
     define('HEADER_AD', false);

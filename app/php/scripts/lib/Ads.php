@@ -28,7 +28,15 @@
 
         public function getMarqueeAd() {
             if (MARQUEE_AD || IS_TEST) {
-                return '<div class="marquee-container"><div class="marquee-ad">' . $this->getMarqueeAdContent() . '</div></div>';
+                return '
+            <!-- google_ad_section_start(weight=ignore) -->
+            <div class="marquee-container">
+                <div class="marquee-ad">
+                    ' . $this->getMarqueeAdContent() . '
+                </div> 
+            </div>
+            <!-- google_ad_section_end -->
+            ';
             }
         }
 
@@ -40,11 +48,13 @@
             if ($this->displayAdContainer()) {
 return <<<HTML
 
+                <!-- google_ad_section_start(weight=ignore) -->
                 <div class="content-ad-container">
                     {$this->getMainTopAd()}
                     {$this->getMainMiddleAd()}
                     {$this->getMainBottomAd()}
                 </div>
+                <!-- google_ad_section_end -->
 HTML;
             }
         }
