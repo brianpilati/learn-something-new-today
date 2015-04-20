@@ -12,46 +12,49 @@ class AdsTest extends PHPUnit_Framework_TestCase
 
     public function testGetHeaderAd()
     {
-        $this->assertEquals($this->ads->getHeaderAd(), 'Google Header Ad');
+        $this->assertRegExp('/Fake Google Header Ad/', $this->ads->getHeaderAd());
     }
 
     public function testGetMarqueeAd()
     {
-        $this->assertEquals($this->ads->getMarqueeAd(), 'Amazon Marquee Ad');
+        $this->assertRegExp('/Fake Amazon Marquee Ad/', $this->ads->getMarqueeAd());
     }
 
     public function testGetMainTopAd()
     {
-        $this->assertEquals($this->ads->getMainTopAd(), 'Google Top Ad');
+        $this->assertRegExp('/Fake Google Top Ad/', $this->ads->getContentAdContainer());
     }
 
     public function testGetMainMiddleAd()
     {
-        $this->assertEquals($this->ads->getMainMiddleAd(), 'Google Middle Ad');
+        $this->assertRegExp('/Fake Google Middle Ad/', $this->ads->getContentAdContainer());
     }
 
     public function testGetMainBottomAd()
     {
-        $this->assertEquals($this->ads->getMainBottomAd(), 'Amazon Bottom Ad');
+        $this->assertRegExp('/Fake Amazon Bottom Ad/', $this->ads->getContentAdContainer());
     }
 
     public function testGetBottomLeftAd()
     {
-        $this->assertEquals($this->ads->getBottomLeftAd(), 'Google Left Text Ad');
+        $this->assertRegExp('/Fake Google Left Text Ad/', $this->ads->getContentBottomAds());
     }
 
     public function testGetBottomCenterAd()
     {
-        $this->assertEquals($this->ads->getBottomCenterAd(), 'Google Center Text Ad');
+        $this->assertRegExp('/Fake Google Center Text Ad/', $this->ads->getContentBottomAds());
     }
 
     public function testGetBottomRightAd()
     {
-        $this->assertEquals($this->ads->getBottomRightAd(), 'Google Right Text Ad');
+        $this->assertRegExp('/Fake Google Right Text Ad/', $this->ads->getContentBottomAds());
     }
 
-    public function testGetLSNTPromotionAd()
+    public function testGetContentBottomLSNTContainer()
     {
-        $this->assertEquals($this->ads->getLSNTPromotionAd(22), 'LSNT Promotion Ad - 22');
+        $this->assertRegExp('/Fake LSNT Promotion Ad - 0/', $this->ads->getContentBottomLSNTContainer());
+        $this->assertRegExp('/Fake LSNT Promotion Ad - 1/', $this->ads->getContentBottomLSNTContainer());
+        $this->assertRegExp('/Fake LSNT Promotion Ad - 2/', $this->ads->getContentBottomLSNTContainer());
+        $this->assertRegExp('/Fake LSNT Promotion Ad - 3/', $this->ads->getContentBottomLSNTContainer());
     }
 }

@@ -15,7 +15,7 @@
             $html .= $this->getHeader();
             $html .= $this->getBodyOpen();
             $html .= $this->getTopContainer();
-            $html .= $this->getMarqueeContainer();
+            $html .= $this->ads->getMarqueeAd();
             $html .= $this->getContentContainer();
             $html .= $this->getBodyClose();
             $html .= "</html>";
@@ -59,30 +59,11 @@ return <<<HTML
                 <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
                 <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}</div>
                 <div class="lsnt-package-title">{$this->package->getTitle()}</div>
-                <div class="header-ad">{$this->ads->getHeaderAd()}</div>
+                {$this->ads->getHeaderAd()}
             </div>
 HTML;
         }
 
-        private function getMarqueeContainer() {
-return <<<HTML
-
-            <div class="marquee-container">
-                <div class="marquee-ad">{$this->ads->getMarqueeAd()}</div>
-            </div>
-HTML;
-        }
-
-        private function getContentAdContainer() {
-return <<<HTML
-
-                <div class="content-ad-container">
-                    <div class="ad-top">{$this->ads->getMainTopAd()}</div>
-                    <div class="ad-middle">{$this->ads->getMainMiddleAd()}</div>
-                    <div class="ad-bottom">{$this->ads->getMainBottomAd()}</div>
-                </div>
-HTML;
-        }
 
         private function getPreviousButton() {
             if ($this->item->getDisplayOrder() === '1') {
@@ -202,58 +183,13 @@ return <<<HTML
 HTML;
         }
 
-        private function getContentBottomAds() {
-return <<<HTML
-
-                        <div class="content-bottom-ad-container">
-                            <div class="ad-left">{$this->ads->getBottomLeftAd()}</div>
-                            <div class="ad-center">{$this->ads->getBottomCenterAd()}</div>
-                            <div class="ad-right">{$this->ads->getBottomRightAd()}</div>
-                        </div>
-HTML;
-        }
-
-        private function getLSNTPromotionItem($index) {
-return <<<HTML
-
-                                <div class="lsnt-package-item">{$index}</div>
-HTML;
-        }
-
-        private function getLSNTPromotionItems() {
-            $promotions = "";
-            for ($index=0; $index<4; $index++) {
-                $promotions .= $this->getLSNTPromotionItem($index);
-            }
-            return $promotions;
-        }
-
-        private function getLSNTPackageList() {
-return <<<HTML
-
-                            <div class="lsnt-package-container">
-                                {$this->getLSNTPromotionItems()}
-                            </div>
-HTML;
-        }
-
-        private function getContentBottomLSNTContainer() {
-return <<<HTML
-
-                        <div class="content-bottom-lsnt-container">
-                            <div class="lsnt-more-packages">Learn more about these exciting categories</div>
-                            {$this->getLSNTPackageList()}
-                            {$this->getLSNTPackageList()}
-                        </div>
-HTML;
-        }
 
         private function getContentBottomContainer() {
 return <<<HTML
 
                     <div class="content-bottom-container">
-                        {$this->getContentBottomAds()}
-                        {$this->getContentBottomLSNTContainer()}
+                        {$this->ads->getContentBottomAds()}
+                        {$this->ads->getContentBottomLSNTContainer()}
                     </div>
 HTML;
         }
@@ -262,7 +198,7 @@ HTML;
 return <<<HTML
 
             <div class="content-container">
-                {$this->getContentAdContainer()}
+                {$this->ads->getContentAdContainer()}
                 <div class="content-lsnt-container">
                     {$this->getContent()}
                     {$this->getBulletPoints()}

@@ -86,7 +86,7 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     public function tearDown()
     {
         if (preg_match('/shadowSrc$/', $this->sourceDirectory)) {
-            #shell_exec("rm -rf {$this->sourceDirectory}");
+            shell_exec("rm -rf {$this->sourceDirectory}");
         }
     }
 
