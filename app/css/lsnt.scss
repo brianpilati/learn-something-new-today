@@ -19,8 +19,6 @@ body {
     font-family: "Open Sans", sans-serif;
     color: $color-font;
     background: $light-color;
-    //background: $white-color;
-    //background: $dark-color;
     background-image: url("/images/background.png");
     background-repeat: repeat;
 }
@@ -143,7 +141,7 @@ body {
         position: relative;
         margin-top: $margin-top-spacer;
         margin-left: $margin-left-spacer;
-        height: 1120px;
+        height: 1130px;
         width: $container-width;
 
         .content-lsnt-container {
