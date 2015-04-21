@@ -68,6 +68,6 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testKeywords() 
     {
-        $this->assertEquals($this->item->getKeywords(), 'Star Wars, LSNT - Catch Phrase');
+        $this->assertEquals($this->item->getKeywords(), 'Building Blocks, LEGO, Star Wars, Toys, LSNT - Catch Phrase');
     }
 }

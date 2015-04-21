@@ -12,6 +12,6 @@ class KeywordTest extends PHPUnit_Framework_TestCase
 
     public function testKeywords() 
     {
-        $this->assertEquals($this->keyword->getKeywords(), 'Star Wars, LSNT - Catch Phrase');
+        $this->assertEquals($this->keyword->getKeywords(), 'Building Blocks, LEGO, Star Wars, Toys, LSNT - Catch Phrase');
     }
 }

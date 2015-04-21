@@ -40,7 +40,10 @@ INSERT INTO `keyword` (keyword, creationDate) VALUES
 ('Vehicles', now()),
 ('Trucks', now()),
 ('Toyota', now()),
-('Tacoma', now());
+('Tacoma', now()),
+('Top Ten Star Wars Sets', now()),
+('Star Wars', now()),
+('LEGO', now());
 UNLOCK TABLES;
 
 LOCK TABLES `keywordConnector` WRITE;
@@ -52,7 +55,10 @@ INSERT INTO `keywordConnector` (keywordId, type, typeId) VALUES
 (5, 'category', 2),
 (6, 'subcategory', 2),
 (7, 'brand', 2),
-(8, 'item', 2);
+(8, 'item', 2),
+(9, 'package', 1),
+(10, 'family', 1),
+(11, 'class', 1);
 UNLOCK TABLES;
 
 LOCK TABLES `bulletPoint` WRITE;
