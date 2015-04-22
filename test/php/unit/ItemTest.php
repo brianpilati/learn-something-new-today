@@ -6,7 +6,7 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function setUp() 
     {
-        $this->item = new Item(1);
+        $this->item = new Item(1, 1);
     }
 
     public function testTitle() 
@@ -68,6 +68,6 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testKeywords() 
     {
-        $this->assertEquals($this->item->getKeywords(), 'Building Blocks, LEGO, Star Wars, Toys, LSNT - Catch Phrase');
+        $this->assertEquals($this->item->getKeywords(), 'Building Blocks, LEGO, Star Wars, Top Ten Star Wars Sets, Toys, LSNT - Catch Phrase');
     }
 }

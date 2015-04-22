@@ -22,7 +22,7 @@
                 while($itemObj = $itemsObj->result->fetch_object()) {
                     array_push (
                         $this->items,
-                        new Item($itemObj)
+                        new Item($itemObj, $packageId)
                     );
                 }
             }

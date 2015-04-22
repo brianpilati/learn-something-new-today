@@ -82,6 +82,47 @@ class KeywordModel extends db {
                             AND kc.type = 'category' 
                             AND kc.keywordId = k.keywordId
                     ) 
+                UNION
+                    (
+                        SELECT 
+                            k.keyword as keyword
+                        FROM 
+                            keywordConnector kc,
+                            keyword k,
+                            package p
+                        WHERE
+                            kc.typeId = $packageId
+                            AND kc.type = 'package' 
+                            AND kc.keywordId = k.keywordId
+                    ) 
+                UNION
+                    (
+                        SELECT 
+                            k.keyword as keyword
+                        FROM 
+                            keywordConnector kc,
+                            keyword k,
+                            package p
+                        WHERE
+                            p.packageId = $packageId
+                            AND kc.typeId = p.classId
+                            AND kc.type = 'class' 
+                            AND kc.keywordId = k.keywordId
+                    ) 
+                UNION
+                    (
+                        SELECT 
+                            k.keyword as keyword
+                        FROM 
+                            keywordConnector kc,
+                            keyword k,
+                            package p
+                        WHERE
+                            p.packageId = $packageId
+                            AND kc.typeId = p.familyId
+                            AND kc.type = 'family' 
+                            AND kc.keywordId = k.keywordId
+                    ) 
                 ) as brandTable
             ORDER BY
                 keyword
