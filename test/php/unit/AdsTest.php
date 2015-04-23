@@ -17,7 +17,7 @@ class AdsTest extends PHPUnit_Framework_TestCase
 
     public function testGetMarqueeAd()
     {
-        $this->assertRegExp('/Fake Amazon Marquee Ad/', $this->ads->getMarqueeAd());
+        $this->assertRegExp('/Fake 728 by 90 - Amazon Marquee Ad/', $this->ads->getMarqueeAd());
     }
 
     public function testGetMainTopAd()
@@ -32,7 +32,7 @@ class AdsTest extends PHPUnit_Framework_TestCase
 
     public function testGetMainBottomAd()
     {
-        $this->assertRegExp('/Fake Amazon Bottom Ad/', $this->ads->getContentAdContainer());
+        $this->assertRegExp('/Fake 300 by 250 - Amazon Bottom Ad/', $this->ads->getContentAdContainer());
     }
 
     public function testGetBottomLeftAd()
