@@ -16,7 +16,7 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testDescription() 
     {
-        $this->assertEquals($this->item->getDescription(), "4567 description");
+        $this->assertEquals($this->item->getDescription(), "Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father's company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.");
     }
 
     public function testImageUrl() 
@@ -63,7 +63,7 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testBulletPoint() 
     {
-        $this->assertEquals($this->item->bulletPoints->getBulletPointOne(), 'Bullet Point 1');
+        $this->assertEquals($this->item->bulletPoints->getBulletPointOne(), 'Played by Robert Downey, Jr. this is the max number of letters for a bullet point and it i');
     }
 
     public function testKeywords() 

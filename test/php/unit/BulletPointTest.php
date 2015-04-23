@@ -17,7 +17,7 @@ class BulletPointTest extends PHPUnit_Framework_TestCase
 
     public function testGetBulletPointOne() 
     {
-        $this->assertEquals($this->bulletPoint->getBulletPointOne(), 'Bullet Point 1');
+        $this->assertEquals($this->bulletPoint->getBulletPointOne(), 'Played by Robert Downey, Jr. this is the max number of letters for a bullet point and it i');
     }
 
     public function testIsBulletPointTwo() 

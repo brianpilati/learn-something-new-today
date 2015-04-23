@@ -24,7 +24,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `item` WRITE;
 INSERT INTO `item` (item, brandId, imageUrl, title, description, altTag, creationDate) VALUES 
-('4567', 1, 'tonyStarkIronMan.jpg', 'Tony Stark aka IronMan', '4567 description', 'Tony Stark aka IronMan', now()),
+('4567', 1, 'tonyStarkIronMan.jpg', 'Tony Stark aka IronMan', 'Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father\'s company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.', 'Tony Stark aka IronMan', now()),
 ('Tacoma', 2, 'image', 'Tacoma item title', 'Tacoma description', 'altTag', now()),
 ('4568', 1, 'image', '4568 item title', '4568 description', 'altTag', now()),
 ('4569', 1, 'image', '4569 item title', '4569 description', 'altTag', now()),
@@ -63,7 +63,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `bulletPoint` WRITE;
 INSERT INTO `bulletPoint` (bulletPoint, itemId, orderId) VALUES 
-('Bullet Point 1', 1, 1),
+('Played by Robert Downey, Jr. this is the max number of letters for a bullet point and it i', 1, 1),
 ('Bullet Point 2', 1, 2),
 ('Bullet Point 3', 1, 4),
 ('Bullet Point 4', 1, 3),

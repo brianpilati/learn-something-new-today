@@ -132,7 +132,7 @@ HTML;
         }
 
         private function getMainBottomAd() {
-            if (MAIN_MIDDLE_AD || IS_TEST) {
+            if (MAIN_BOTTOM_AD || IS_TEST) {
                 return '<div class="ad-bottom">' . $this->getMainBottomAdContent() . '</div>';
             }
         }

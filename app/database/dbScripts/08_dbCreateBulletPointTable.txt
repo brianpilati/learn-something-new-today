@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `bulletPoint`;
 CREATE TABLE `bulletPoint` (
   `bulletPointId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `itemId` INT(10) UNSIGNED NOT NULL,
-  `bulletPoint` VARCHAR(255),
+  `bulletPoint` VARCHAR(90),
   `orderId` INT(1),
   PRIMARY KEY (`bulletPointId`),
   FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
