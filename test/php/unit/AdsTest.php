@@ -1,5 +1,6 @@
 <?php
 
+
 class AdsTest extends PHPUnit_Framework_TestCase 
 {
 
@@ -7,6 +8,7 @@ class AdsTest extends PHPUnit_Framework_TestCase
 
     public function setUp() 
     {
+        $GLOBALS['IS_TEST'] = true;
         $this->ads = new Ads();
     }
 

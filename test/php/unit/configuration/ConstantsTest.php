@@ -91,9 +91,4 @@ class ConstantsTest extends PHPUnit_Framework_TestCase
     {
         $this->assertFalse(LSNT_PROMOTION_ADS);
     }
-
-    public function testIsTest() 
-    {
-        $this->assertTrue(IS_TEST);
-    }
 }

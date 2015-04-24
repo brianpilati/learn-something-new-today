@@ -7,7 +7,7 @@
         }
 
         private function getHeaderAdContent() {
-            if(IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake Google Header Ad";
             } else {
                 return "Google Header Ad";
@@ -15,7 +15,7 @@
         }
 
         public function getHeaderAd() {
-            if (HEADER_AD || IS_TEST) {
+            if (HEADER_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '<div class="header-ad">' . $this->getHeaderAdContent() . '</div>';
             }
         }
@@ -25,7 +25,7 @@
         }
 
         public function getMarqueeAd() {
-            if (MARQUEE_AD || IS_TEST) {
+            if (MARQUEE_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '
             <!-- google_ad_section_start(weight=ignore) -->
             <div class="marquee-container">
@@ -39,7 +39,7 @@
         }
 
         private function displayAdContainer() {
-            return MAIN_TOP_AD || MAIN_MIDDLE_AD || MAIN_BOTTOM_AD || IS_TEST;
+            return MAIN_TOP_AD || MAIN_MIDDLE_AD || MAIN_BOTTOM_AD || ISSET($GLOBALS['IS_TEST']);
         }
 
         public function getContentAdContainer() {
@@ -58,7 +58,7 @@ HTML;
         }
 
         private function getMainTopAdContent() {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake Google Top Ad";
             } else {
                 return "Google Top Ad";
@@ -66,13 +66,13 @@ HTML;
         }
 
         private function getMainTopAd() {
-            if (MAIN_TOP_AD || IS_TEST) {
+            if (MAIN_TOP_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '<div class="ad-top">' . $this->getMainTopAdContent() . '</div>';
             }
         }
 
         private function getMainMiddleAdContent() {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake Google Middle Ad";
             } else {
                 return "Google Middle Ad";
@@ -80,7 +80,7 @@ HTML;
         }
 
         private function getMainMiddleAd() {
-            if (MAIN_MIDDLE_AD || IS_TEST) {
+            if (MAIN_MIDDLE_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '<div class="ad-middle">' . $this->getMainMiddleAdContent() . '</div>';
             }
         }
@@ -90,7 +90,7 @@ HTML;
         }
 
         private function getMainBottomAd() {
-            if (MAIN_BOTTOM_AD || IS_TEST) {
+            if (MAIN_BOTTOM_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '<div class="ad-bottom">' . $this->getMainBottomAdContent() . '</div>';
             }
         }
@@ -107,7 +107,7 @@ HTML;
         }
 
         private function getBottomLeftAdContent() {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake Google Left Text Ad";
             } else {
                 return "Google Left Text Ad";
@@ -115,13 +115,13 @@ HTML;
         }
 
         private function getBottomLeftAd() {
-            if (BOTTOM_LEFT_AD || IS_TEST) {
+            if (BOTTOM_LEFT_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '<div class="ad-left">' . $this->getBottomLeftAdContent() . '</div>';
             }
         }
 
         private function getBottomCenterAdContent() {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake Google Center Text Ad";
             } else {
                 return "Google Center Text Ad";
@@ -129,13 +129,13 @@ HTML;
         }
 
         private function getBottomCenterAd() {
-            if (BOTTOM_CENTER_AD || IS_TEST) {
+            if (BOTTOM_CENTER_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '<div class="ad-center">' . $this->getBottomCenterAdContent() . '</div>';
             }
         }
 
         private function getBottomRightAdContent() {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake Google Right Text Ad";
             } else {
                 return "Google Right Text Ad";
@@ -143,13 +143,13 @@ HTML;
         }
 
         private function getBottomRightAd() {
-            if (BOTTOM_RIGHT_AD || IS_TEST) {
+            if (BOTTOM_RIGHT_AD || ISSET($GLOBALS['IS_TEST'])) {
                 return '<div class="ad-right">' . $this->getBottomRightAdContent() . '</div>';
             }
         }
 
         private function getLSNTPromotionAdContent($counter) {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake LSNT Promotion Ad - $counter";
             } else {
                 return "LSNT Promotion Ad - $counter";
@@ -178,7 +178,7 @@ HTML;
         }
 
         private function displayLSNTAdContainer() {
-            return LSNT_PROMOTION_ADS || IS_TEST;
+            return LSNT_PROMOTION_ADS || ISSET($GLOBALS['IS_TEST']);
         }
 
 

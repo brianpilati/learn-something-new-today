@@ -4,7 +4,6 @@
 
     if(ISSET($argv[1]) && $argv[1] === '--buildLiveSite') {
         require_once(__DIR__ . '/../config/config.php');
-        DEFINE('IS_TEST', false);
     } else {
         require_once(__DIR__ . '/../../../test/php/config.php');
     }

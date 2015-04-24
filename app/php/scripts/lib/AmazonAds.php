@@ -5,7 +5,7 @@
         }
 
         public function get728by90Ad() {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake 728 by 90 - Amazon Marquee Ad";
             } else {
 return <<<HTML
@@ -31,7 +31,7 @@ HTML;
         }
 
         public function get300by250Ad() {
-            if (IS_TEST) {
+            if (ISSET($GLOBALS['IS_TEST'])) {
                 return "Fake 300 by 250 - Amazon Bottom Ad";
             } else {
 return <<<HTML
