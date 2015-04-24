@@ -10,6 +10,19 @@
             $this->social = new Social();
         }
 
+        public function buildHomePageContent() {
+            $html = "<html>";
+            $html .= $this->getHeader();
+            $html .= $this->getBodyOpen();
+            $html .= $this->getTopContainer();
+            $html .= $this->ads->getMarqueeAd();
+            $html .= $this->getContentContainer();
+            $html .= $this->getBodyClose();
+            $html .= "</html>";
+
+            return $html;
+        }
+
         public function buildContent() {
             $html = "<html>";
             $html .= $this->getHeader();

@@ -62,7 +62,7 @@
         }
 
         private function buildHomePageHtml($directory) {
-            $this->createPage($directory, $this->contentCreator->buildContent());
+            $this->createPage($directory, $this->contentCreator->buildHomePageContent());
         }
 
         private function buildSite() {
@@ -139,19 +139,16 @@
             $this->packageObj->getAll();
             if($this->packageObj->result) {
                 while($packageObj = $this->packageObj->result->fetch_object()) {
-                    $this->packageItemsObj->getPackageItems($packageObj->packageId);
-                    if($this->packageItemsObj->result) {
-                        $package = new Package($this->packageItemsObj->result->fetch_object());
-                        $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $package->getPackageDir()));
+                    $package = new Package($packageObj);
+                    $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $package->getPackageDir()));
 
-                        foreach ($package->getItems() as $itemObj) {
-                            $this->contentCreator = new ContentCreator($package, $itemObj, $package->getPackageLink());
-                            $this->createPage($newDirectory, $this->contentCreator->buildContent(), $itemObj->getId() . ".html");
-                            if ($itemObj->getDisplayOrder() === "1") {
-                                $this->createPage($newDirectory, $this->contentCreator->buildContent());
-                            }
-
+                    foreach ($package->getItems() as $itemObj) {
+                        $this->contentCreator = new ContentCreator($package, $itemObj, $package->getPackageLink());
+                        $this->createPage($newDirectory, $this->contentCreator->buildContent(), $itemObj->getId() . ".html");
+                        if ($itemObj->getDisplayOrder() === "1") {
+                            $this->createPage($newDirectory, $this->contentCreator->buildContent());
                         }
+
                     }
                 }
             }
