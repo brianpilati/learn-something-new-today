@@ -28,6 +28,14 @@ body {
     background-repeat: repeat;
 }
 
+a:hover,
+a:focus,
+a:visited,
+a {
+    color: $dark-color;
+    text-decoration: none;
+}
+
 .main {
     position: relative;
     width: $main-width;
@@ -450,6 +458,18 @@ body {
         margin-top: $margin-top-spacer;
         margin-bottom: $margin-bottom-spacer;
         color: $light-color;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .lsnt-bottom-links {
+        position: relative;
+        font-size: .75em;
+        width: $content-width;
+        height: 25px;
+        text-align: left;
+        margin-top: $margin-top-spacer * 2;
+        margin-bottom: $margin-bottom-spacer;
         margin-left: auto;
         margin-right: auto;
     }

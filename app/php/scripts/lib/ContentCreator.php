@@ -1,9 +1,11 @@
 <?php
 
-    class ContentCreator {
+    class ContentCreator extends Inheritance {
         private $package, $ads, $social, $item, $newLink;
 
         public function __construct($package, $item) {
+            parent::__construct();
+
             $this->package = $package;
             $this->item = $item;
             $this->ads = new Ads();
@@ -17,6 +19,7 @@
             $html .= $this->getTopContainer(true);
             $html .= $this->getHomePageContentContainer();
             $html .= $this->ads->getMarqueeAd();
+            $html .= $this->getBottomLinks();
             $html .= $this->getDisclaimer();
             $html .= $this->getBodyClose();
             $html .= "</html>";
@@ -31,6 +34,7 @@
             $html .= $this->getTopContainer();
             $html .= $this->ads->getMarqueeAd();
             $html .= $this->getContentContainer();
+            $html .= $this->getBottomLinks();
             $html .= $this->getDisclaimer();
             $html .= $this->getBodyClose();
             $html .= "</html>";
@@ -38,10 +42,21 @@
             return $html;
         }
 
+        private function getBottomLinks() {
+return <<<HTML
+
+                <div class="lsnt-bottom-links">
+                    <a href="/siteMap">Site Map</a>
+                </div>
+HTML;
+        }
+
         private function getDisclaimer() {
 return <<<HTML
 
+            <!-- google_ad_section_start(weight=ignore) -->
                 <div class="lsnt-disclaimer">Copyright &copy; Learn Something New Today 2015. This website is provided "as is" without any representations or warranties, express or implied. {$this->getSiteName()} makes no representations or warranties in relation to this website or the information and materials provided on this website. The material on this website (excluding without limitation the text and computer code) is owned by the original creator. The automated and/or systematic collection of data from this website is prohibited. By using this website, you agree that the exclusions and limitations of liability set out in this website disclaimer are reasonable. If you do not think they are reasonable, you must not use this website.</div>
+            <!-- google_ad_section_end -->
 HTML;
         }
 
@@ -55,16 +70,12 @@ return <<<HTML
 HTML;
         }
 
-        private function getSiteName() {
-            return SITE_NAME;
-        }
-
         private function getTopContainer($isHomePage=false) {
 return <<<HTML
 
             <!-- google_ad_section_start(weight=ignore) -->
             <div class="top-container">
-                <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="{$this->getSiteName()}" title="{$this->getSiteName()}" /></div>
+                <div class="lsnt-logo"><a href="/index.html" alt="{$this->getSiteName()} Home Page" title="{$this->getSiteName()}"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="{$this->getSiteName()}" title="{$this->getSiteName()}" /></a></div>
                 {$this->social->getFacebook()}
                 {$this->social->getTwitter()}
                 {$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}

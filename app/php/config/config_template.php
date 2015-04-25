@@ -5,6 +5,7 @@
     //SITE
     define('SITE_NAME', 'Learn Something New Today');
     define('CATCH_PHRASE', 'Learn Something New Today');
+    define('SITE_TWITTER_HANDLE', '@lsnewtoday');
     define('SITE_TITLE', 'Learn Something New Today');
     define('SITE_URL', 'http://learn-something-new-today');
     define('SOURCE_DIRECTORY', __DIR__ . '/../../src');
