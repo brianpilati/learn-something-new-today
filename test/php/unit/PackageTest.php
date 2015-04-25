@@ -49,7 +49,12 @@ class PackageTest extends PHPUnit_Framework_TestCase
 
     public function testItemImageUrl() 
     {
-        $this->assertEquals($this->item->getImageUrl(), 'tonyStarkIronMan.jpg');
+        $this->assertEquals($this->item->getImageUrl(), '/images/items/tonyStarkIronMan.jpg');
+    }
+
+    public function testPromotionImageUrl() 
+    {
+        $this->assertEquals($this->package->getPromotionImageUrl(), '/images/splashImages/promotionImage');
     }
 
     public function testItemId() 

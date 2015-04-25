@@ -14,9 +14,9 @@
             $html = "<html>";
             $html .= $this->getHeader();
             $html .= $this->getBodyOpen();
-            $html .= $this->getTopContainer();
+            $html .= $this->getTopContainer(true);
+            $html .= $this->getHomePageContentContainer();
             $html .= $this->ads->getMarqueeAd();
-            $html .= $this->getContentContainer();
             $html .= $this->getBodyClose();
             $html .= "</html>";
 
@@ -36,19 +36,40 @@
             return $html;
         }
 
-        private function getTopContainer() {
+        private function getPackageTitle($isHomePage) {
+            if ($isHomePage) {
+                return;
+            }
+return <<<HTML
+
+                <div class="lsnt-package-title">{$this->package->getTitle()}</div>
+HTML;
+        }
+
+        private function getTopContainer($isHomePage=false) {
 return <<<HTML
 
             <!-- google_ad_section_start(weight=ignore) -->
             <div class="top-container">
                 <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="Learn Something New Today" title="Learn Something New Today" /></div>
-                <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
-                <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
-                <div class="lsnt-pinterest">{$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}</div>
-                <div class="lsnt-package-title">{$this->package->getTitle()}</div>
-                {$this->ads->getHeaderAd()}
+                {$this->social->getFacebook()}
+                {$this->social->getTwitter()}
+                {$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}
+                {$this->getPackageTitle($isHomePage)}
+                {$this->ads->getHeaderAd($isHomePage)}
             </div>
             <!-- google_ad_section_end -->
+HTML;
+        }
+
+        private function getHomePageContentContainer() {
+return <<<HTML
+
+            <div class="content-homepage-container">
+                <div class="content-lsnt-container">
+                    {$this->getHomePageContent()}
+                </div>
+            </div>
 HTML;
         }
 
@@ -219,8 +240,14 @@ return <<<HTML
 HTML;
         }
 
-        private function getFormattedImage() {
-            return "/images/items/" . $this->item->getImageUrl();
+        private function getHomePageContent() {
+return <<<HTML
+
+                    <!-- google_ad_section_start -->
+                    <div class="lsnt-title">{$this->package->getTitle()}</div>
+                    <div class="lsnt-image"><img src="{$this->package->getPromotionImageUrl()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" width="640" height="428" /></div>
+                    <!-- google_ad_section_end -->
+HTML;
         }
 
         private function getContent() {
@@ -228,7 +255,7 @@ return <<<HTML
 
                     <!-- google_ad_section_start -->
                     <div class="lsnt-title">{$this->item->getTitle()}</div>
-                    <div class="lsnt-image"><img src="{$this->getFormattedImage()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" width="640" height="428" /></div>
+                    <div class="lsnt-image"><img src="{$this->item->getImageUrl()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" width="640" height="428" /></div>
                     <div class="lsnt-description">{$this->item->getDescription()}</div>
                     {$this->getBulletPoints()}
                     <!-- google_ad_section_end -->

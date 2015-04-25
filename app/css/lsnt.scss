@@ -136,6 +136,43 @@ body {
         }
     }
 
+    .content-homepage-container {
+        position: relative;
+        margin-top: $margin-top-spacer;
+        margin-left: auto;
+        margin-right: auto;
+        height: $image-height + 50;
+        width: $container-width;
+
+        .content-lsnt-container {
+            position: relative;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            height: $image-height;
+            width: $lsnt-content-width;
+            margin-bottom: $margin-bottom-spacer;
+            
+            .lsnt-title {
+                position: relative;
+                width: $content-width;
+                height: 25px;
+                font-size: 1.5em;
+                margin-top: $margin-top-spacer;
+                margin-left: $left-content-spacer;
+            }
+
+            .lsnt-image {
+                position: relative;
+                width: $image-width;
+                height: $image-height;
+                margin-top: $margin-top-spacer;
+                margin-left: $left-content-spacer;
+                box-shadow: -3px 3px 5px $dark-color;
+            }
+        }
+    }
+
     .content-container {
         position: relative;
         margin-top: $margin-top-spacer;

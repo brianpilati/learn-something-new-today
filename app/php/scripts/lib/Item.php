@@ -40,7 +40,7 @@
         }
 
         public function getImageUrl() {
-            return $this->imageUrl;
+            return "/images/items/" . $this->imageUrl;
         }
 
         public function getBulletPoints() {

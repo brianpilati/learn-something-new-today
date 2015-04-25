@@ -21,7 +21,7 @@ class ItemTest extends PHPUnit_Framework_TestCase
 
     public function testImageUrl() 
     {
-        $this->assertEquals($this->item->getImageUrl(), "tonyStarkIronMan.jpg");
+        $this->assertEquals($this->item->getImageUrl(), "/images/items/tonyStarkIronMan.jpg");
     }
 
     public function testId() 

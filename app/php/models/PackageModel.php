@@ -35,7 +35,8 @@ class PackageModel extends db {
                 c.category as category,
                 cl.class as class,
                 f.family as family,
-                p.title as packageTitle
+                p.title as packageTitle,
+                p.promotionImage as promotionImage
             FROM 
                 package p,
                 category c,

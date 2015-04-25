@@ -1,7 +1,7 @@
 <?php
 
     class Package {
-        private $packageTitle, $items;
+        private $packageTitle, $items, $promotionImageUrl;
 
         public function __construct($packageObject) {
             $this->build($packageObject);
@@ -10,6 +10,7 @@
         private function build($packageObject) {
             $this->buildPackageLink($packageObject);
             $this->packageTitle = $packageObject->packageTitle;
+            $this->promotionImageUrl = $packageObject->promotionImage;
             $this->buildItems($packageObject->packageId);
             $this->linkItems();
         }
@@ -63,6 +64,10 @@
 
         public function getTitle() {
             return $this->packageTitle;
+        }
+
+        public function getPromotionImageUrl() {
+            return "/images/splashImages/" . $this->promotionImageUrl;
         }
     }
 ?>

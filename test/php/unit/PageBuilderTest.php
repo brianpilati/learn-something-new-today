@@ -15,7 +15,7 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     {
         $filePath = format_directory($this->sourceDirectory, '');
         $this->validateContent($filePath);
-        $this->assertRegExp('/Robert Downey, Jr./', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/Top Ten Star Wars Sets/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testPackageDirectoryCreation() 
