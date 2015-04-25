@@ -41,6 +41,10 @@
             return $this->packageLink;
         }
 
+        public function getPackageUrl() {
+            return "{$this->getPackageLink()}/1.html";
+        }
+
         public function linkItems() {
             for($index=0; $index<sizeof($this->items); $index++) {
                 $currentItem = $this->items[$index];

@@ -31,6 +31,11 @@ class PackageTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->package->getPackageLink(), '/Toys/LEGO/Star Wars/Top Ten Star Wars Sets');
     }
+   
+    public function testPackageUrl() 
+    {
+        $this->assertEquals($this->package->getPackageUrl(), '/Toys/LEGO/Star Wars/Top Ten Star Wars Sets/1.html');
+    }
 
     public function testPackageDir() 
     {

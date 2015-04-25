@@ -7,6 +7,11 @@ class ConstantsTest extends PHPUnit_Framework_TestCase
     {
     }
 
+    public function testSiteName() 
+    {
+        $this->assertEquals(SITE_NAME, 'LSNT - Site Name');
+    }
+
     public function testSiteCatchPhrase() 
     {
         $this->assertEquals(CATCH_PHRASE, 'LSNT - Catch Phrase');

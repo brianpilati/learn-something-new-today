@@ -17,6 +17,7 @@
             $html .= $this->getTopContainer(true);
             $html .= $this->getHomePageContentContainer();
             $html .= $this->ads->getMarqueeAd();
+            $html .= $this->getDisclaimer();
             $html .= $this->getBodyClose();
             $html .= "</html>";
 
@@ -30,10 +31,18 @@
             $html .= $this->getTopContainer();
             $html .= $this->ads->getMarqueeAd();
             $html .= $this->getContentContainer();
+            $html .= $this->getDisclaimer();
             $html .= $this->getBodyClose();
             $html .= "</html>";
 
             return $html;
+        }
+
+        private function getDisclaimer() {
+return <<<HTML
+
+                <div class="lsnt-disclaimer">Copyright &copy; Learn Something New Today 2015. This website is provided "as is" without any representations or warranties, express or implied. {$this->getSiteName()} makes no representations or warranties in relation to this website or the information and materials provided on this website. The material on this website (excluding without limitation the text and computer code) is owned by the original creator. The automated and/or systematic collection of data from this website is prohibited. By using this website, you agree that the exclusions and limitations of liability set out in this website disclaimer are reasonable. If you do not think they are reasonable, you must not use this website.</div>
+HTML;
         }
 
         private function getPackageTitle($isHomePage) {
@@ -46,12 +55,16 @@ return <<<HTML
 HTML;
         }
 
+        private function getSiteName() {
+            return SITE_NAME;
+        }
+
         private function getTopContainer($isHomePage=false) {
 return <<<HTML
 
             <!-- google_ad_section_start(weight=ignore) -->
             <div class="top-container">
-                <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="Learn Something New Today" title="Learn Something New Today" /></div>
+                <div class="lsnt-logo"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="{$this->getSiteName()}" title="{$this->getSiteName()}" /></div>
                 {$this->social->getFacebook()}
                 {$this->social->getTwitter()}
                 {$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}
@@ -244,8 +257,14 @@ HTML;
 return <<<HTML
 
                     <!-- google_ad_section_start -->
+                    <div class="lsnt-featured-today">Featured Today</div>
+                    <a href="{$this->package->getPackageUrl()}" alt="View {$this->package->getTitle()}">
+                        <div class="lsnt-image"><img src="{$this->package->getPromotionImageUrl()}" alt="{$this->package->getTitle()}" title="{$this->package->getTitle()}" /></div>
+                    </a>
                     <div class="lsnt-title">{$this->package->getTitle()}</div>
-                    <div class="lsnt-image"><img src="{$this->package->getPromotionImageUrl()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" width="640" height="428" /></div>
+                    <a href="{$this->package->getPackageUrl()}" alt="View {$this->package->getTitle()}">
+                        <div class="lsnt-next-button"><img src="/images/navigation/see-content-button.png" alt="See Content" /></div></a>
+                    </a>
                     <!-- google_ad_section_end -->
 HTML;
         }
@@ -255,7 +274,7 @@ return <<<HTML
 
                     <!-- google_ad_section_start -->
                     <div class="lsnt-title">{$this->item->getTitle()}</div>
-                    <div class="lsnt-image"><img src="{$this->item->getImageUrl()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" width="640" height="428" /></div>
+                    <div class="lsnt-image"><img src="{$this->item->getImageUrl()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" /></div>
                     <div class="lsnt-description">{$this->item->getDescription()}</div>
                     {$this->getBulletPoints()}
                     <!-- google_ad_section_end -->

@@ -3,6 +3,7 @@
     //Copy this from config_template.php to config.php
 
     //SITE
+    define('SITE_NAME', 'Learn Something New Today');
     define('CATCH_PHRASE', 'Learn Something New Today');
     define('SITE_TITLE', 'Learn Something New Today');
     define('SITE_URL', 'http://learn-something-new-today');

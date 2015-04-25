@@ -15,6 +15,11 @@ $site-map-item-width: (($site-map-width - ($margin-left-spacer * ($site-map-item
 $image-width: 640px;
 $image-height: 428px;
 
+$homepage-image-height: 340px;
+$homepage-image-width: 640px;
+$homepage-content-height: 545px;
+$homepage-container-width: $homepage-image-width + 100;
+
 body {
     font-family: "Open Sans", sans-serif;
     color: $color-font;
@@ -141,33 +146,47 @@ body {
         margin-top: $margin-top-spacer;
         margin-left: auto;
         margin-right: auto;
-        height: $image-height + 50;
-        width: $container-width;
+        height: $homepage-content-height;
+        width: $homepage-container-width;
+        border: 1px solid $dark-color;
+        box-shadow: -3px 3px 5px $dark-color;
 
         .content-lsnt-container {
             position: relative;
             text-align: center;
             margin-left: auto;
             margin-right: auto;
-            height: $image-height;
+            height: $homepage-image-height;
             width: $lsnt-content-width;
             margin-bottom: $margin-bottom-spacer;
+
+            .lsnt-featured-today {
+                position: relative;
+                width: $content-width;
+                height: 25px;
+                font-size: 1.5em;
+                margin-top: $margin-top-spacer * 2;
+                margin-bottom: $margin-bottom-spacer * 2;
+                margin-left: $left-content-spacer;
+            }
             
             .lsnt-title {
                 position: relative;
                 width: $content-width;
                 height: 25px;
                 font-size: 1.5em;
-                margin-top: $margin-top-spacer;
+                margin-top: $margin-top-spacer * 2;
+                margin-bottom: $margin-bottom-spacer * 2;
                 margin-left: $left-content-spacer;
             }
 
             .lsnt-image {
                 position: relative;
                 width: $image-width;
-                height: $image-height;
+                height: $homepage-image-height;
                 margin-top: $margin-top-spacer;
                 margin-left: $left-content-spacer;
+                border: 1px solid $dark-color;
                 box-shadow: -3px 3px 5px $dark-color;
             }
         }
@@ -204,6 +223,7 @@ body {
                 height: $image-height;
                 margin-top: $margin-top-spacer;
                 margin-left: $left-content-spacer;
+                border: 1px solid $dark-color; 
                 box-shadow: -3px 3px 5px $dark-color;
             }
 
@@ -419,7 +439,22 @@ body {
             }
         }
     }
+
+    .lsnt-disclaimer {
+        position: relative;
+        width: $content-width;
+        min-height: 25px;
+        height: auto;
+        font-size: .5em;
+        text-align: center;
+        margin-top: $margin-top-spacer;
+        margin-bottom: $margin-bottom-spacer;
+        color: $light-color;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
+
 
 .italics {
     font-style: italic;

@@ -69,6 +69,8 @@
             $newDirectory = $this->makeDirectory(format_directory($this->baseDirectory, 'siteMap'));
 
             $siteMap = new SiteMap();
+            $siteMap->setItem('/', 'Homepage', 'Homepage');
+
             $this->packageObj->getAllCategories();
             if($this->packageObj->result) {
                 while($packageObj = $this->packageObj->result->fetch_object()) {

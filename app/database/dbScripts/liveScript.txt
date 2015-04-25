@@ -171,7 +171,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `package` WRITE;
 INSERT INTO `package` (categoryId, classId, familyId, title, promotionImage, thumbNailImage, caption, tinyUrl) VALUES 
-(1, 1, 1, 'Avengers - Age of Ultron', 'age_of_ultron_facebook.jpg', 'thumbNailImage', 'caption', 'tinyUrl');
+(1, 1, 1, 'Avengers - Age of Ultron', 'avengers-age-of-ultron.jpg', 'thumbNailImage', 'caption', 'tinyUrl');
 UNLOCK TABLES;
 
 LOCK TABLES `packageConnector` WRITE;
