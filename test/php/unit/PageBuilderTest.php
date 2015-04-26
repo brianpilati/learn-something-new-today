@@ -103,6 +103,7 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(file_exists($directory));
         $this->assertTrue(file_exists($file));
         $this->assertRegExp('/LSNT/', file_get_contents($file));
+        $this->assertRegExp('/Google Analytics/', file_get_contents($file));
         $this->assertEquals($this->getFileGroup($file), '_www');
         $this->assertEquals($this->getFilePerms($file), '0755');
 

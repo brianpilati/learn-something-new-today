@@ -36,5 +36,6 @@ composer.phar
 test-reports
 vendor
 config.php
+config_preview.php
 shadowSrc
 .DS_Store

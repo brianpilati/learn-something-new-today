@@ -29,4 +29,7 @@
     define('BOTTOM_CENTER_AD', false);
     define('BOTTOM_RIGHT_AD', false);
     define('LSNT_PROMOTION_ADS', false);
+
+    //Google Analytics
+    define('GOOGLE_ANALYTICS', false);
 ?>

@@ -147,16 +147,6 @@ return <<<HTML
 HTML;
         }
 
-        private function getBodyClose() {
-return <<<HTML
-
-        </div>
-    </body>
-
-HTML;
-        }
-
-
         private function getPreviousButton() {
             if ($this->item->getDisplayOrder() === '1') {
                 return;

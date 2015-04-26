@@ -40,15 +40,6 @@ return <<<HTML
 HTML;
         }
 
-        private function getBodyClose() {
-return <<<HTML
-
-        </div>
-    </body>
-
-HTML;
-        }
-
         private function getTopContainer() {
 return <<<HTML
 
