@@ -19,4 +19,9 @@ class InheritanceTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->inheritance->getTwitterHandle(), "LSNT - Twitter");
     }
+
+    public function testGetLogo() 
+    {
+        $this->assertContains('LSNT - Site Name Home Page', $this->inheritance->getLogo());
+    }
 }

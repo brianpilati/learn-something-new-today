@@ -22,34 +22,34 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     {
         $filePath = format_directory($this->sourceDirectory, 'Toys');
         $this->validateContent($filePath);
-        $this->assertRegExp('/href="\/Toys\/LEGO"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Toys\/LEGO\/index.html"/', file_get_contents($this->getFileName($filePath)));
         
         $filePath = format_directory($this->sourceDirectory, 'Vehicles');
         $this->validateContent($filePath);
-        $this->assertRegExp('/href="\/Vehicles\/2015"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Vehicles\/2015\/index.html"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testClassDirectoryCreation() 
     {
         $filePath = format_directory($this->sourceDirectory, 'Toys/LEGO');
         $this->validateContent($filePath);
-        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars\/index.html"/', file_get_contents($this->getFileName($filePath)));
 
         $filePath = format_directory($this->sourceDirectory, 'Vehicles/2015');
         $this->validateContent($filePath);
-        $this->assertRegExp('/href="\/Vehicles\/2015\/TOyota"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Vehicles\/2015\/TOyota\/index.html"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testFamilyDirectoryCreation() 
     {
         $filePath = format_directory($this->sourceDirectory, 'Toys/LEGO/Star Wars');
         $this->validateContent($filePath);
-        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars\/Top Five Star Wars Sets"/', file_get_contents($this->getFileName($filePath)));
-        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars\/Top Ten Star Wars Sets"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars\/Top Five Star Wars Sets\/index.html"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Toys\/LEGO\/Star Wars\/Top Ten Star Wars Sets\/index.html"/', file_get_contents($this->getFileName($filePath)));
 
         $filePath = format_directory($this->sourceDirectory, 'Vehicles/2015/Toyota');
         $this->validateContent($filePath);
-        $this->assertRegExp('/href="\/Vehicles\/2015\/TOyota\/2015 Toyota Vehicles"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Vehicles\/2015\/TOyota\/2015 Toyota Vehicles\/index.html"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testItemCreation() 
@@ -79,8 +79,8 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     {
         $filePath = format_directory($this->sourceDirectory, 'siteMap');
         $this->validateContent($filePath);
-        $this->assertRegExp('/href="\/Toys"/', file_get_contents($this->getFileName($filePath)));
-        $this->assertRegExp('/href="\/Vehicles"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Toys\/index.html"/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/href="\/Vehicles\/index.html"/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function tearDown()
@@ -102,7 +102,7 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
         $file = $this->getFileName($directory, $fileName);
         $this->assertTrue(file_exists($directory));
         $this->assertTrue(file_exists($file));
-        $this->assertRegExp('/Learn Something New Today/', file_get_contents($file));
+        $this->assertRegExp('/LSNT/', file_get_contents($file));
         $this->assertEquals($this->getFileGroup($file), '_www');
         $this->assertEquals($this->getFilePerms($file), '0755');
 

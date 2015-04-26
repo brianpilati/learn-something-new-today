@@ -1,9 +1,11 @@
 <?php
 
-    class SiteMapContentCreator {
+    class SiteMapContentCreator extends Inheritance {
         private $siteMapObj, $social;
 
         public function __construct($siteMap) {
+            parent::__construct();
+
             $this->siteMapObj = $siteMap;
             $this->social = new Social();
         }
@@ -24,7 +26,7 @@
 return <<<HTML
 
     <head>
-        <title>Learn Something New Today</title>
+        <title>{$this->getSiteName()}</title>
         <link rel="stylesheet" type="text/css" href="/lib/lsnt.css" />
     </head>
 HTML;
@@ -51,20 +53,28 @@ HTML;
 return <<<HTML
 
             <div class="top-container">
-                <div class="lsnt-logo">Learn Something New Today</div>
-                <div class="lsnt-facebook">{$this->social->getFacebook()}</div>
-                <div class="lsnt-twitter">{$this->social->getTwitter()}</div>
-                <div class="lsnt-pinterest">{$this->social->getPinterest('image')}</div>
+                {$this->getLogo()}
+                {$this->social->getFacebook()}
+                {$this->social->getTwitter()}
+                {$this->social->getPinterest('image')}
                 <div class="lsnt-package-title">Site Map</div>
             </div>
 HTML;
+        }
+
+        private function buildIndexedLink($siteMap) {
+            if ($siteMap->getLink() === '/') {
+                return "/index.html";
+            } else {
+                return "{$siteMap->getLink()}/index.html";
+            }
         }
 
         private function getCategory($siteMap) {
 return <<<HTML
 
                     <div class="site-map-category">
-                        <a href="{$siteMap->getLink()}" alt="{$siteMap->getAlt()}">
+                        <a href="{$this->buildIndexedLink($siteMap)}" alt="{$siteMap->getAlt()}">
                             {$siteMap->getText()}
                         </a>
                     </div>

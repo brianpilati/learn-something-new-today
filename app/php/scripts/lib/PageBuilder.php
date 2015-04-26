@@ -75,7 +75,7 @@
             if($this->packageObj->result) {
                 while($packageObj = $this->packageObj->result->fetch_object()) {
                     $categoryDirectory = $this->makeDirectory(format_directory($this->baseDirectory, $packageObj->category));
-                    $newLink = $this->buildLink('', $packageObj->category);
+                    $newLink = $this->buildLink(null, $packageObj->category);
                     $siteMap->setItem($newLink, $packageObj->category, $packageObj->category);
                     $this->buildClassSiteMap($categoryDirectory, $newLink, $packageObj->categoryId);
                 }

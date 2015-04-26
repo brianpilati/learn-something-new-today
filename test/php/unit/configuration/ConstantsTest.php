@@ -24,7 +24,7 @@ class ConstantsTest extends PHPUnit_Framework_TestCase
 
     public function testSiteTitle() 
     {
-        $this->assertEquals(SITE_TITLE, 'Learn Something New Today');
+        $this->assertEquals(SITE_TITLE, 'LSNT');
     }
 
     public function testSiteUrl() 

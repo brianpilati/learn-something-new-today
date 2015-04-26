@@ -46,7 +46,7 @@
 return <<<HTML
 
                 <div class="lsnt-bottom-links">
-                    <a href="/siteMap">Site Map</a>
+                    <a href="/siteMap/index.html">Site Map</a>
                 </div>
 HTML;
         }
@@ -75,7 +75,7 @@ return <<<HTML
 
             <!-- google_ad_section_start(weight=ignore) -->
             <div class="top-container">
-                <div class="lsnt-logo"><a href="/index.html" alt="{$this->getSiteName()} Home Page" title="{$this->getSiteName()}"><img src="/images/logo.jpg" class="lsnt-logo-image" alt="{$this->getSiteName()}" title="{$this->getSiteName()}" /></a></div>
+                {$this->getLogo()}
                 {$this->social->getFacebook()}
                 {$this->social->getTwitter()}
                 {$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}
