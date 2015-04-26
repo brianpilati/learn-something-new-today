@@ -12,7 +12,9 @@
 
     class BuildPages {
         public function __construct() {
+            print "\n\nStarted Building Pages\n\n";
             $this->run();
+            print "\n\nFinished Building Pages\n\n";
         }
 
         private function run() {
