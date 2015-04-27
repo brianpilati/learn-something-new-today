@@ -48,6 +48,15 @@ return <<<HTML
 HTML;
         }
 
+        public function getDisclaimer() {
+return <<<HTML
+
+            <!-- google_ad_section_start(weight=ignore) -->
+                <div class="lsnt-disclaimer">Copyright &copy; Learn Something New Today 2015. This website is provided "as is" without any representations or warranties, express or implied. {$this->getSiteName()} makes no representations or warranties in relation to this website or the information and materials provided on this website. The material on this website (excluding without limitation the text and computer code) is owned by the original creator. The automated and/or systematic collection of data from this website is prohibited. By using this website, you agree that the exclusions and limitations of liability set out in this website disclaimer are reasonable. If you do not think they are reasonable, you must not use this website.</div>
+            <!-- google_ad_section_end -->
+HTML;
+        }
+
     }
 
 ?>

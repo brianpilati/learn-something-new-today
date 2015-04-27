@@ -34,7 +34,7 @@ class PackageTest extends PHPUnit_Framework_TestCase
    
     public function testPackageUrl() 
     {
-        $this->assertEquals($this->package->getPackageUrl(), '/Toys/LEGO/Star Wars/Top Ten Star Wars Sets/1.html');
+        $this->assertEquals($this->package->getPackageUrl(), '/Toys/LEGO/Star Wars/Top Ten Star Wars Sets/index.html');
     }
 
     public function testPackageDir() 
@@ -49,7 +49,7 @@ class PackageTest extends PHPUnit_Framework_TestCase
 
     public function testItemDescription() 
     {
-        $this->assertEquals($this->item->getDescription(), "Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father's company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.");
+        $this->assertEquals($this->item->getHtmlDescription(), "<div class='lsnt-description'>Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father's company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.</div>");
     }
 
     public function testItemImageUrl() 

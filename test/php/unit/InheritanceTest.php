@@ -24,4 +24,14 @@ class InheritanceTest extends PHPUnit_Framework_TestCase
     {
         $this->assertContains('LSNT - Site Name Home Page', $this->inheritance->getLogo());
     }
+
+    public function testGetDisclaimer() 
+    {
+        $this->assertContains('Copyright &copy', $this->inheritance->getDisclaimer());
+    }
+
+    public function testGetBodyClose() 
+    {
+        $this->assertContains('Google Analytics', $this->inheritance->getBodyClose());
+    }
 }

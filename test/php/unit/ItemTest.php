@@ -14,9 +14,14 @@ class ItemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->item->getTitle(), "Tony Stark aka IronMan");
     }
 
-    public function testDescription() 
+    public function testHtmlDescription() 
     {
-        $this->assertEquals($this->item->getDescription(), "Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father's company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.");
+        $this->assertEquals($this->item->getHtmlDescription(), "<div class='lsnt-description'>Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father's company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.</div>");
+    }
+
+    public function testMetaDescription() 
+    {
+        $this->assertEquals($this->item->getMetaDescription(), "Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father's company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.");
     }
 
     public function testImageUrl() 

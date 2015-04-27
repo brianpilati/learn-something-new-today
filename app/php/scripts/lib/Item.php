@@ -35,8 +35,18 @@
             return $this->title;
         }
 
-        public function getDescription() {
+        private function getDescription() {
             return $this->description;
+        }
+
+        public function getMetaDescription() {
+            return $this->getDescription();
+        }
+
+        public function getHtmlDescription() {
+            if ($this->getDescription()) {
+                return "<div class='lsnt-description'>{$this->getDescription()}</div>";
+            }
         }
 
         public function getImageUrl() {

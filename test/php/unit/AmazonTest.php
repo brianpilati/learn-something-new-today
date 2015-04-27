@@ -7,7 +7,12 @@ class AmazonAdsTest extends PHPUnit_Framework_TestCase
 
     public function setUp() 
     {
+        unset($GLOBALS['IS_TEST']);
         $this->amazonAds = new AmazonAds();
+    }
+
+    public function tearDown() {
+        $GLOBALS['IS_TEST'] = true;
     }
 
     public function testAd728by90()

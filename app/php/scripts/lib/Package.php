@@ -42,7 +42,7 @@
         }
 
         public function getPackageUrl() {
-            return "{$this->getPackageLink()}/1.html";
+            return "{$this->getPackageLink()}/index.html";
         }
 
         public function linkItems() {

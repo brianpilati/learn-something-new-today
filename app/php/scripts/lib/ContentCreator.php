@@ -51,15 +51,6 @@ return <<<HTML
 HTML;
         }
 
-        private function getDisclaimer() {
-return <<<HTML
-
-            <!-- google_ad_section_start(weight=ignore) -->
-                <div class="lsnt-disclaimer">Copyright &copy; Learn Something New Today 2015. This website is provided "as is" without any representations or warranties, express or implied. {$this->getSiteName()} makes no representations or warranties in relation to this website or the information and materials provided on this website. The material on this website (excluding without limitation the text and computer code) is owned by the original creator. The automated and/or systematic collection of data from this website is prohibited. By using this website, you agree that the exclusions and limitations of liability set out in this website disclaimer are reasonable. If you do not think they are reasonable, you must not use this website.</div>
-            <!-- google_ad_section_end -->
-HTML;
-        }
-
         private function getPackageTitle($isHomePage) {
             if ($isHomePage) {
                 return;
@@ -133,7 +124,7 @@ return <<<HTML
     <head>
         <title>{$this->buildPageTitle()}</title>
         <meta name="keywords" content="{$this->item->getKeywords()}">
-        <meta name="description" content="{$this->item->getDescription()}">
+        <meta name="description" content="{$this->item->getMetaDescription()}">
         <link rel="stylesheet" type="text/css" href="/lib/lsnt.css" />
     </head>
 HTML;
@@ -276,7 +267,7 @@ return <<<HTML
                     <!-- google_ad_section_start -->
                     <div class="lsnt-title">{$this->item->getTitle()}</div>
                     <div class="lsnt-image"><img src="{$this->item->getImageUrl()}" alt="{$this->item->getAltTag()}" title="{$this->item->getAltTag()}" /></div>
-                    <div class="lsnt-description">{$this->item->getDescription()}</div>
+                    {$this->item->getHtmlDescription()}
                     {$this->getBulletPoints()}
                     <!-- google_ad_section_end -->
 HTML;

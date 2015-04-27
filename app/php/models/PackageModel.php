@@ -22,7 +22,7 @@ class PackageModel extends db {
     }
 
     public function getFeaturedPackage() {
-        return $this->query($this->selectQuery(false, 1));
+        return $this->query($this->selectQuery(false, 2));
     }
 
     private function selectQuery($isGroup=false, $packageId=null) {

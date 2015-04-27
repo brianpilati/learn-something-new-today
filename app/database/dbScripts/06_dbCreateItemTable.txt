@@ -13,7 +13,6 @@ CREATE TABLE `item` (
   `imageUrl` VARCHAR(255),
   `title` VARCHAR(65),
   `description` VARCHAR(255),
-  `altTag` VARCHAR(255),
   `creationDate` DATETIME,
   PRIMARY KEY (`itemId`),
   FOREIGN KEY (`brandId`) REFERENCES `brand` (`brandId`),

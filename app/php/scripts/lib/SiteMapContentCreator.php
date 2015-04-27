@@ -16,6 +16,7 @@
             $html .= $this->getBodyOpen();
             $html .= $this->getTopContainer();
             $html .= $this->getSiteMapContainer();
+            $html .= $this->getDisclaimer();
             $html .= $this->getBodyClose();
             $html .= "</html>";
 

@@ -9,7 +9,7 @@ $container-width: $main-width - $margin-left-spacer * 2;
 $content-width: 640px;
 $lsnt-content-width: $content-width + 30;
 $site-map-width: $main-width - ($margin-left-spacer * 2);
-$site-map-items: 2;
+$site-map-items: 3;
 $site-map-item-width: (($site-map-width - ($margin-left-spacer * ($site-map-items - 1))) / $site-map-items) - ($site-map-items * 3);
 
 $image-width: 640px;
@@ -57,6 +57,7 @@ a {
             position: relative;
             float: left;
             height: 25px;
+            padding-top: 10px;
             margin-left: $margin-left-spacer;
             width: $site-map-item-width;
             text-align: center;

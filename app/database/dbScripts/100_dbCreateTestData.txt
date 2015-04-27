@@ -23,12 +23,12 @@ INSERT INTO `brand` (brand, subCategoryId, creationDate) VALUES
 UNLOCK TABLES;
 
 LOCK TABLES `item` WRITE;
-INSERT INTO `item` (item, brandId, imageUrl, title, description, altTag, creationDate) VALUES 
-('4567', 1, 'tonyStarkIronMan.jpg', 'Tony Stark aka IronMan', 'Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father\'s company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.', 'Tony Stark aka IronMan', now()),
-('Tacoma', 2, 'image', 'Tacoma item title', 'Tacoma description', 'altTag', now()),
-('4568', 1, 'image', '4568 item title', '4568 description', 'altTag', now()),
-('4569', 1, 'image', '4569 item title', '4569 description', 'altTag', now()),
-('4570', 1, 'image', '4570 item title', '4570 description', 'altTag', now());
+INSERT INTO `item` (item, brandId, imageUrl, title, description, creationDate) VALUES 
+('4567', 1, 'tonyStarkIronMan.jpg', 'Tony Stark aka IronMan', 'Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father\'s company, Stark Enterprises, to build weapons and electromechanical suits of armor. This is an attempt to add 255.', now()),
+('Tacoma', 2, 'image', 'Tacoma item title', 'Tacoma description', now()),
+('4568', 1, 'image', '4568 item title', '4568 description', now()),
+('4569', 1, 'image', '4569 item title', '4569 description', now()),
+('4570', 1, 'image', '4570 item title', '4570 description', now());
 UNLOCK TABLES;
 
 LOCK TABLES `keyword` WRITE;

@@ -1,5 +1,16 @@
 <?php
 
+function get_ob() {
+    $text = ob_get_clean();
+    ob_start();
+    return $text;
+}
+
+function test_http_response_code() {
+    $responses = preg_split("/\s/", $GLOBALS['HEADER']);
+    return $responses[1];
+}
+
 if (!file_exists('./vendor/autoload.php')) {
     echo "\n\n";
     die(<<<'EOT'
