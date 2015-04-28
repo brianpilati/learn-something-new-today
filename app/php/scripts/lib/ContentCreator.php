@@ -69,7 +69,7 @@ return <<<HTML
                 {$this->getLogo()}
                 {$this->social->getFacebook()}
                 {$this->social->getTwitter()}
-                {$this->social->getPinterest($this->item->getImageUrl(), $this->package->getPackageLink())}
+                {$this->social->getPinterest($this->package->getPackageLink(), $this->package->getPromotionImageUrl(), $this->package->getTitle())}
                 {$this->getPackageTitle($isHomePage)}
                 {$this->ads->getHeaderAd($isHomePage)}
             </div>
@@ -125,6 +125,7 @@ return <<<HTML
         <title>{$this->buildPageTitle()}</title>
         <meta name="keywords" content="{$this->item->getKeywords()}">
         <meta name="description" content="{$this->item->getMetaDescription()}">
+        {$this->getPinterestValidation()}
         <link rel="stylesheet" type="text/css" href="/lib/lsnt.css" />
     </head>
 HTML;

@@ -20,9 +20,19 @@ class SocialTest extends PHPUnit_Framework_TestCase
         $this->assertContains('@lsnt', $this->social->getTwitter());
     }
 
-    public function testGetPinterest()
+    public function testGetPinterestPackages()
     {
-        $this->assertContains('url=http://test.site/my_new_page', $this->social->getPinterest('my_new_image', '/my_new_page'));
-        $this->assertContains('media=my_new_image', $this->social->getPinterest('my_new_image', 'my_new_page'));
+        $pinterest = $this->social->getPinterest('/my_new_page', '/my_new_image', 'my description');
+        $this->assertContains('url=http://test.site/my_new_page', $pinterest);
+        $this->assertContains('media=http://test.site/my_new_image', $pinterest);
+        $this->assertContains('description=my description', $pinterest);
+    }
+
+    public function testGetPinterestSiteMap()
+    {
+        $pinterest = $this->social->getPinterest('');
+        $this->assertContains('url=http://test.site', $pinterest);
+        $this->assertNotContains('media', $pinterest);
+        $this->assertNotContains('description', $pinterest);
     }
 }

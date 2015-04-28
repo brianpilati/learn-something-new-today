@@ -57,6 +57,14 @@ return <<<HTML
 HTML;
         }
 
+        public function getPinterestValidation() {
+return <<<HTML
+
+                <meta name="p:domain_verify" content="308654263fc91b72550f3b6c96369978"/>
+
+HTML;
+        }
+
     }
 
 ?>

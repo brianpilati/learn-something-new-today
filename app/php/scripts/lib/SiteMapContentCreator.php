@@ -29,6 +29,7 @@ return <<<HTML
     <head>
         <title>{$this->getSiteName()}</title>
         <link rel="stylesheet" type="text/css" href="/lib/lsnt.css" />
+        {$this->getPinterestValidation()}
     </head>
 HTML;
         }
@@ -48,7 +49,7 @@ return <<<HTML
                 {$this->getLogo()}
                 {$this->social->getFacebook()}
                 {$this->social->getTwitter()}
-                {$this->social->getPinterest('image')}
+                {$this->social->getPinterest('')}
                 <div class="lsnt-package-title">Site Map</div>
             </div>
 HTML;
