@@ -5,11 +5,15 @@ class SubCategoryModel extends db {
         parent::__construct();
     }
 
-    public function getAll($categoryId) {
-        return $this->query($this->selectQuery($categoryId));
+    public function getAll($subCategoryId) {
+        return $this->query($this->selectQuery($subCategoryId));
     }
 
-    private function selectQuery($categoryId) {
+    public function addSubCategory($data) {
+        return $this->query($this->insertQuery($data));
+    }
+
+    private function selectQuery($subCategoryId) {
         return "
             SELECT 
                 subCategoryId,
@@ -19,6 +23,25 @@ class SubCategoryModel extends db {
                 subCategory
             ORDER BY
                 subCategory
+        ;
+      ";
+    }
+
+    private function insertQuery($data) {
+        return "
+            INSERT INTO
+                `subCategory`
+                (
+                    `subCategory`,
+                    `categoryId`,
+                    `creationDate`
+                )
+            VALUES 
+                (
+                    '{$data['subCategory']}',
+                    '{$data['categoryId']}',
+                    now()
+                )
         ;
       ";
     }

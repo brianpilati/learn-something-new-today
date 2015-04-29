@@ -4,18 +4,6 @@
 -- ------------------------------------------------------
 -- Server version	5.0.83
 
-LOCK TABLES `subCategory` WRITE;
-INSERT INTO `subCategory` (subCategory, categoryId, creationDate) VALUES 
-('Movies', 1, now()),
-('Building Blocks', 2, now());
-UNLOCK TABLES;
-
-LOCK TABLES `brand` WRITE;
-INSERT INTO `brand` (brand, subCategoryId, creationDate) VALUES 
-('Marvel', 1, now()),
-('LEGO', 2, now());
-UNLOCK TABLES;
-
 LOCK TABLES `item` WRITE;
 INSERT INTO `item` (item, brandId, imageUrl, title, description, creationDate) VALUES 
 ('Tony Stark', 1, 'tony-stark-iron-man-robert-downey-jr.jpg', 'Tony Stark aka Iron Man', 'Tony is a co-leader of the Avengers. He is a self-described genius, billionaire, playboy, and philanthropist. He uses his genius and father\'s company, Stark Enterprises, to build weapons and electromechanical suits of armor.', now()),

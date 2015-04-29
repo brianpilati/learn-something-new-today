@@ -1,10 +1,10 @@
 <?php
 
-class CategoryController {
-    private $categoryObj;
+class BrandController {
+    private $brandObj;
 
     public function __construct() {
-        $this->categoryObj = new CategoryModel();
+        $this->brandObj = new BrandModel();
         $this->determineRequestMethod();
     }
 
@@ -23,22 +23,23 @@ class CategoryController {
     }
 
     private function get() {
-        $categoryJson = array();
-        $this->categoryObj->getAll();
-        if ($this->categoryObj->result) {
-            while($dbObj = $this->categoryObj->result->fetch_object()) {
+        $brandJson = array();
+        $this->brandObj->getAll();
+        if ($this->brandObj->result) {
+            while($dbObj = $this->brandObj->result->fetch_object()) {
                 array_push (
-                    $categoryJson,
+                    $brandJson,
                     array (
-                        'categoryId' => $dbObj->categoryId,
-                        'category' => $dbObj->category
+                        'brandId' => $dbObj->brandId,
+                        'brand' => $dbObj->brand
+                        'subCategoryId' => $dbObj->subCategoryId
                     )
                 );
             }
         }
 
         lsnt_header("HTTP/1.0 200 Success");
-        echo json_encode ($categoryJson);
+        echo json_encode ($brandJson);
     }
 
     private function post() {
@@ -46,7 +47,7 @@ class CategoryController {
         if (sizeof($payload) == 0) {
             $payload = $_POST;
         }
-        $response = $this->categoryObj->addCategory($payload);
+        $response = $this->brandObj->addBrand($payload);
 
         if (preg_match ( '/\d+/', $response )) {
             lsnt_header("HTTP/1.0 201 Created");
@@ -56,6 +57,6 @@ class CategoryController {
     }
 }
 
-new CategoryController();
+new BrandController();
 
 ?>

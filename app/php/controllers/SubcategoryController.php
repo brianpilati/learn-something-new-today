@@ -1,10 +1,10 @@
 <?php
 
-class CategoryController {
-    private $categoryObj;
+class SubcategoryController {
+    private $subCategoryObj;
 
     public function __construct() {
-        $this->categoryObj = new CategoryModel();
+        $this->subCategoryObj = new SubcategoryModel();
         $this->determineRequestMethod();
     }
 
@@ -23,22 +23,23 @@ class CategoryController {
     }
 
     private function get() {
-        $categoryJson = array();
-        $this->categoryObj->getAll();
-        if ($this->categoryObj->result) {
-            while($dbObj = $this->categoryObj->result->fetch_object()) {
+        $subCategoryJson = array();
+        $this->subCategoryObj->getAll();
+        if ($this->subCategoryObj->result) {
+            while($dbObj = $this->subCategoryObj->result->fetch_object()) {
                 array_push (
-                    $categoryJson,
+                    $subCategoryJson,
                     array (
-                        'categoryId' => $dbObj->categoryId,
-                        'category' => $dbObj->category
+                        'subCategoryId' => $dbObj->subCategoryId,
+                        'subCategory' => $dbObj->subCategory
+                        'categoryId' => $dbObj->categoryId
                     )
                 );
             }
         }
 
         lsnt_header("HTTP/1.0 200 Success");
-        echo json_encode ($categoryJson);
+        echo json_encode ($subCategoryJson);
     }
 
     private function post() {
@@ -46,7 +47,7 @@ class CategoryController {
         if (sizeof($payload) == 0) {
             $payload = $_POST;
         }
-        $response = $this->categoryObj->addCategory($payload);
+        $response = $this->subCategoryObj->addCategory($payload);
 
         if (preg_match ( '/\d+/', $response )) {
             lsnt_header("HTTP/1.0 201 Created");
@@ -56,6 +57,6 @@ class CategoryController {
     }
 }
 
-new CategoryController();
+new SubcategoryController();
 
 ?>
