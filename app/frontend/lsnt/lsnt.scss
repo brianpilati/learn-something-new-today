@@ -1,17 +1,16 @@
 @import '../../css/lsntBase';
 
-$margin-top-spacer: 10px;
 $margin-left-spacer: 10px;
+$margin-top-spacer: 10px;
 $margin-bottom-spacer: 10px;
-$main-width: 1024px;
-$container-width: $main-width - $margin-left-spacer * 2;
+$main-width: auto;
+$main-height: 100%;
 $content-width: 640px;
 $lsnt-content-width: $content-width + 30;
 
 body {
     font-family: "Open Sans", sans-serif;
     color: $color-font;
-    background: $light-color;
 }
 
 a:hover,
@@ -24,38 +23,35 @@ a {
 
 .main {
     position: relative;
-    width: $main-width;
-    height: auto;
+    height: $main-height;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: $margin-bottom-spacer;
     border: 1px solid $dark-color;
     background: #fff;
-    box-shadow: -5px 5px 5px $dark-color;
-
 
     .content-container {
         position: relative;
-        margin-top: $margin-top-spacer;
-        margin-left: $margin-left-spacer;
-        height: 1130px;
-        width: $container-width;
+        float: left;
+        height: auto;
+        width: $lsnt-content-width;
+        margin-left: $margin-left-spacer * 2;
+        border: 1px solid $dark-color;
+    }
 
-        .content-lsnt-container {
-            position: relative;
-            float: left;
-            height: auto;
-            width: $lsnt-content-width;
-            margin-left: $margin-left-spacer * 2;
-            margin-bottom: $margin-bottom-spacer;
-            box-shadow: -3px 3px 5px $dark-color;
-        }
+    .menu-container {
+        position: relative;
+        float: left;
+        height: auto;
+        width: 300px;
+        border: 1px solid $dark-color;
 
-        .content-ad-container {
-            position: relative;
-            float: left;
-            height: auto;
-            width: 300px;
+        .menus {
+            margin-left: $margin-left-spacer;
+
+            .menu {
+                margin-top: $margin-top-spacer;
+                margin-bottom: $margin-bottom-spacer;
+            }
         }
     }
 }

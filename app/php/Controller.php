@@ -1,5 +1,5 @@
 <?php
-    include join('/', array(__DIR__, 'AutoLoader.php'));
+    include_once join('/', array(__DIR__, 'AutoLoader.php'));
     #include join('/', array('.', 'test', 'php', 'config.php'));
 
     lsnt_header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );

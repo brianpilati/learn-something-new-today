@@ -4,17 +4,12 @@ angular.module('LSNTApp', [
 
     $routeProvider
         .when('/', {
-            redirectTo: '/activity-feed'
-        })
-
-        .when('/login', {
-            templateUrl: '/notFound/'//,
-//            controller: 'LoginController'
+            templateUrl: 'pages/splash/index.html'
         })
 
         .otherwise({
-            redirectTo: '/notFound'
-         });
+            redirectTo: 'pages/notFound'
+        });
 
     $locationProvider.html5Mode(true);
 }]);

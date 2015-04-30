@@ -23,8 +23,8 @@ EOT
     );
 }
 
-include join('/', array('.', 'app', 'php',  'AutoLoader.php'));
-include join('/', array('.', 'test', 'php', 'config.php'));
+include_once join('/', array('.', 'app', 'php',  'AutoLoader.php'));
+include_once join('/', array('.', 'test', 'php', 'config.php'));
 
 chdir(__DIR__ . '/../../app/php');
 ?>
