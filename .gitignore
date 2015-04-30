@@ -40,3 +40,4 @@ config_preview.php
 shadowSrc
 .DS_Store
 app/frontend/build
+app/lib
