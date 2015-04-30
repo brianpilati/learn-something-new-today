@@ -1,0 +1,480 @@
+@import './lsntBase';
+$margin-top-spacer: 10px;
+$margin-left-spacer: 10px;
+$margin-bottom-spacer: 10px;
+$left-spacer: 27px;
+$left-content-spacer: 15px;
+$main-width: 1024px;
+$container-width: $main-width - $margin-left-spacer * 2;
+$content-width: 640px;
+$lsnt-content-width: $content-width + 30;
+$site-map-width: $main-width - ($margin-left-spacer * 2);
+$site-map-items: 3;
+$site-map-item-width: (($site-map-width - ($margin-left-spacer * ($site-map-items - 1))) / $site-map-items) - ($site-map-items * 3);
+
+$image-width: 640px;
+$image-height: 428px;
+
+$homepage-image-height: 340px;
+$homepage-image-width: 640px;
+$homepage-content-height: 545px;
+$homepage-container-width: $homepage-image-width + 100;
+
+body {
+    font-family: "Open Sans", sans-serif;
+    color: $color-font;
+    background: $light-color;
+}
+
+a:hover,
+a:focus,
+a:visited,
+a {
+    color: $dark-color;
+    text-decoration: none;
+}
+
+.main {
+    position: relative;
+    width: $main-width;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $margin-bottom-spacer;
+    border: 1px solid $dark-color;
+    background: #fff;
+    box-shadow: -5px 5px 5px $dark-color;
+
+    .site-map-container {
+        position: relative;
+        height: 800px;
+        margin-left: $margin-left-spacer;
+        width: $site-map-width;
+
+        .site-map-category {
+            position: relative;
+            float: left;
+            height: 25px;
+            padding-top: 10px;
+            margin-left: $margin-left-spacer;
+            width: $site-map-item-width;
+            text-align: center;
+        }
+    }
+
+    .top-container {
+        position: relative;
+        margin-top: $margin-top-spacer;
+        margin-left: $margin-left-spacer;
+        height: 100px;
+        width: $container-width;
+
+        .lsnt-logo {
+            position: absolute;
+            width: 383px;
+            height: 40px;
+            top: 0;
+            left: 0;
+            font-size: 1em;
+
+            .lsnt-logo-image {
+                width: 383px;
+                height: 40px;
+            }
+        }
+
+        .lsnt-package-title {
+            position: absolute;
+            width: $content-width;
+            height: 35px;
+            top: 55px;
+            left: $left-spacer;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: $dark-color;
+        }
+
+        .lsnt-facebook {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            top: $margin-top-spacer;
+            left: 540px;
+            box-shadow: -1px 1px 3px $dark-color;
+        }
+
+        .lsnt-twitter {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            top: $margin-top-spacer;
+            left: 585;
+            box-shadow: -1px 1px 3px $dark-color;
+        }
+
+        .lsnt-pinterest {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            top: $margin-top-spacer;
+            left: 630px;
+            box-shadow: -1px 1px 3px $dark-color;
+        }
+
+        .header-ad {
+            position: absolute;
+            width: 320px;
+            height: 100px;
+            top: 0;
+            right: 0;
+            border: 1px dashed green;
+        }
+    }
+
+    .marquee-container {
+        position: relative;
+        margin-top: $margin-top-spacer;
+        margin-left: $margin-left-spacer;
+        height: 90px;
+        width: $container-width;
+
+        .marquee-ad {
+            position: relative;
+            width: 728px;
+            height: 90px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .content-homepage-container {
+        position: relative;
+        margin-top: $margin-top-spacer;
+        margin-left: auto;
+        margin-right: auto;
+        height: $homepage-content-height;
+        width: $homepage-container-width;
+        border: 1px solid $dark-color;
+        box-shadow: -3px 3px 5px $dark-color;
+
+        .content-lsnt-container {
+            position: relative;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            height: $homepage-image-height;
+            width: $lsnt-content-width;
+            margin-bottom: $margin-bottom-spacer;
+
+            .lsnt-featured-today {
+                position: relative;
+                width: $content-width;
+                height: 25px;
+                font-size: 1.5em;
+                margin-top: $margin-top-spacer * 2;
+                margin-bottom: $margin-bottom-spacer * 2;
+                margin-left: $left-content-spacer;
+            }
+            
+            .lsnt-title {
+                position: relative;
+                width: $content-width;
+                height: 25px;
+                font-size: 1.5em;
+                margin-top: $margin-top-spacer * 2;
+                margin-bottom: $margin-bottom-spacer * 2;
+                margin-left: $left-content-spacer;
+            }
+
+            .lsnt-image {
+                position: relative;
+                width: $image-width;
+                height: $homepage-image-height;
+                margin-top: $margin-top-spacer;
+                margin-left: $left-content-spacer;
+                border: 1px solid $dark-color;
+                box-shadow: -3px 3px 5px $dark-color;
+            }
+        }
+    }
+
+    .content-container {
+        position: relative;
+        margin-top: $margin-top-spacer;
+        margin-left: $margin-left-spacer;
+        height: 1130px;
+        width: $container-width;
+
+        .content-lsnt-container {
+            position: relative;
+            float: left;
+            height: auto;
+            width: $lsnt-content-width;
+            margin-left: $margin-left-spacer * 2;
+            margin-bottom: $margin-bottom-spacer;
+            box-shadow: -3px 3px 5px $dark-color;
+            
+            .lsnt-title {
+                position: relative;
+                width: $content-width;
+                height: 25px;
+                font-size: 1.5em;
+                margin-top: $margin-top-spacer;
+                margin-left: $left-content-spacer;
+            }
+
+            .lsnt-image {
+                position: relative;
+                width: $image-width;
+                height: $image-height;
+                margin-top: $margin-top-spacer;
+                margin-left: $left-content-spacer;
+                border: 1px solid $dark-color; 
+                box-shadow: -3px 3px 5px $dark-color;
+            }
+
+            .lsnt-description {
+                position: relative;
+                width: $content-width;
+                min-height: 75px;
+                height: auto;
+                margin-top: $margin-top-spacer * 2;
+                margin-left: $left-content-spacer;
+                font-size: 1.25em;
+            }
+
+            .lsnt-bullets {
+                position: relative;
+                width: $content-width;
+                height: 60px;
+                margin-top: $margin-top-spacer;
+                margin-left: $left-content-spacer;
+
+                .lsnt-bullet-one {
+                    position: relative;
+                    width: $content-width;
+                    height: 25px;
+                }
+
+                .lsnt-bullet-two {
+                    position: relative;
+                    width: $content-width;
+                    height: 25px;
+                    margin-top: $margin-top-spacer;
+                }
+
+                .lsnt-bullet-one-small {
+                    position: absolute;
+                    width: 315px;
+                    height: 25px;
+                    top: 0;
+                    left: 0;
+                }
+
+                .lsnt-bullet-two-small {
+                    position: absolute;
+                    width: 315px;
+                    height: 25px;
+                    top: 37px;
+                    left: 0;
+                }
+
+                .lsnt-bullet-three-small {
+                    position: absolute;
+                    width: 315px;
+                    height: 25px;
+                    top: 0;
+                    right: 0;
+                }
+
+                .lsnt-bullet-four-small {
+                    position: absolute;
+                    width: 315px;
+                    height: 25px;
+                    top: 37px;
+                    right: 0;
+                }
+            }
+
+            .lsnt-navigation {
+                position: relative;
+                width: $content-width;
+                height: 100px;
+                margin-top: $margin-top-spacer;
+                margin-left: $left-content-spacer;
+
+                .lsnt-previous-button {
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    top: 0;
+                    left: 75px;
+                }
+
+                .lsnt-next-button {
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    top: 0;
+                    left: 465px;
+                }
+
+                .lsnt-catch-phrase {
+                    position: absolute;
+                    width: 200px;
+                    height: 35px;
+                    top: 32.5px;
+                    left: 220px;
+                    text-align: center;
+                    font-weight: bold;
+
+                    .lsnt-catch-phrase-steps {
+                        margin-top: 10px;
+
+                    }
+                }
+            }
+
+            .content-bottom-container {
+                position: relative;
+                height: 305px;
+                left: 0;
+                width: $lsnt-content-width;
+                margin-top: $margin-top-spacer * 2;
+
+                .content-bottom-ad-container {
+                    position: relative;
+                    height: 90px;
+                    left: $left-content-spacer;
+                    width: $content-width;
+
+                    .ad-left {
+                        position: relative;
+                        width: 200px;
+                        height: 90px;
+                        margin-left: 10px;
+                        float: left;
+                        border: 1px dashed lightgreen;
+                    }
+
+                    .ad-center {
+                        position: relative;
+                        width: 200px;
+                        height: 90px;
+                        margin-left: 10px;
+                        float: left;
+                        border: 1px dashed lightgreen;
+                    }
+
+                    .ad-right {
+                        position: relative;
+                        width: 200px;
+                        height: 90px;
+                        margin-left: 10px;
+                        float: left;
+                        border: 1px dashed lightgreen;
+                    }
+                }
+
+                .content-bottom-lsnt-container {
+                    position: relative;
+                    height: 205px;
+                    left: $left-content-spacer;
+                    width: $content-width;
+                    margin-top: $margin-top-spacer;
+                    margin-bottom: $margin-bottom-spacer;
+
+                    .lsnt-more-packages {
+                        position: relative;
+                        width: $content-width;
+                        height: 25px;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 1em;
+                    }
+
+                    .lsnt-package-container {
+                        position: relative;
+                        margin-top: $margin-top-spacer;
+                        width: 642px;
+                        height: 77px;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 1em;
+                        float: left;
+
+                        .lsnt-package-item {
+                            position: relative;
+                            width: 135px;
+                            height: 75px;
+                            margin-left: 18px;
+                            float: left;
+                            border: 1px dashed orange;
+                        }
+                    }
+                }
+            }
+        }
+
+        .content-ad-container {
+            position: relative;
+            float: left;
+            height: auto;
+            width: 300px;
+
+            .ad-top {
+                position: relative;
+                width: 300px;
+                height: 600px;
+                border: 1px dashed blue;
+            }
+
+            .ad-middle {
+                position: relative;
+                width: 300px;
+                height: 250px;
+                margin-top: $margin-top-spacer;
+                border: 1px dashed lightblue;
+            }
+
+            .ad-bottom {
+                position: relative;
+                width: 300px;
+                height: 250px;
+                margin-top: $margin-top-spacer;
+            }
+        }
+    }
+
+    .lsnt-disclaimer {
+        position: relative;
+        width: $content-width;
+        min-height: 25px;
+        height: auto;
+        font-size: .5em;
+        text-align: center;
+        margin-top: $margin-top-spacer;
+        margin-bottom: $margin-bottom-spacer;
+        color: $light-color;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .lsnt-bottom-links {
+        position: relative;
+        font-size: .75em;
+        width: $content-width;
+        height: 25px;
+        text-align: left;
+        margin-top: $margin-top-spacer * 2;
+        margin-bottom: $margin-bottom-spacer;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+.italics {
+    font-style: italic;
+}

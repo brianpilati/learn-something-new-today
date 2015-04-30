@@ -5,11 +5,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             sass: {
-                files: 'app/css/**/*.scss',
+                files: ['app/css/**/*.scss', 'app/frontend/**/*.scss'],
                 tasks: ['sass']
             },
             scsslint: {
-                files: 'app/css/**/*.scss',
+                files: ['app/css/**/*.scss', 'app/frontend/**/*/scss'],
                 tasks: ['scsslint']
             },
             phpunit: {
@@ -36,7 +36,8 @@ module.exports = function (grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'app/src/lib/lsnt.min.css': 'app/css/lsnt.scss'
+                    'app/src/lib/lsnt.min.css': 'app/css/lsnt.scss',
+                    'app/frontend/build/lsnt.min.css': 'app/frontend/lsnt/lsnt.scss'
                 }
             },
             compact: {
@@ -44,13 +45,15 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'app/src/lib/lsnt.css': 'app/css/lsnt.scss'
+                    'app/src/lib/lsnt.css': 'app/css/lsnt.scss',
+                    'app/frontend/build/lsnt.css': 'app/frontend/lsnt/lsnt.scss'
                 }
             }
         },
         scsslint: {
             allFiles: [
-                'app/css/**/*.scss'
+                'app/css/**/*.scss',
+                'frontend/css/**/*.scss'
             ],
             options: {
                 config: '.scss-lint.yml',
