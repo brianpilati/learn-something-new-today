@@ -1,5 +1,7 @@
 angular.module('LSNTApp', [
-    'ngRoute'
+    'ngRoute',
+    'CategoryModule',
+    'LSNTShared'
 ]).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider ) {
 
     $routeProvider
@@ -13,3 +15,17 @@ angular.module('LSNTApp', [
 
     $locationProvider.html5Mode(true);
 }]);
+
+angular.module('LSNTShared', ['isComponents']).config(['RestangularProvider', function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('/');
+    RestangularProvider.addResponseInterceptor(function (data, operation) {
+        var extractedData;
+        if (operation === "getList") {
+            extractedData = data.data;
+        } else {
+            extractedData = data;
+        }
+        return extractedData;
+    });
+}]);
+angular.module('CategoryModule', ['LSNTShared']);

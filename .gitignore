@@ -41,3 +41,4 @@ shadowSrc
 .DS_Store
 app/frontend/build
 app/lib
+build
