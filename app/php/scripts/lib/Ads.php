@@ -72,11 +72,7 @@ HTML;
         }
 
         private function getMainMiddleAdContent() {
-            if (ISSET($GLOBALS['IS_TEST'])) {
-                return "Fake Google Middle Ad";
-            } else {
-                return "Google Middle Ad";
-            }
+            return $this->amazonAds->get300by250AdAvengers();
         }
 
         private function getMainMiddleAd() {

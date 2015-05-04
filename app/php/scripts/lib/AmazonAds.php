@@ -10,7 +10,7 @@
             } else {
 return <<<HTML
 
-    <div class="alignleft">  
+    <div class="align-left">  
         <script type='text/javascript'>
             amzn_assoc_ad_type = 'banner';
             amzn_assoc_tracking_id = 'leasomnewto03-20';
@@ -36,7 +36,7 @@ HTML;
             } else {
 return <<<HTML
 
-    <div class="alignleft">  
+    <div class="align-left">  
         <script type='text/javascript'>
             amzn_assoc_ad_type = 'banner';
             amzn_assoc_tracking_id = 'leasomnewto03-20';
@@ -55,5 +55,21 @@ return <<<HTML
 HTML;
             }
         }
+
+        public function get300by250AdAvengers() {
+            if (ISSET($GLOBALS['IS_TEST'])) {
+                return "Fake 300 by 250 - Amazon Avengers Ad";
+            } else {
+return <<<HTML
+
+    <div class="align-center">  
+        <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=leasomnewto03-20&marketplace=amazon&region=US&placement=B0083SBJXS&asins=B0083SBJXS&linkId=TZSDVTJ6ONY6Q47B&show_border=true&link_opens_in_new_window=true&price_color=24576A&title_color=FFFFFF&bg_color=A8BDC4">
+        </iframe>
+    </div>
+HTML;
+            }
+        }
+
+
     }
 ?>

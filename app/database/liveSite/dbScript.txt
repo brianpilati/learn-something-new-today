@@ -28,7 +28,26 @@ INSERT INTO `item` (item, brandId, imageUrl, title, description, creationDate) V
 ('Skyline', 2, 'lego-skyline-5526.jpg', 'Skyline (5526)', NULL, now()),
 ('Statue of Liberty', 2, 'lego-statue-of-liberty-3450.jpg', 'Statue of Liberty (3450)', NULL, now()),
 ('Taj Mahal', 2, 'lego-taj-mahal-10189.jpg', 'Tah Mahal (10189)', NULL, now()),
-('Tower Bridge', 2, 'lego-tower-bridge-10214.jpg', 'Tower Bridge (10215)', NULL, now())
+('Tower Bridge', 2, 'lego-tower-bridge-10214.jpg', 'Tower Bridge (10215)', NULL, now()),
+
+('Books', 14, 'mother-s-day-books.jpg', 'Books', 'Mothers love to read. They love to read for themselves, to their children and grandchildren. A book is a gift your mother will cherish for years', now()),
+('Breakfast in Bed', 9, 'mother-s-day-breakfast-in-bed.jpg', 'Breakfast in Bed', "The rich and savory aromas of a breakfast prepared with love drifting into a waking mother's room will tell any mother she is loved.", now()),
+('Chocolate', 6, 'mother-s-day-chocolate.jpg', 'Chocolate', "Chocolate is said to be a \"Woman's Best Friend\". It's an easy win.", now()),
+('Clothing', 4, 'mother-s-day-clothing.jpg', 'Clothing', "Every mother wants to look her best. Clothing or a 'trip shopping' will be appreciated by any mother.", now()),
+('Fancy Dinner', 8, 'mother-s-day-fancy-dinner.jpg', 'Fancy Dinner', "A night without cooking -- plus it's her favorite restaurant!", now()),
+('Flower Bouquet', 11 , 'mother-s-day-flower-bouquet.jpg', 'Flower Bouquet', "A flower bouquet is a great gift if your mother lives far away or to complement another gift.", now()),
+('Fruit Bouquet', 7 , 'mother-s-day-fruit-bouquet.jpg', 'Fruit Bouquet', "Fruit bouquets are a novel way to say 'I love you'. Each bouquet is hand-crafted fresh for delivery. Just make sure to order early.", now()),
+
+('Gift Card', 13 , 'mother-s-day-gift-card.jpg', 'Gift Card', "Gift cards are great for mothers who have a favorite store, are particular shoppers or live far away.", now()),
+
+('Jewlery', 3 , 'mother-s-day-jewelry.jpg', 'Jewelry', "Watches, bracelets, earrings -- oh, my! A fine piece of jewelry will certainly surprise and tickle any mother this year.", now()),
+
+('Manicure and Pedicure', 12 , 'mother-s-day-manicure-pedicure.jpg', 'Manicure or Pedicure', "A manicure or pedicure or both will make your mother feel like a million dollars", now()),
+
+("Mother's Day Card", 10, 'mother-s-day-card.jpg', "Mother's Day Card", "It works but ... you really need to do more than just a card.", now()),
+('Perfume', 5, 'mother-s-day-perfume.jpg', 'Perfume', "Perfume is a great gift that can be used through-out the year. A good tip is to ensure the perfume is dispensed by pumping and not aerosol.", now()),
+('Spa', 15, 'mother-s-day-spa.jpg', 'Day at a Spa', "Ah, a nice refreshing day at a local spa will enliven any mother's spirits.", now()),
+('Weekend Getaway', 16, 'mother-s-day-weekend-getaway.jpg', 'A Weekend Getaway', "Being a mother is hard work and she needs time to relax and play. A weekend getaway is just what every mother needs.", now())
 ;
 
 UNLOCK TABLES;
@@ -119,8 +138,43 @@ INSERT INTO `keyword` (keyword, creationDate) VALUES
 
 ('Toys', now()),
 ('Building Blocks', now()),
-('LEGO', now())
+('LEGO', now()),
 
+('Books', now()),
+('Breakfast in bed', now()),
+('Chocolate', now()),
+("Woman's best friend", now()),
+
+("Clothing", now()),
+("Shopping", now()),
+
+("Dinner", now()),
+("Eating", now()),
+("Restaurant", now()),
+
+("Flowers", now()),
+("Bouquet", now()),
+
+("Fruit", now()),
+
+("Gift Card", now()),
+
+("Jewelry", now()),
+("Watches", now()),
+("Bracelets", now()),
+("Rings", now()),
+("Earrings", now()),
+
+("Manicure", now()),
+("Pedicure", now()),
+
+("Card", now()),
+("Perfume", now()),
+("Spa", now()),
+("Weekend", now()),
+("Getaway", now()),
+
+("Mother's Day", now())
 
 ;
 UNLOCK TABLES;
@@ -215,7 +269,45 @@ INSERT INTO `keywordConnector` (keywordId, type, typeId) VALUES
 (72, 'class', 2),
 (73, 'brand', 2),
 (73, 'family', 2),
-(73, 'package', 2)
+(73, 'package', 2),
+
+(74, 'item', 21),
+
+(75, 'item', 22),
+
+(76, 'item', 23),
+(77, 'item', 23),
+
+(78, 'item', 24),
+(79, 'item', 24),
+
+(80, 'item', 25),
+(81, 'item', 25),
+(82, 'item', 25),
+
+(83, 'item', 26),
+(84, 'item', 26),
+
+(84, 'item', 27),
+(85, 'item', 27),
+
+(86, 'item', 28),
+
+(87, 'item', 29),
+(88, 'item', 29),
+(89, 'item', 29),
+(90, 'item', 29),
+(91, 'item', 29),
+
+(92, 'item', 30),
+(93, 'item', 30),
+
+(94, 'item', 31),
+(95, 'item', 32),
+(96, 'item', 33),
+(97, 'item', 34),
+(98, 'item', 34),
+(99, 'package', 3)
 
 ;
 UNLOCK TABLES;
@@ -276,20 +368,24 @@ UNLOCK TABLES;
 LOCK TABLES `class` WRITE;
 INSERT INTO `class` (class) VALUES 
 ('Movies'),
-('Building Blocks');
+('Building Blocks'),
+("Mother's Day");
 UNLOCK TABLES;
 
 LOCK TABLES `family` WRITE;
 INSERT INTO `family` (family) VALUES 
 ('Marvel'),
-('LEGO');
+('LEGO'),
+("2015");
 UNLOCK TABLES;
 
 LOCK TABLES `package` WRITE;
 INSERT INTO `package` (categoryId, classId, familyId, title, promotionImage, thumbNailImage, caption, tinyUrl) VALUES 
-(1, 1, 1, 'Avengers - Age of Ultron', 'avengers-age-of-ultron.jpg', 'thumbNailImage', 'caption', 'tinyUrl'),
+(1, 1, 1, 'Avengers - Age of Ultron', 'avengers-age-of-ultron.jpg', 'thumbNailImage', 'caption', 'http://tinyurl.com/qfehnzt'),
 
-(2, 2, 2, 'Largest LEGO Sets Ever', 'lego-largest-sets.jpg', 'thumbNailImage', 'caption', 'tinyUrl');
+(2, 2, 2, 'Largest LEGO Sets Ever', 'lego-largest-sets.jpg', 'thumbNailImage', 'caption', 'http://tinyurl.com/n5gdw4h'),
+
+(7, 3, 3, "14 Amazing Mother's Day Gifts", 'mother-s-day-2015.jpg', 'thumbNailImage', 'caption', 'http://tinyurl.com/lghvhsc');
 UNLOCK TABLES;
 
 LOCK TABLES `packageConnector` WRITE;
@@ -314,6 +410,21 @@ INSERT INTO `packageConnector` (packageId, itemId, displayOrder) VALUES
 (2, 17, 2),
 (2, 18, 3),
 (2, 19, 10),
-(2, 20, 8)
+(2, 20, 8),
+
+(3, 21, 1),
+(3, 22, 2),
+(3, 23, 3),
+(3, 24, 4),
+(3, 25, 5),
+(3, 26, 6),
+(3, 27, 7),
+(3, 28, 8),
+(3, 29, 9),
+(3, 30, 10),
+(3, 31, 11),
+(3, 32, 12),
+(3, 33, 13),
+(3, 34, 14)
 ;
 UNLOCK TABLES;

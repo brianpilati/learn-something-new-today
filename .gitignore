@@ -42,3 +42,4 @@ shadowSrc
 app/frontend/build
 app/lib
 build
+app/db/information

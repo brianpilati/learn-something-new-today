@@ -29,7 +29,7 @@ class AdsTest extends PHPUnit_Framework_TestCase
 
     public function testGetMainMiddleAd()
     {
-        $this->assertRegExp('/Fake Google Middle Ad/', $this->ads->getContentAdContainer());
+        $this->assertRegExp('/Amazon Avengers/', $this->ads->getContentAdContainer());
     }
 
     public function testGetMainBottomAd()

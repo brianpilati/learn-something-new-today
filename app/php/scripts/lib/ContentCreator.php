@@ -145,7 +145,7 @@ HTML;
             }
 return <<<HTML
 
-                        <a href="{$this->item->getPreviousItem()}" alt="Previous Button"><div class="lsnt-previous-button"><img src="/images/navigation/previousButton.png" alt="Previous Button" /></div></a>
+                        <div class="lsnt-previous-button"><a href="{$this->getButtonLink($this->item->getPreviousItem())}" alt="Previous Button"><img src="/images/navigation/previousButton.png" alt="Previous Button" title="Previous Button" /></a></div>
 HTML;
         }
 
@@ -162,13 +162,18 @@ return <<<HTML
 HTML;
         }
 
+        private function getButtonLink($link) {
+            return "{$this->package->getPackageLink()}/$link";
+            
+        }
+
         private function getNextButton() {
             if ($this->item->getDisplayOrder() == $this->package->getTotalItems()) {
                 return;
             }
 return <<<HTML
 
-                        <a href="{$this->item->getNextItem()}" alt="Next Button"><div class="lsnt-next-button"><img src="/images/navigation/nextButton.png" alt="Next Button" /></div></a>
+                        <div class="lsnt-next-button"><a href="{$this->getButtonLink($this->item->getNextItem())}" alt="Next Button"><img src="/images/navigation/nextButton.png" alt="Next Button" title="Next Button" /></a></div>
 HTML;
         }
 
@@ -252,11 +257,11 @@ return <<<HTML
                     <!-- google_ad_section_start -->
                     <div class="lsnt-featured-today">Featured Today</div>
                     <a href="{$this->package->getPackageUrl()}" alt="View {$this->package->getTitle()}">
-                        <div class="lsnt-image"><img src="{$this->package->getPromotionImageUrl()}" alt="{$this->package->getTitle()}" title="{$this->package->getTitle()}" /></div>
+                        <div class="lsnt-image"><img src="{$this->package->getPromotionImageUrl()}" alt="{$this->package->getTitle()}" title="{$this->package->getTitle()}"></img></div>
                     </a>
                     <div class="lsnt-title">{$this->package->getTitle()}</div>
                     <a href="{$this->package->getPackageUrl()}" alt="View {$this->package->getTitle()}">
-                        <div class="lsnt-next-button"><img src="/images/navigation/see-content-button.png" alt="See Content" /></div></a>
+                        <div class="lsnt-next-button"><img src="/images/navigation/see-content-button.png" alt="See Content" /></div>
                     </a>
                     <!-- google_ad_section_end -->
 HTML;

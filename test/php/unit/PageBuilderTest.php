@@ -15,7 +15,7 @@ class PageBuilderTest extends PHPUnit_Framework_TestCase
     {
         $filePath = format_directory($this->sourceDirectory, '');
         $this->validateContent($filePath);
-        $this->assertRegExp('/2015 Toyota Vehicles/', file_get_contents($this->getFileName($filePath)));
+        $this->assertRegExp('/Featured Today/', file_get_contents($this->getFileName($filePath)));
     }
 
     public function testPackageDirectoryCreation() 
