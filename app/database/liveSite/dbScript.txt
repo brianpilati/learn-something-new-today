@@ -47,7 +47,19 @@ INSERT INTO `item` (item, brandId, imageUrl, title, description, creationDate) V
 ("Mother's Day Card", 10, 'mother-s-day-card.jpg', "Mother's Day Card", "It works but ... you really need to do more than just a card.", now()),
 ('Perfume', 5, 'mother-s-day-perfume.jpg', 'Perfume', "Perfume is a great gift that can be used through-out the year. A good tip is to ensure the perfume is dispensed by pumping and not aerosol.", now()),
 ('Spa', 15, 'mother-s-day-spa.jpg', 'Day at a Spa', "Ah, a nice refreshing day at a local spa will enliven any mother's spirits.", now()),
-('Weekend Getaway', 16, 'mother-s-day-weekend-getaway.jpg', 'A Weekend Getaway', "Being a mother is hard work and she needs time to relax and play. A weekend getaway is just what every mother needs.", now())
+('Weekend Getaway', 16, 'mother-s-day-weekend-getaway.jpg', 'A Weekend Getaway', "Being a mother is hard work and she needs time to relax and play. A weekend getaway is just what every mother needs.", now()),
+
+
+('Captain Amercia - The Winter Soldier', 1, 'marvel-captain-america-the-winter-soldier.jpg', '#10 Captain America - The Winter Soldier', "", now()),
+('The Amazing Spider Man', 1, 'marvel-the-amazing-spider-man.jpg', '#9 The Amazing Spider Man', "", now()),
+('Iron Man 2', 1, 'marvel-iron-man-2.jpg', '#8 Iron Man 2', "", now()),
+('Iron Man', 1, 'marvel-iron-man.jpg', '#7 Iron Man', "", now()),
+('Guardians of the Galaxy', 1, 'marvel-guardians-of-the-galaxy.jpg', '#6 Guardians of the Galaxy', "", now()),
+('Spider-Man 3', 1, 'marvel-spider-man-3.jpg', '#5 Spider-Man 3', "", now()),
+('Spider-Man 2', 1, 'marvel-spider-man-2.jpg', '#4 Spider-Man 2', "", now()),
+('Spider-Man', 1, 'marvel-spider-man.jpg', '#3 Spider-Man', "", now()),
+('Iron Man 3', 1, 'marvel-iron-man-3', '#2 Iron Man 3', "", now()),
+('The Avengers', 1, 'marvel-the-avengers.jpg', '#1 The Avengers', "", now())
 ;
 
 UNLOCK TABLES;
@@ -355,7 +367,18 @@ INSERT INTO `bulletPoint` (bulletPoint, itemId, orderId) VALUES
 ("MSRP - $299.00 USD", 19, 2),
 
 ("Total Pieces - 4,287", 20, 1),
-("MSRP - $240.00 USD", 20, 2)
+("MSRP - $240.00 USD", 20, 2),
+
+("$259,766,572", 35, 1),
+("$262,030,663", 36, 1),
+("$312,433,331", 37, 1),
+("$318,412,101", 38, 1),
+("$333,176,600", 39, 1),
+("$336,530,303", 40, 1),
+("$373,585,825", 41, 1),
+("$403,706,375", 42, 1),
+("$409,013,994", 43, 1),
+("$623,357,910", 44, 1)
 
 ;
 UNLOCK TABLES;
@@ -385,7 +408,9 @@ INSERT INTO `package` (categoryId, classId, familyId, title, promotionImage, thu
 
 (2, 2, 2, 'Largest LEGO Sets Ever', 'lego-largest-sets.jpg', 'thumbNailImage', 'caption', 'http://tinyurl.com/n5gdw4h'),
 
-(7, 3, 3, "14 Amazing Mother's Day Gifts", 'mother-s-day-2015.jpg', 'thumbNailImage', 'caption', 'http://tinyurl.com/lghvhsc');
+(7, 3, 3, "14 Amazing Mother's Day Gifts", 'mother-s-day-2015.jpg', 'thumbNailImage', 'caption', 'http://tinyurl.com/lghvhsc'),
+
+(1, 1, 1, "Top Ten Marvel Grossing Movies - May 2015", 'marvel-top-grossing-movies.jpg', 'thumbNailImage', 'caption', 'http://tinyurl.com/q4tfqcu');
 UNLOCK TABLES;
 
 LOCK TABLES `packageConnector` WRITE;
@@ -425,6 +450,17 @@ INSERT INTO `packageConnector` (packageId, itemId, displayOrder) VALUES
 (3, 31, 11),
 (3, 32, 12),
 (3, 33, 13),
-(3, 34, 14)
+(3, 34, 14),
+
+(4, 35, 1),
+(4, 36, 2),
+(4, 37, 3),
+(4, 38, 4),
+(4, 39, 5),
+(4, 40, 6),
+(4, 41, 7),
+(4, 42, 8),
+(4, 43, 9),
+(4, 44, 10)
 ;
 UNLOCK TABLES;
