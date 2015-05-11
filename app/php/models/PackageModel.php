@@ -17,6 +17,10 @@ class PackageModel extends db {
         return $this->query($this->selectQuery(false, $packageId));
     }
 
+    public function getMorePackages($packageId) {
+        return $this->query($this->selectMorePackagesQuery($packageId));
+    }
+
     public function getPackageSiteMap($categoryId, $classId, $familyId) {
         return $this->query($this->selectPackageSiteMapQuery($categoryId, $classId, $familyId));
     }
@@ -66,6 +70,21 @@ class PackageModel extends db {
                 AND p.familyId = $familyId
             ORDER BY
                 p.title
+        ;
+      ";
+    }
+
+    private function selectMorePackagesQuery($packageId) {
+        return "
+            SELECT 
+                title as packageTitle
+            FROM 
+                package
+            WHERE
+                packageId != $packageId
+            ORDER BY
+                packageId desc
+            LIMIT 7
         ;
       ";
     }
