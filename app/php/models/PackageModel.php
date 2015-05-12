@@ -77,13 +77,25 @@ class PackageModel extends db {
     private function selectMorePackagesQuery($packageId) {
         return "
             SELECT 
-                title as packageTitle
+                p.packageId as packageId,
+                c.categoryId as categoryId,
+                c.category as category,
+                cl.class as class,
+                f.family as family,
+                p.title as packageTitle,
+                p.promotionImage as promotionImage
             FROM 
-                package
+                package p,
+                category c,
+                class cl,
+                family f
             WHERE
-                packageId != $packageId
+                p.packageId != $packageId
+                AND p.categoryId = c.categoryId
+                AND p.classId = cl.classId
+                AND p.familyId = f.familyId
             ORDER BY
-                packageId desc
+                p.packageId desc
             LIMIT 7
         ;
       ";

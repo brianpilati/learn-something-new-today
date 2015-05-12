@@ -12,6 +12,6 @@ class CTAPackageTest extends PHPUnit_Framework_TestCase
 
     public function testGetPackages() 
     {
-        $this->assertEquals(sizeof($this->ctaPackages->getPackages()), 3);
+        $this->assertEquals(sizeof($this->ctaPackages->getPackages()), 2);
     }
 }

@@ -4,10 +4,10 @@
         private $packages;
 
         public function __construct($packageId) {
-            $this->buildItems($packageId);
+            $this->buildPackages($packageId);
         }
 
-        private function buildItems($packageId) {
+        private function buildPackages($packageId) {
             $this->packages = array();
             $packagesObj = new PackageModel();
             $packagesObj->getMorePackages($packageId);
