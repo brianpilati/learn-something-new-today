@@ -4,6 +4,7 @@
         private $amazonAds;
         public function __construct() {
             $this->amazonAds = new AmazonAds();
+            $this->ebayAds = new EbayAds();
         }
 
         private function getHeaderAdContent() {
@@ -58,11 +59,7 @@ HTML;
         }
 
         private function getMainTopAdContent() {
-            if (ISSET($GLOBALS['IS_TEST'])) {
-                return "Fake Google Top Ad";
-            } else {
-                return "Google Top Ad";
-            }
+            return $this->ebayAds->get300by250Ad();
         }
 
         private function getMainTopAd() {

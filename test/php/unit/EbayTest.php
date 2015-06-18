@@ -18,6 +18,6 @@ class EbayAdsTest extends PHPUnit_Framework_TestCase
     public function testAd300by250()
     {
         $ad = $this->ebayAds->get300by250Ad();
-        $this->assertRegExp("/Placeholder/", $ad);
+        $this->assertRegExp("/campId=5337710521/", $ad);
     }
 }

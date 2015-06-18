@@ -24,7 +24,7 @@ class AdsTest extends PHPUnit_Framework_TestCase
 
     public function testGetMainTopAd()
     {
-        $this->assertRegExp('/Fake Google Top Ad/', $this->ads->getContentAdContainer());
+        $this->assertRegExp('/Fake 300 by 250 - Ebay Ad/', $this->ads->getContentAdContainer());
     }
 
     public function testGetMainMiddleAd()
